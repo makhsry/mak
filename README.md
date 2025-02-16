@@ -1,6 +1,3 @@
-# MAK 
-
-___
 
 Blending the strength of traditional engineering with state-of-the-art theory and machine learning. 
 
@@ -21,10 +18,10 @@ Milad Asgarpour Khansary (**MAK**)
 
 ___
 
-### Education 
+# Education 
 ___
 
-# MASc. Mining and Minerals Engineering (2023 - 2025)
+## MASc. Mining and Minerals Engineering (2023 - 2025)
 
 [The Norman B. Keevil Institute of Mining Engineering](https://mining.ubc.ca/)
 
@@ -38,9 +35,7 @@ ___
 
 **Degree Project**: Microwave assisted drying of minerals.
 
-___
-
-# MSc. Chemical Engineering - Process Design (2012 - 2014)
+## MSc. Chemical Engineering - Process Design (2012 - 2014)
 
 [University of Tehran](https://ut.ac.ir/en)
 
@@ -52,9 +47,7 @@ ___
 
 **Degree Project**: Thermo-kinetic modeling of the wet phase inversion process for polymeric membranes fabrication.
 
-___
-
-# BSc. Chemical Engineering (2007 - 2011)
+## BSc. Chemical Engineering (2007 - 2011)
 
 [University of Tehran](https://ut.ac.ir/en)
 
@@ -68,9 +61,13 @@ ___
 
 ___
 
-### Work Experience 
+# Work Experience 
 
-### Projects 
+___
 
-### Publications 
+# Projects 
+
+___
+
+# Publications 
 
