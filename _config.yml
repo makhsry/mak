@@ -1,5 +1,5 @@
 title: Milad Asgarpour Khansary (MAK) 
-logo: /assets/img/_MAK_profilepic.jpg
+#logo: /assets/img/_MAK_profilepic.jpg
 #description that goes bellow logo 
-show_downloads: true
+#show_downloads: true
 theme: jekyll-theme-minimal
