@@ -1,5 +1,5 @@
 
-Blending the strength of traditional engineering with state-of-the-art theory and machine learning. 
+Blending the strength of traditional engineering with state-of-the-art theory and machine learning    
 
 Experienced in inspecting, designing, optimizing, and evaluating large-scale systems in conjunction with simulation, virtual environment training and data-driven tools (AI/ML) to support design, development, and decision-making with a focus on enhancing operational efficiency, identifying potential issues and reducing costs. 
 
@@ -16,48 +16,62 @@ Milad Asgarpour Khansary (**MAK**)
 
 **Email**: [miladagarpour[at]gmail.com](mailto:miladasgarpour@gmail.com)
 
-___
-
 # Education 
-___
 
-## MASc. Mining and Minerals Engineering (2023 - 2025)
+<details>
+
+<summary>MASc. Mining and Minerals Engineering (2023 - 2025)</summary>   
+
+### Degree Project: Microwave assisted drying of minerals    
 
 [The Norman B. Keevil Institute of Mining Engineering](https://mining.ubc.ca/)
 
 [The University of British Columbia](https://www.ubc.ca/) Vancouver
 
-**Activities**: Inspected and evaluated, experiemntally and numerically (via Finite Element Modeling in COMSOL), the retrofitting of conventional drying unit operations at a local mining partner via intgeration of microwave-based heating systems at a local mining industrial partner.
+- Activities:       
+> Inspected and evaluated, experimentally and numerically (via Finite Element Modeling in COMSOL), the retrofitting of conventional drying unit operations at a local mining partner via integration of microwave-based heating systems at a local mining industrial partner.
 
-**Skills**: COMSOL · FEM analysis · Computational Electromagnetism · Heat Transfer
+- Skills: COMSOL · FEM analysis · Computational Electromagnetism · Heat Transfer
 
-**Supervisor**: [Dr. Ali G. Madiseh](https://scholar.google.com/citations?hl=en&user=37lpUjsAAAAJ), Ali.Madiseh[at]ubc.ca
+- Supervisor: [Dr. Ali G. Madiseh](https://scholar.google.com/citations?hl=en&user=37lpUjsAAAAJ), Ali.Madiseh[at]ubc.ca
 
-**Degree Project**: Microwave assisted drying of minerals.
+</details>
 
-## MSc. Chemical Engineering - Process Design (2012 - 2014)
+<details>
 
-[University of Tehran](https://ut.ac.ir/en)
+<summary>MSc. Chemical Engineering - Process Design (2012 - 2014)</summary>   
 
-**Activities**: To enable systematic and through examination of separation process in polymeric membranes fabricated via wet phase inversion/casting; built coupled heat, mass, and momentum phenomena and non-equilibrium thermodynamics models with moving boundary conditions for multiphase multicomponent systems in porous media, and solved the final partial/ordinary differential equations (PDE/ODE) numerically by writing codes in Fortran, MATLAB and C++. 
-
-**Skills**: C++ · Fortran · MATLAB · Transport Phenomena · Numerical Simulation · Mathematical Modeling · Polymer Physics
-
-**Supervisor**: [Dr. Mohammad Ali Aroon](https://scholar.google.com/citations?user=IxP_tLUAAAAJ&hl=en), maaroon[at]ut.ac.ir
-
-**Degree Project**: Thermo-kinetic modeling of the wet phase inversion process for polymeric membranes fabrication.
-
-## BSc. Chemical Engineering (2007 - 2011)
+### Degree Project**: Thermo-kinetic modeling of the wet phase inversion process for polymeric membranes fabrication    
 
 [University of Tehran](https://ut.ac.ir/en)
 
-**Activities**: Used Aspen Hysys and Plus to evaluate retrofitting of industrial scale petroleum refinery complex by producing process flow diagram (PFD), piping/process & instrumentation diagram (P&ID), cost and utility, pinch and exergy. 
+- Activities:       
+> To enable systematic and through examination of separation process in polymeric membranes fabricated via wet phase inversion/casting; built coupled heat, mass, and momentum phenomena and non-equilibrium thermodynamics models with moving boundary conditions for multiphase multicomponent systems in porous media, and solved the final partial/ordinary differential equations (PDE/ODE) numerically by writing codes in Fortran, MATLAB and C++.
 
-**Skills**: Aspen HYSYS · Aspen Plus · Aspen Dynamics · Chemical Engineering · Process Simulation · Cost-Benefit Analysis · Exergy
+- Skills: C++ · Fortran · MATLAB · Transport Phenomena · Numerical Simulation · Mathematical Modeling · Polymer Physics
 
-**Supervisor**: [Dr. Nasim Tahouni](https://scholar.google.com/citations?user=jWEhjFcAAAAJ&hl=en), ntahuni[at]ut.ac.ir 
+- Supervisor: [Dr. Mohammad Ali Aroon](https://scholar.google.com/citations?user=IxP_tLUAAAAJ&hl=en), maaroon[at]ut.ac.ir
 
-**Degree Project**: Simulation and cost evaluation of hot section of BIPC olefin plant.
+</details>   
+
+<details>
+
+<summary>BSc. Chemical Engineering (2007 - 2011)</summary>   
+
+### Degree Project**: Simulation and cost evaluation of hot section of BIPC olefin plant    
+
+[University of Tehran](https://ut.ac.ir/en)
+
+- Activities:       
+> Used Aspen Hysys and Plus to evaluate retrofitting of industrial scale petroleum refinery complex by producing process flow diagram (PFD), piping/process & instrumentation diagram (P&ID), cost and utility, pinch and exergy.
+
+- Skills: Aspen HYSYS · Aspen Plus · Aspen Dynamics · Chemical Engineering · Process Simulation · Cost-Benefit Analysis · Exergy
+
+- Supervisor: [Dr. Nasim Tahouni](https://scholar.google.com/citations?user=jWEhjFcAAAAJ&hl=en), ntahuni[at]ut.ac.ir 
+
+</details>
+
+
 
 ___
 
