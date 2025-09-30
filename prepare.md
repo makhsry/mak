@@ -1,42 +1,5 @@
 
 
-
-
-# Education
-
-<details open>
-  <summary><strong>MASc. Mining and Minerals Engineering</strong> (2023 – 2025)</summary>
-
-  **University:** Your University Name  
-  **Thesis / Notes:** _(optional)_  
-  **Location:** City, Country
-
-</details>
-
-<details open>
-  <summary><strong>MSc. Chemical Engineering — Process Design</strong> (2012 – 2014)</summary>
-
-  **University:** Your University Name  
-  **Thesis / Notes:** _(optional)_  
-
-</details>
-
-<details open>
-  <summary><strong>BSc. Chemical Engineering</strong> (2007 – 2011)</summary>
-
-  **University:** Your University Name  
-  **Location:** City, Country
-
-</details>
-
-
-
-
-
-
-
-
-
 # Work Experience 
 ___
 
