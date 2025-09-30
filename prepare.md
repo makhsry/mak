@@ -1,14 +1,5 @@
 
 
-
-
-
-
-
-
-
-
-
 # Work Experience 
 ___
 

@@ -1,41 +1,116 @@
 
-Blending the strength of traditional engineering with state-of-the-art theory and machine learning    
+UNDER CONSTRUCTION 
 
-Experienced in inspecting, designing, optimizing, and evaluating large-scale systems in conjunction with simulation, virtual environment training and data-driven tools (AI/ML) to support design, development, and decision-making with a focus on enhancing operational efficiency, identifying potential issues and reducing costs. 
+# Intro 
 
-Technical Info: 
-- Computer-Aided Design: Aspen Suite, Autodesk Plant 3D, Deswik, Vulcan, Autodesk AutoCAD, COMSOL, SolidWorks, 
-- Programming: Python, C++, Fortran, VB, Java, MATLAB, bash, 
-- Atomistic Modeling: LAMMPS, VASP, Biovia, Ab Initio, Gromacs, Gaussian,  
-- Data Science/Analytics: NoSQL, MySQL, Pandas, NumPy, SciPy, Scikit-Learn, Matplotlib, Plotly, Seaborn, Jupyter, Tableau, Power BI,  
-- Machine Learning: (un)supervised, active learning, on-the-fly learning, 
-- OS: Linux, High-Performance Computing (HPC), Software Automation, Google Cloud, Azure, 
-- Version Control: Git, GitHub,
+<details open>
+  <summary><strong>Professional Summary</strong></summary>
+ 
+ > - Blending the strength of traditional engineering with state-of-the-art theory and machine learning.       
+ >
+ > - Experienced in inspecting, designing, optimizing, and evaluating large-scale systems in conjunction with simulation, virtual environment training and data-driven tools (AI/ML) to support design, development, and decision-making with a focus on enhancing operational efficiency, identifying potential issues and reducing costs. 
 
-Milad Asgarpour Khansary (**MAK**) 
+</details>
 
-**Email**: [miladagarpour[at]gmail.com](mailto:miladasgarpour@gmail.com)
+<details open>
+  <summary><strong>Technical Info</strong></summary>
+ 
+ > - Computer-Aided Design: Aspen Suite, Autodesk Plant 3D, Deswik, Vulcan, Autodesk AutoCAD, COMSOL, SolidWorks,
+ >   
+ > - Programming: Python, C++, Fortran, VB, Java, MATLAB, bash,
+ >   
+ > - Atomistic Modeling: LAMMPS, VASP, Biovia, Ab Initio, Gromacs, Gaussian,
+ >   
+ > - Data Science/Analytics: NoSQL, MySQL, Pandas, NumPy, SciPy, Scikit-Learn, Matplotlib, Plotly, Seaborn, Jupyter, Tableau, 
+ >   
+ > - Machine Learning: (un)supervised, active learning, on-the-fly learning,
+ >   
+ > - OS: Linux, High-Performance Computing (HPC), 
+ >   
+ > - Version Control: Git, GitHub,
+
+| <img src="./assets/img/bash.png" width="80"> | <img src="./assets/img/CPP.png" width="80"> |
+
+</details>
+
+<details open>
+  <summary><strong>Contact</strong></summary>
+
+ > - [miladagarpour[at]gmail.com](mailto:miladasgarpour@gmail.com)
+ >    
+ > - @makhansary 
+
+</details>
+
+# Education
+
+<details>
+  <summary><strong>MASc. Mining and Minerals Engineering</strong> (2023 – 2025)</summary>
+
+  > **Institution**: [The Norman B. Keevil Institute of Mining Engineering](https://mining.ubc.ca/), [The University of British Columbia](https://www.ubc.ca/)
+  >   
+  > **Project**: _Microwave assisted drying of minerals_
+  >
+  > **Project Goal**:
+  >
+  >> Inspected and evaluated, experimentally and numerically (via Finite Element Modeling in COMSOL), the retrofitting of conventional drying unit operations at a local mining partner via integration of microwave-based heating systems at a local mining industrial partner.
+  > 
+  > **Skills**:
+  >
+  >> Energy Demand Analysis · Exergy & Pinch · COMSOL · FEM analysis · Computational Electromagnetism · Heat Transfer
+  >  
+
+</details>
+
+<details>
+  <summary><strong>MSc. Chemical Engineering — Process Design</strong> (2012 – 2014)</summary>
+
+  **Institution:** Your University Name  
+  **Thesis / Notes:** _(optional)_  
+
+</details>
+
+<details open>
+  <summary><strong>BSc. Chemical Engineering</strong> (2007 – 2011)</summary>
+
+  **Institution:** Your University Name  
+  **Location:** City, Country
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Education 
 
 <details>          
 
-<summary>MASc. Mining and Minerals Engineering (2023 - 2025)</summary>   
-
-### Degree Project: Microwave assisted drying of minerals    
-
-[The Norman B. Keevil Institute of Mining Engineering](https://mining.ubc.ca/)               
-
-[The University of British Columbia](https://www.ubc.ca/) Vancouver                
-
-- Activities:       
-> Inspected and evaluated, experimentally and numerically (via Finite Element Modeling in COMSOL), the retrofitting of conventional drying unit operations at a local mining partner via integration of microwave-based heating systems at a local mining industrial partner.                
-
-- Skills: COMSOL · FEM analysis · Computational Electromagnetism · Heat Transfer                    
-
-- Supervisor: [Dr. Ali G. Madiseh](https://scholar.google.com/citations?hl=en&user=37lpUjsAAAAJ), Ali.Madiseh[at]ubc.ca               
-
-</details>                   
+  
 
 <details>                   
 
