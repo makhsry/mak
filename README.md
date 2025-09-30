@@ -41,7 +41,7 @@ Milad Asgarpour Khansary (**MAK**)
 
 <summary>MSc. Chemical Engineering - Process Design (2012 - 2014)</summary>      
 
-### Degree Project**: Thermo-kinetic modeling of the wet phase inversion process for polymeric membranes fabrication               
+### Degree Project: Thermo-kinetic modeling of the wet phase inversion process for polymeric membranes fabrication               
 
 [University of Tehran](https://ut.ac.ir/en)                 
 
@@ -58,7 +58,7 @@ Milad Asgarpour Khansary (**MAK**)
 
 <summary>BSc. Chemical Engineering (2007 - 2011)</summary>           
 
-### Degree Project**: Simulation and cost evaluation of hot section of BIPC olefin plant                   
+### Degree Project: Simulation and cost evaluation of hot section of BIPC olefin plant                   
 
 [University of Tehran](https://ut.ac.ir/en)                 
 
