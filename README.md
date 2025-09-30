@@ -29,6 +29,8 @@ UNDER CONSTRUCTION
  >   
  > - Version Control: Git, GitHub,
 
+| <img src="./assets/img/bash.png" width="80"> | <img src="./assets/img/CPP.png" width="80"> |
+
 </details>
 
 <details open>
