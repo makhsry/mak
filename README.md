@@ -29,27 +29,27 @@ UNDER CONSTRUCTION
  >   
  > - Version Control: Git, GitHub,
 
-| <img src="./assets/img/bash.png" width="80"> | <img src="./assets/img/CPP.png" width="80"> |
+ <img src="./assets/img/bash.png" width="40"> <img src="./assets/img/CPP.png" width="40"> <img src="./assets/img/Fx.png" width="40"> <img src="./assets/img/VB.png" width="40"> <img src="./assets/img/Java.png" width="40"> <img src="./assets/img/Python.png" width="40"> <img src="./assets/img/MATLAB.png" width="40">
 
 </details>
 
 <details open>
-  <summary><strong>Contact</strong></summary>
-
- > - [miladagarpour[at]gmail.com](mailto:miladasgarpour@gmail.com)
+  <summary><strong>Contact</strong></summary>               
+     
+ > [miladagarpour[at]gmail.com](mailto:miladasgarpour@gmail.com)
  >    
- > - @makhansary 
+ > @makhansary 
 
 </details>
 
-# Education
+# Education <img src="./assets/img/UBC.jpg" width="40"><img src="./assets/img/UoT.jpg" width="40">
 
-<details>
+<details open>
   <summary><strong>MASc. Mining and Minerals Engineering</strong> (2023 – 2025)</summary>
 
-  > **Institution**: [The Norman B. Keevil Institute of Mining Engineering](https://mining.ubc.ca/), [The University of British Columbia](https://www.ubc.ca/)
+  > [Advanced Mine Energy Systems](https://mining.ubc.ca/AMES), [The Norman B. Keevil Institute of Mining Engineering](https://mining.ubc.ca/), [The University of British Columbia](https://www.ubc.ca/)
   >   
-  > **Project**: _Microwave assisted drying of minerals_
+  > **Project**: _Microwave assisted drying of minerals_, with [Dr. Ali G. Madiseh](https://mining.ubc.ca/ali-g-madiseh)
   >
   > **Project Goal**:
   >
@@ -62,21 +62,7 @@ UNDER CONSTRUCTION
 
 </details>
 
-<details>
-  <summary><strong>MSc. Chemical Engineering — Process Design</strong> (2012 – 2014)</summary>
 
-  **Institution:** Your University Name  
-  **Thesis / Notes:** _(optional)_  
-
-</details>
-
-<details open>
-  <summary><strong>BSc. Chemical Engineering</strong> (2007 – 2011)</summary>
-
-  **Institution:** Your University Name  
-  **Location:** City, Country
-
-</details>
 
 
 
