@@ -17,7 +17,6 @@ UNDER CONSTRUCTION
  
  > - Computer-Aided Design: Aspen Suite, Autodesk Plant 3D, Deswik, Vulcan, Autodesk AutoCAD, COMSOL, SolidWorks,
  >   
- > - Programming: Python, C++, Fortran, VB, Java, MATLAB, bash,
  >   
  > - Atomistic Modeling: LAMMPS, VASP, Biovia, Ab Initio, Gromacs, Gaussian,
  >   
@@ -28,8 +27,8 @@ UNDER CONSTRUCTION
  > - OS: Linux, High-Performance Computing (HPC), 
  >   
  > - Version Control: Git, GitHub,
-
- <img src="./assets/img/bash.png" width="40"> <img src="./assets/img/CPP.png" width="40"> <img src="./assets/img/Fx.png" width="40"> <img src="./assets/img/VB.png" width="40"> <img src="./assets/img/Java.png" width="40"> <img src="./assets/img/Python.png" width="40"> <img src="./assets/img/MATLAB.png" width="40">
+ >
+ > <img src="./assets/img/bash.png" width="40"> <img src="./assets/img/CPP.png" width="40"> <img src="./assets/img/Fx.png" width="40"> <img src="./assets/img/VB.png" width="40"> <img src="./assets/img/Java.png" width="40"> <img src="./assets/img/Python.png" width="40"> <img src="./assets/img/MATLAB.png" width="40">
 
 </details>
 
