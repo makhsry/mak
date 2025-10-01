@@ -1,13 +1,18 @@
 
 UNDER CONSTRUCTION 
 
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| <img src="./assets/degrees/UBC.jpg" width="40">  | Content Cell  |
+| <img src="./assets/degrees/UoT.jpg" width="40">  | Content Cell  |
+| <img src="./assets/degrees/UoT.jpg" width="40">  | Content Cell  |
+
 # Intro 
 
 
 # Education 
 
-
-<img src="./assets/places/UBC.jpg" width="40"><img src="./assets/places/UoT.jpg" width="40">
 
 
 
