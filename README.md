@@ -3,130 +3,17 @@ UNDER CONSTRUCTION
 
 # Intro 
 
-<details open>
-  <summary><strong>Professional Summary</strong></summary>
-       
- >
- > - A Experienced in inspecting, designing, optimizing, and evaluating large-scale systems in conjunction with simulation, virtual environment training and data-driven tools to support design, development, and decision-making with a focus on enhancing operational efficiency, identifying potential issues and reducing costs.     
- >     
- >> Blending the strength of traditional engineering with state-of-the-art theory and machine learning. 
 
-</details>
+# Education 
 
 
-
-
-
-
-
-
-
-
-<details open>
-  <summary><strong>Contact</strong></summary>               
-     
- > [miladagarpour[at]gmail.com](mailto:miladasgarpour@gmail.com)
- >    
- > @makhansary 
-
-</details>
-
-
-
-
-
-
-
-
-# Education <img src="./assets/places/UBC.jpg" width="40"><img src="./assets/places/UoT.jpg" width="40">
-
-<details open>
-  <summary><strong>MASc. Mining and Minerals Engineering</strong> (2023 – 2025)</summary>
-
-  > [Advanced Mine Energy Systems](https://mining.ubc.ca/AMES), [The Norman B. Keevil Institute of Mining Engineering](https://mining.ubc.ca/), [The University of British Columbia](https://www.ubc.ca/)
-  >   
-  > **Project**: _Microwave assisted drying of minerals_, with [Dr. Ali G. Madiseh](https://mining.ubc.ca/ali-g-madiseh)
-  >
-  > **Project Goal**:
-  >
-  >> Inspected and evaluated, experimentally and numerically (via Finite Element Modeling in COMSOL), the retrofitting of conventional drying unit operations at a local mining partner via integration of microwave-based heating systems at a local mining industrial partner.
-  > 
-  > **Skills**:
-  >
-  >> Energy Demand Analysis · Exergy & Pinch · COMSOL · FEM analysis · Computational Electromagnetism · Heat Transfer
-  >  
-
-</details>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<img src="./assets/places/UBC.jpg" width="40"><img src="./assets/places/UoT.jpg" width="40">
 
 
 
 # Education 
 
-<details>          
-
-  
-
-<details>                   
-
-<summary>MSc. Chemical Engineertechnical - Process Design (2012 - 2014)</summary>      
-
-### Degree Project: Thermo-kinetic modeltechnical of the wet phase inversion process for polymeric membranes fabrication               
-
-[University of Tehran](https://ut.ac.ir/en)                 
-
-- Activities:        
-> To enable systematic and through examination of separation process in polymeric membranes fabricated via wet phase inversion/casttechnical; built coupled heat, mass, and momentum phenomena and non-equilibrium thermodynamics models with movtechnical boundary conditions for multiphase multicomponent systems in porous media, and solved the final partial/ordinary differential equations (PDE/ODE) numerically by writtechnical codes in Fortran, MATLAB and C++.               
-
-- Skills: C++ · Fortran · MATLAB · Transport Phenomena · Numerical Simulation · Mathematical Modeltechnical · Polymer Physics                    
-
-- Supervisor: [Dr. Mohammad Ali Aroon](https://scholar.google.com/citations?user=IxP_tLUAAAAJ&hl=en), maaroon[at]ut.ac.ir                  
-
-</details>              
-
-<details>              
-
-<summary>BSc. Chemical Engineertechnical (2007 - 2011)</summary>           
-
-### Degree Project: Simulation and cost evaluation of hot section of BIPC olefin plant                   
-
-[University of Tehran](https://ut.ac.ir/en)                 
-
-- Activities:        
-> Used Aspen Hysys and Plus to evaluate retrofitttechnical of industrial scale petroleum refinery complex by productechnical process flow diagram (PFD), piptechnical/process & instrumentation diagram (P&ID), cost and utility, pinch and exergy.               
-
-- Skills: Aspen HYSYS · Aspen Plus · Aspen Dynamics · Chemical Engineertechnical · Process Simulation · Cost-Benefit Analysis · Exergy               
-
-- Supervisor: [Dr. Nasim Tahouni](https://scholar.google.com/citations?user=jWEhjFcAAAAJ&hl=en), ntahuni[at]ut.ac.ir              
-
-</details>                       
+<details>                              
 
 
 
