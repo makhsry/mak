@@ -29,6 +29,16 @@ UNDER CONSTRUCTION
  > - Version Control: Git, GitHub,
  >
  > <img src="./assets/img/bash.png" width="40"> <img src="./assets/img/CPP.png" width="40"> <img src="./assets/img/Fx.png" width="40"> <img src="./assets/img/VB.png" width="40"> <img src="./assets/img/Java.png" width="40"> <img src="./assets/img/Python.png" width="40"> <img src="./assets/img/MATLAB.png" width="40">
+ > <img src="./assets/img/ABINIT.png" width="40"><img src="./assets/img/VASP.png" width="40"><img src="./assets/img/espresso.png" width="40"><img src="./assets/img/CP2K.png" width="40"><img src="./assets/img/SIESTA.png" width="40"><img src="./assets/img/ASAP.png" width="40"><img src="./assets/img/ASE.png" width="40"><img src="./assets/img/LAMMPS.gif" width="40"><img src="./assets/img/GROMACS.png" width="40">
+
+ 
+
+  
+ 
+  
+ 
+ 
+
 
 </details>
 
