@@ -14,27 +14,20 @@ UNDER CONSTRUCTION
 
 <details open>
   <summary><strong>Technical Info</strong></summary>
- 
- > - Computer-Aided Design: Aspen Suite, Autodesk Plant 3D, Deswik, Vulcan, Autodesk AutoCAD, COMSOL, SolidWorks,
- >   
- >   
- > - Data Science/Analytics: NoSQL, MySQL, Pandas, NumPy, SciPy, Scikit-Learn, Matplotlib, Plotly, Seaborn, Jupyter, Tableau, 
- >   
- > - Machine Learning: (un)supervised, active learning, on-the-fly learning,
- >   
- > - OS: Linux, High-Performance Computing (HPC), 
- >   
- > - Version Control: Git, GitHub,
- >
+ >    
+ > - Data Science/Analytics: NoSQL, MySQL, Pandas, NumPy, SciPy, Scikit-Learn, Matplotlib, Plotly, Seaborn, Jupyter, Tableau,     
+ >    
+ > - Machine Learning: (un)supervised, active learning, on-the-fly learning,     
+ >      
+ > - OS: Linux, High-Performance Computing (HPC),     
+ >      
+ > - Version Control: Git, GitHub,     
+ >          
  > <img src="./assets/img/bash.png" width="40"> <img src="./assets/img/CPP.png" width="40"> <img src="./assets/img/Fx.png" width="40"> <img src="./assets/img/VB.png" width="40"> <img src="./assets/img/Java.png" width="40"> <img src="./assets/img/Python.png" width="40"> <img src="./assets/img/MATLAB.png" width="40">
  >
  > <img src="./assets/img/ABINIT.png" width="80"><img src="./assets/img/VASP.png" width="100"><img src="./assets/img/espresso.png" width="100"><img src="./assets/img/CP2K.png" width="60"><img src="./assets/img/SIESTA.png" width="60"><img src="./assets/img/ASAP.png" width="40"><img src="./assets/img/ASE.png" width="40"><img src="./assets/img/LAMMPS.gif" width="150"><img src="./assets/img/GROMACS.png" width="150">
-> 
- 
-
-  
- 
-  
+>
+> <img src="./assets/img/AspenTech.webp" width="120"><img src="./assets/img/COMSOL.png" width="250"><img src="./assets/img/AutodeskpP3D.png" width="80"><img src="./assets/img/Deswik.jpg" width="75"><img src="./assets/img/SolidWorks.png" width="80"><img src="./assets/img/Vulcan.png" width="175">
  
  
 
