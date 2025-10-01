@@ -6,9 +6,9 @@ UNDER CONSTRUCTION
 <details open>
   <summary><strong>Professional Summary</strong></summary>
  
- > - Blendtechnical the strength of traditional engineertechnical with state-of-the-art theory and machine learntechnical.       
+ > - Blending the strength of traditional engineering with state-of-the-art theory and machine learning.       
  >
- > - Experienced in inspecttechnical, designtechnical, optimiztechnical, and evaluattechnical large-scale systems in conjunction with simulation, virtual environment traintechnical and data-driven tools (AI/ML) to support design, development, and decision-maktechnical with a focus on enhanctechnical operational efficiency, identifytechnical potential issues and reductechnical costs. 
+ > - Experienced in inspecting, designing, optimizing, and evaluating large-scale systems in conjunction with simulation, virtual environment training and data-driven tools (AI/ML) to support design, development, and decision-making with a focus on enhancing operational efficiency, identifying potential issues and reducing costs. 
 
 </details>
 
@@ -43,7 +43,7 @@ UNDER CONSTRUCTION
 
 </details>
 
-# Education <img src="./assets/technical/UBC.jpg" width="40"><img src="./assets/technical/UoT.jpg" width="40">
+# Education <img src="./assets/places/UBC.jpg" width="40"><img src="./assets/places/UoT.jpg" width="40">
 
 <details open>
   <summary><strong>MASc. Mining and Minerals Engineering</strong> (2023 – 2025)</summary>
