@@ -18,8 +18,6 @@ UNDER CONSTRUCTION
  > - Computer-Aided Design: Aspen Suite, Autodesk Plant 3D, Deswik, Vulcan, Autodesk AutoCAD, COMSOL, SolidWorks,
  >   
  >   
- > - Atomistic Modeling: LAMMPS, VASP, Biovia, Ab Initio, Gromacs, Gaussian,
- >   
  > - Data Science/Analytics: NoSQL, MySQL, Pandas, NumPy, SciPy, Scikit-Learn, Matplotlib, Plotly, Seaborn, Jupyter, Tableau, 
  >   
  > - Machine Learning: (un)supervised, active learning, on-the-fly learning,
@@ -29,8 +27,9 @@ UNDER CONSTRUCTION
  > - Version Control: Git, GitHub,
  >
  > <img src="./assets/img/bash.png" width="40"> <img src="./assets/img/CPP.png" width="40"> <img src="./assets/img/Fx.png" width="40"> <img src="./assets/img/VB.png" width="40"> <img src="./assets/img/Java.png" width="40"> <img src="./assets/img/Python.png" width="40"> <img src="./assets/img/MATLAB.png" width="40">
- > <img src="./assets/img/ABINIT.png" width="40"><img src="./assets/img/VASP.png" width="40"><img src="./assets/img/espresso.png" width="40"><img src="./assets/img/CP2K.png" width="40"><img src="./assets/img/SIESTA.png" width="40"><img src="./assets/img/ASAP.png" width="40"><img src="./assets/img/ASE.png" width="40"><img src="./assets/img/LAMMPS.gif" width="40"><img src="./assets/img/GROMACS.png" width="40">
-
+ >
+ > <img src="./assets/img/ABINIT.png" width="80"><img src="./assets/img/VASP.png" width="100"><img src="./assets/img/espresso.png" width="100"><img src="./assets/img/CP2K.png" width="60"><img src="./assets/img/SIESTA.png" width="60"><img src="./assets/img/ASAP.png" width="40"><img src="./assets/img/ASE.png" width="40"><img src="./assets/img/LAMMPS.gif" width="150"><img src="./assets/img/GROMACS.png" width="150">
+> 
  
 
   
