@@ -17,3 +17,13 @@ echo -e "\n\n" >> "${output_file}"
 
 cat "${input_dir}Intro_Contact.md" >> "${output_file}"
 echo -e "\n\n" >> "${output_file}"
+
+cat "${input_dir}Edu_MASC_UBC_Mining.md" >> "${output_file}"
+echo -e "\n\n" >> "${output_file}"
+
+cat "${input_dir}Edu_MASC_UoT_ChemEng.md" >> "${output_file}"
+echo -e "\n\n" >> "${output_file}"
+
+cat "${input_dir}Edu_BASC_UoT_ChemEng.md" >> "${output_file}"
+echo -e "\n\n" >> "${output_file}"
+
