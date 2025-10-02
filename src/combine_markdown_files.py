@@ -1,7 +1,7 @@
 import os
 
-input_dir = "./assets/md_files"
-output_file = "README.md"
+input_dir = "../assets/md_files/"
+output_file = "../README.md"
 
 # Opening the README.md file to update 
 with open(output_file, "w", encoding="utf-8") as outfile:
