@@ -19,6 +19,9 @@ jobs:
         
       - name: Combine Markdown files into README.md
         run: ./src/combine_markdown_files.sh
-
+        
+      - name: PWE
+        run: pwd
+        
       - name: Show generated README.md
-        run: cat README.md
+        run: cat README.md 
