@@ -1,10 +1,6 @@
 name: Build README.md from Markdown Files
 
-on:
-  push:
-    paths:
-      - "assets/md_files/**"
-      - "src/**"
+on: push
 
 jobs:
   build-readme:
