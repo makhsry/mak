@@ -18,10 +18,10 @@ jobs:
           persist-credentials: true # ensures GITHUB_TOKEN is used
 
       - name: Make README executable  
-        run: chmod +x scripts/combine_markdown_files.sh
+        run: chmod +x src/combine_markdown_files.sh
       
       - name: Run README updater 
-        run: bash scripts/combine_markdown_files.sh
+        run: bash src/combine_markdown_files.sh
 
       - name: Commit and push changes
         run: |
