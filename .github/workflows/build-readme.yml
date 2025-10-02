@@ -5,6 +5,10 @@ on: push
 jobs:
   build-readme:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    
     steps:
       - name: Check out the repository to the runner
         uses: actions/checkout@v3
@@ -16,7 +20,10 @@ jobs:
 
       - name: Install dependencies
         run: python -m pip install --upgrade pip
-
+        
+      - name: Show curretn path 
+        run: pwd
+        
       - name: Combine Markdown files into README.md
         run: python src/combine_markdown_files.py
 
