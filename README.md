@@ -1,3 +1,6 @@
+
+
+
 <details open>
   <summary><strong>Professional Summary</strong></summary>
        
@@ -57,6 +60,9 @@
 
 
 </details>        
+
+
+
 
 
 <details>
