@@ -1,24 +1,25 @@
 import os
 
 input_dir = "./assets/md_files"
-output_file = "combined.md"
+output_file = "README.md"
 
-file_order = [
-    # TBD
-]
+# Opening the README.md file to update 
+with open(output_file, "w", encoding="utf-8") as outfile:
 
-def combine_markdown_files():
-
-    with open(output_file, "w", encoding="utf-8") as outfile:
-        for md_file in file_order:
-            file_path = os.path.join(input_dir, md_file)
-            if os.path.exists(file_path):
-                with open(file_path, "r", encoding="utf-8") as infile:
-                    #outfile.write(f"\n# {md_file}\n\n")  
-                    outfile.write(infile.read())
-                    outfile.write("\n\n\n")  # 3 blank lines 
-            #else:
-            #    print(f"Warning: '{md_file}' not found in directory.")
-
-if __name__ == "__main__":
-    combine_markdown_files()
+    # Startig with Candidate Profile      
+    file_order = [
+        "Intro_Professional_Summary.md",\
+        "Intro_Organizational_Culture.md",\
+        "Intro_Technical_Summary.md",\
+        "Intro_Contact.md",\
+        ]
+    # 
+    # Combining the Introduction section    
+    for md_file in file_order:
+        file_path = os.path.join(input_dir, md_file)
+        if os.path.exists(file_path):
+            with open(file_path, "r", encoding="utf-8") as infile:
+                #outfile.write(f"\n# {md_file}\n\n")  
+                outfile.write(infile.read())
+                outfile.write("\n\n\n")  # 3 blank lines 
+    # 

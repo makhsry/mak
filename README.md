@@ -4,7 +4,7 @@ UNDER CONSTRUCTION
 
 | First Header  | Second Header |
 | ------------- | ------------- |
-| <img src="./assets/degrees/UBC.jpg" width="40">  | Content Cell  |
+|   | Content Cell  |
 | <img src="./assets/degrees/UoT.jpg" width="40">  | Content Cell  |
 | <img src="./assets/degrees/UoT.jpg" width="40">  | Content Cell  |
 
