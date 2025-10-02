@@ -8,10 +8,9 @@
   > 
   >> [<img src="./assets/socials/Facebook.png" width="40">](https://www.facebook.com/makhansary) [<img src="./assets/socials/Instagram.png" width="40">](https://www.instagram.com/makhansary/)  
   >        
-  >> [<img src="./assets/socials/Gmail.png" width="40">](mailto:miladasgarpour@gmail.com)       
- > **Real Life**      
+  >> [<img src="./assets/socials/Gmail.png" width="40">](mailto:miladasgarpour@gmail.com)   
+  >          
+  > **Real Life**      
   >> <img src="./assets/flags/Iran.png" width="30"> <img src="./assets/flags/China.png" width="25"> <img src="./assets/flags/HongKong.png" width="25"> <img src="./assets/flags/Macau.png" width="25"> <img src="./assets/flags/Russia.png" width="25"> <img src="./assets/flags/Germany.png" width="30"> <img src="./assets/flags/Turkey.png" width="25"> <img src="./assets/flags/Armenia.png" width="35"> <img src="./assets/flags/Ireland.png" width="35"> <img src="./assets/flags/Canada.png" width="35">  
-
-
-
+  >       
 </details>        
