@@ -6,7 +6,7 @@ output_file="README.md"
 # Clear or create output file
 > "${output_file}"
 
-cat "Introduction" >> "${output_file}"
+echo "Introduction" >> "${output_file}"
 echo -e "\n\n" >> "${output_file}"
 
 cat "${input_dir}Intro_Professional_Summary.md" >> "${output_file}"
@@ -21,7 +21,7 @@ echo -e "\n\n" >> "${output_file}"
 cat "${input_dir}Intro_Contact.md" >> "${output_file}"
 echo -e "\n\n" >> "${output_file}"
 
-cat "Education" >> "${output_file}"
+echo "Education" >> "${output_file}"
 echo -e "\n\n" >> "${output_file}"
 
 cat "${input_dir}Edu_MASC_UBC_Mining.md" >> "${output_file}"
