@@ -5,7 +5,7 @@ on:
     branches:
       - main
   #schedule:
-  #  - cron: "0 * * * *" # every hour
+  #  - cron: "0 * * * *"
 
 jobs:
   update-readme:
@@ -14,9 +14,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true # ensures GITHUB_TOKEN is used
 
+      - name: Make README executable  
+        run: chmod +x scripts/combine_markdown_files.sh
+      
       - name: Run README updater 
-        run: bash src/combine_markdown_files.sh
+        run: bash scripts/combine_markdown_files.sh
 
       - name: Commit and push changes
         run: |
@@ -25,3 +30,5 @@ jobs:
           git add README.md
           git diff --cached --quiet || git commit -m "Automated README update"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
