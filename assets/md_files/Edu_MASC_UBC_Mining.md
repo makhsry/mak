@@ -1,6 +1,6 @@
 <details>
   <summary>
-  <strong>MASc. Mining and Minerals Engineering</strong> (2023 – 2025) <img src="./assets/degrees/UBC.png" width="20"> 
+  <strong>MASc. Mining and Minerals Engineering</strong> (2023 – 2025) <img src="./assets/img_files/degrees/UBC.png" width="20"> 
   </summary>
   
   > [The University of British Columbia](https://www.ubc.ca/)

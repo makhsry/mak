@@ -1,6 +1,6 @@
 <details>
   <summary>
-  <strong>MASc. Chemical Engineering - Process Design</strong> (2012 - 2014) <img src="./assets/degrees/UoT.jpg" width="20">
+  <strong>MASc. Chemical Engineering - Process Design</strong> (2012 - 2014) <img src="./assets/img_files/degrees/UoT.jpg" width="20">
   </summary>
 
   > [University of Tehran](https://ut.ac.ir/en)

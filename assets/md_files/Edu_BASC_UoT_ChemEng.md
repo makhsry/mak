@@ -1,6 +1,6 @@
 <details>
   <summary>
-  <strong>BASc. Chemical Engineering</strong> (2007 - 2011) <img src="./assets/degrees/UoT.jpg" width="20">
+  <strong>BASc. Chemical Engineering</strong> (2007 - 2011) <img src="./assets/img_files/degrees/UoT.jpg" width="20">
   </summary>
 
   > [University of Tehran](https://ut.ac.ir/en)
