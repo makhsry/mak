@@ -1,4 +1,4 @@
-| Projects | [Tools](./assets//data-files/tools/)  | Open Topics | [Private](https://github.com/makhsry/Desktop |
+| Projects | [Tools](./assets//data-files/tools/)  | Open Topics | [Private](https://github.com/makhsry/Desktop) |
 | - | - | - | - |
 
 
