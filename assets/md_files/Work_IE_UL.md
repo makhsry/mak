@@ -1,6 +1,6 @@
 <details>
   <summary>
-  <strong>Process Engineer</strong> (2019 - 2022) <img src="./assets/img_files/institutes/UniversityLimerick.jpg" width="20">
+  <strong>Process Engineer, University of Limerick, Ireland</strong> (2019 - 2022) <img src="./assets/img_files/institutes/UniversityLimerick.jpg" width="20">
   </summary>
 
   > [University of Limerick](https://www.ul.ie/)
