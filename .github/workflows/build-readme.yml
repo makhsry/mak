@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '.assets/**'  
+ #   paths:
+ #     - '.assets/**'  
   #schedule:
    # - cron: "0 * * * *"
 
@@ -24,6 +24,15 @@ jobs:
       
       - name: Run README updater 
         run: bash src/combine_markdown_files.sh
+
+      - name: Install Pandoc and XeLaTeX
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y pandoc texlive-xetex
+
+      - name: Convert README.md to PDF
+        run: |
+          pandoc README.md -o README.pdf --standalone --pdf-engine=xelatex
 
       - name: Commit and push changes
         run: |
