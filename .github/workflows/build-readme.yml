@@ -30,9 +30,12 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y pandoc texlive-xetex
 
-      - name: Convert README.md to PDF
+      - name: Convert README.md to PDF - gfm interprets Markdown like GitHub does 
         run: |
-          pandoc README.md -o README.pdf --standalone --pdf-engine=xelatex
+          andoc README.md -o README.pdf \
+            --from=gfm \
+            --standalone \
+            --pdf-engine=xelatex
 
       - name: Commit and push changes
         run: |
