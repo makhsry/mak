@@ -22,6 +22,7 @@
   >> Data Analytics · Machine Learning · Data-Driven Process Control · Graphical User Interface · MATLAB · Python       
   >                
   >> <img src="./assets/img_files/portfolio/IE-UL-DAT.jpg" width="750">                           
-  >                               
+  > ---        
+                                
 
 </details>        

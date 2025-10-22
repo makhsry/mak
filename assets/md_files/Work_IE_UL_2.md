@@ -26,5 +26,6 @@
   >> Process Simulation · Molecular Dynamics · Density Functional Theory · Raman Spectroscopy · Machine Learning   
   >                  
   >> <img src="./assets/img_files/portfolio/IE-UL-oftML.jpg" width="750">                         
-                         
+  > ---        
+                           
 </details>        

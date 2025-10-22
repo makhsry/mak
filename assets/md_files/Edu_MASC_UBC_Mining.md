@@ -21,5 +21,6 @@
   >       
   > **Skills**
   >> Energy Demand Analysis · Exergy & Pinch · COMSOL · FEM analysis · Computational Electromagnetism · Heat Transfer       
-
+  > ---        
+  
 </details> 

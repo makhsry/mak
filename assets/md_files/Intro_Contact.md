@@ -14,5 +14,6 @@
   >    
   > **Email**      
   >> [<img src="./assets/img_files/socials/Gmail.png" width="40">](mailto:miladasgarpour@gmail.com)   
-  >       
+  > ---        
+       
 </details>        

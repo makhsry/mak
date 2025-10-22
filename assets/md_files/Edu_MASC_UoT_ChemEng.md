@@ -20,5 +20,6 @@
   > 
   > **Skills** 
   >> C++ · Fortran · MATLAB · Transport Phenomena · Numerical Simulation · Mathematical Modeling · Polymer Physics                             
-
+  > ---        
+  
 </details>    

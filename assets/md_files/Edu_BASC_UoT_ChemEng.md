@@ -21,5 +21,6 @@
   >      
   > **Skills**
   >> Aspen HYSYS · Aspen Plus · Aspen Dynamics · Chemical Engineering · Process Simulation · Cost-Benefit Analysis · Exergy                               
-
+  > ---        
+  
 </details>    

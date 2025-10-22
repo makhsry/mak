@@ -23,5 +23,6 @@
   >> Machine Learning · Molecular Dynamics · Density Functional Theory Calculations · Python · bash                          
   >                
   >> <img src="./assets/img_files/portfolio/RU-SkolTech.jpg" width="750">                                                 
-                         
+  > ---        
+                           
 </details>       
