@@ -39,7 +39,10 @@ echo -e "\n\n" >> "${output_file}"
 echo "## Experience" >> "${output_file}"
 echo -e "\n\n" >> "${output_file}"
 
-cat "${input_dir}Work_IE_UL.md" >> "${output_file}"
+cat "${input_dir}Work_IE_UL_1.md" >> "${output_file}"
+echo -e "\n\n" >> "${output_file}"
+
+cat "${input_dir}Work_IE_UL_2.md" >> "${output_file}"
 echo -e "\n\n" >> "${output_file}"
 
 cat "${input_dir}Work_RU_SkolTech.md" >> "${output_file}"
