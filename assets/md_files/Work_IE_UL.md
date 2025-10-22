@@ -23,7 +23,7 @@
   >> - Collaborated with process engineers and control specialists to translate sensor insights into actionable process improvements and control strategies.
   > **Skills**
   >> Data Analytics · Machine Learning · Data-Driven Process Control · Graphical User Interface · MATLAB · Python       
-  >> 
+  >                
   >> <img src="./assets/img_files/portfolio/IE-UL-DAT.jpg" width="750">                           
   >       
   > **Project (II)**    
@@ -42,7 +42,7 @@
   >          
   > **Skills**
   >> Process Simulation · Molecular Dynamics · Density Functional Theory · Raman Spectroscopy · Machine Learning   
-  >> 
+  >                  
   >> <img src="./assets/img_files/portfolio/IE-UL-oftML.jpg" width="750">                         
                          
 </details>        
