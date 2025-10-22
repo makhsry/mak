@@ -35,10 +35,7 @@ jobs:
           pandoc README.md -o README.pdf \
             --from=gfm \
             --standalone \
-            --pdf-engine=xelatex \
-            -V papersize:a4 \ 
-            -V geometry:"margin=0.5in" 
-            #--resource-path=.:.assets
+            --pdf-engine=xelatex
 
       - name: Commit and push changes
         run: |
