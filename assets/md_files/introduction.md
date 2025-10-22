@@ -3,7 +3,7 @@
 ## Professional Summary       
 <details open>
   <summary>
-  <strong>read more</strong>
+  <strong>details</strong>
   </summary>             
        
  > <br>     
@@ -15,7 +15,7 @@
 ## Organizational Culture      
 <details open>
   <summary>
-  <strong>read more</strong>
+  <strong>details</strong>
   </summary>       
 
  > <br>     
@@ -31,7 +31,7 @@
 ## Technical Summary        
 <details open>
   <summary>
-  <strong>read more</strong>
+  <strong>details</strong>
   </summary>
             
  > <br>      
@@ -50,7 +50,7 @@
 ## Find me
 <details open>
   <summary>
-  <strong>read more</strong>
+  <strong>details</strong>
   </summary>               
 
   > <br>           
