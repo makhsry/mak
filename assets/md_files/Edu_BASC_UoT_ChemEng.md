@@ -18,5 +18,7 @@
   >> - Conducted **cost estimation and utility analysis** (CAPEX and OPEX) to support retrofitting and procurement decisions.
   >> - Applied **pinch analysis and exergy analysis** to evaluate and enhance energy integration and thermodynamic efficiency across the system.
   >> - Assessed **retrofitting feasibility** by integrating performance data, economic viability, and process safety considerations.      
+  >        
+  >> <img src="./assets/img_files/portfolio/UT-BSc.jpg" width="750">                           
   >---                      
 </details>    
