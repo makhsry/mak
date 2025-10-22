@@ -32,7 +32,7 @@ jobs:
 
       - name: Convert README.md to PDF - gfm interprets Markdown like GitHub does 
         run: |
-          andoc README.md -o README.pdf \
+          pandoc README.md -o README.pdf \
             --from=gfm \
             --standalone \
             --pdf-engine=xelatex
