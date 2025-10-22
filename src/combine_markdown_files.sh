@@ -9,19 +9,8 @@ output_file="README.md"
 cat "${input_dir}headers-top.md" >> "${output_file}"
 echo -e "\n\n" >> "${output_file}"
 
-echo "## Introduction" >> "${output_file}"
-echo -e "\n\n" >> "${output_file}"
 
-cat "${input_dir}Intro_Professional_Summary.md" >> "${output_file}"
-echo -e "\n\n" >> "${output_file}"
-
-cat "${input_dir}Intro_Organizational_Culture.md" >> "${output_file}"
-echo -e "\n\n" >> "${output_file}"
-
-cat "${input_dir}Intro_Technical_Summary.md" >> "${output_file}"
-echo -e "\n\n" >> "${output_file}"
-
-cat "${input_dir}Intro_Contact.md" >> "${output_file}"
+cat "${input_dir}introduction.md" >> "${output_file}"
 echo -e "\n\n" >> "${output_file}"
 
 echo "## Education" >> "${output_file}"
