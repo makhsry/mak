@@ -37,7 +37,8 @@ jobs:
             --standalone \
             --pdf-engine=xelatex \
             -V papersize:a4 \ 
-            -V geometry:"margin=0.5in"
+            -V geometry:"margin=0.5in" \
+            --resource-path=.:.assets
 
       - name: Commit and push changes
         run: |
