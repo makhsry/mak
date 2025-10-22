@@ -1,6 +1,7 @@
-| [PDF version !](README.pdf) | [Tools](./assets//data-files/tools/)  | Open Topics | [Private Space](https://github.com/makhsry/Desktop) |
+| [PDF version](README.pdf) | [Tools](./assets//data-files/tools/)  | Open Topics | [Private Space](https://github.com/makhsry/Desktop) |
 | - | - | - | - |
-
+---        
+  
 
 
 ## Introduction
@@ -8,12 +9,15 @@
 
 
 <details open>
-  <summary><strong>Professional Summary</strong></summary>
+  <summary>
+  <strong>Professional Summary</strong>
+  </summary>
        
  > <br>     
  > 
- > **A process engineer** holding BASc. & MASc. in **Chemical Engineering** and MASc. in **Mining & Minerals Engineering**, with advanced **data analytics** skills, experienced in **inspecting, designing, optimizing, and evaluating large-scale industrial systems** in conjunction with **simulation, virtual environment training and data-driven** tools to **support design, development, and decision-making** with a focus on **enhancing operational efficiency, identifying potential issues and reducing costs**.     
- >     
+ >> **A process engineer** holding BASc. & MASc. in **Chemical Engineering** and MASc. in **Mining & Minerals Engineering**, with advanced **data analytics** skills, experienced in **inspecting, designing, optimizing, and evaluating large-scale industrial systems** in conjunction with **simulation, virtual environment training and data-driven** tools to **support design, development, and decision-making** with a focus on **enhancing operational efficiency, identifying potential issues and reducing costs**.         
+ > ---        
+       
 </details>
 
 
@@ -26,7 +30,9 @@
  > - Independent, productive and active **team player**, always met deadlines and delivered projects with high-quality results.       
  > - Skilled in identifying key questions with a root-cause approach, developing clear and compelling argumentation, and crafting effective **project budgets and timelines**.            
  > - Successfully secured **funding** from international organizations including **European Union**.                 
- > - Authored **40+ publications** (h-index: 15) & **spoke at multiple international and national** venues.                               
+ > - Authored **40+ publications** (h-index: 15) & **spoke at multiple international and national** venues.    
+ > ---        
+                             
 </details>                      
 
 
@@ -45,7 +51,8 @@
  >       
  > - **Computational Materials**            
  >> <img src="./assets/img_files/technical/LAMMPS.gif" width="150"><img src="./assets/img_files/technical/ABINIT.png" width="80"><img src="./assets/img_files/technical/VASP.png" width="100"><img src="./assets/img_files/technical/CP2K.png" width="60"><img src="./assets/img_files/technical/SIESTA.png" width="60"><img src="./assets/img_files/technical/ASAP.png" width="40"><img src="./assets/img_files/technical/ASE.png" width="40"><img src="./assets/img_files/technical/GROMACS.png" width="150">       
->       
+> ---        
+      
 </details>
 
 
@@ -65,7 +72,8 @@
   >    
   > **Email**      
   >> [<img src="./assets/img_files/socials/Gmail.png" width="40">](mailto:miladasgarpour@gmail.com)   
-  >       
+  > ---        
+       
 </details>        
 
 
@@ -96,7 +104,8 @@
   >       
   > **Skills**
   >> Energy Demand Analysis · Exergy & Pinch · COMSOL · FEM analysis · Computational Electromagnetism · Heat Transfer       
-
+  > ---        
+  
 </details> 
 
 
@@ -122,7 +131,8 @@
   > 
   > **Skills** 
   >> C++ · Fortran · MATLAB · Transport Phenomena · Numerical Simulation · Mathematical Modeling · Polymer Physics                             
-
+  > ---        
+  
 </details>    
 
 
@@ -149,7 +159,8 @@
   >      
   > **Skills**
   >> Aspen HYSYS · Aspen Plus · Aspen Dynamics · Chemical Engineering · Process Simulation · Cost-Benefit Analysis · Exergy                               
-
+  > ---        
+  
 </details>    
 
 
@@ -181,7 +192,8 @@
   >> Data Analytics · Machine Learning · Data-Driven Process Control · Graphical User Interface · MATLAB · Python       
   >                
   >> <img src="./assets/img_files/portfolio/IE-UL-DAT.jpg" width="750">                           
-  >                               
+  > ---        
+                                
 
 </details>        
 
@@ -214,7 +226,8 @@
   >> Process Simulation · Molecular Dynamics · Density Functional Theory · Raman Spectroscopy · Machine Learning   
   >                  
   >> <img src="./assets/img_files/portfolio/IE-UL-oftML.jpg" width="750">                         
-                         
+  > ---        
+                           
 </details>        
 
 
@@ -243,7 +256,8 @@
   >> Machine Learning · Molecular Dynamics · Density Functional Theory Calculations · Python · bash                          
   >                
   >> <img src="./assets/img_files/portfolio/RU-SkolTech.jpg" width="750">                                                 
-                         
+  > ---        
+                           
 </details>       
 
 
