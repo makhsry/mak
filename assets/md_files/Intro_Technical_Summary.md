@@ -14,5 +14,4 @@
  > - **Computational Materials**            
  >> <img src="./assets/img_files/technical/LAMMPS.gif" width="150"><img src="./assets/img_files/technical/ABINIT.png" width="80"><img src="./assets/img_files/technical/VASP.png" width="100"><img src="./assets/img_files/technical/CP2K.png" width="60"><img src="./assets/img_files/technical/SIESTA.png" width="60"><img src="./assets/img_files/technical/ASAP.png" width="40"><img src="./assets/img_files/technical/ASE.png" width="40"><img src="./assets/img_files/technical/GROMACS.png" width="150">       
 > ---        
-      
 </details>

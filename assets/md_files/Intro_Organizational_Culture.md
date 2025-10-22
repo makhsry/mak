@@ -1,5 +1,7 @@
 <details open>
-  <summary><strong>Organizational Culture</strong></summary>       
+  <summary>
+  <strong>Organizational Culture</strong>
+  </summary>       
 
  > <br>     
  >       
@@ -8,6 +10,5 @@
  > - Skilled in identifying key questions with a root-cause approach, developing clear and compelling argumentation, and crafting effective **project budgets and timelines**.            
  > - Successfully secured **funding** from international organizations including **European Union**.                 
  > - Authored **40+ publications** (h-index: 15) & **spoke at multiple international and national** venues.    
- > ---        
-                             
+ > ---                          
 </details>                      

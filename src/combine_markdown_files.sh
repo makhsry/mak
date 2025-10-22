@@ -48,5 +48,7 @@ echo -e "\n\n" >> "${output_file}"
 cat "${input_dir}Work_RU_SkolTech.md" >> "${output_file}"
 echo -e "\n\n" >> "${output_file}"
 
+cat "${input_dir}Work_HK_CityU.md" >> "${output_file}"
+echo -e "\n\n" >> "${output_file}"
 
 # EoF 

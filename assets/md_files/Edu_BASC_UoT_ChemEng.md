@@ -1,12 +1,12 @@
-<details>
+<details open>
   <summary>
-  <strong>BASc. Chemical Engineering</strong> (2007 - 2011) <img src="./assets/img_files/institutes/UoT.jpg" width="20">
+  <strong>BASc. Chemical Engineering</strong> (2007 - 2011), <a href="https://ut.ac.ir/en">University of Tehran</a> <img src="./assets/img_files/institutes/UoT.jpg" width="20">
   </summary>
 
-  > [University of Tehran](https://ut.ac.ir/en)
+  > <br>         
   >   
   > **Project**    
-  >> Simulation and cost evaluation of hot section of BIPC olefin plant, with [Dr. Nasim Tahouni](https://scholar.google.com/citations?user=jWEhjFcAAAAJ&hl=en)
+  >> Simulation and cost evaluation of hot section of BIPC olefin plant, with [Dr. Nasim Tahouni](https://scholar.google.com/citations?user=jWEhjFcAAAAJ&hl=en).
   >
   > **Project Goal**
   >> Used **Aspen Hysys** and **Aspen Plus** to evaluate **retrofitting** of industrial scale **petroleum refinery** complex by producing process flow diagram (**PFD**), piping/process & instrumentation diagram (**P&ID**), **cost** and **utility**, pinch and exergy.      
@@ -17,10 +17,6 @@
   >> - Performed **equipment sizing and specification** for heat exchangers, reactors, compressors, and distillation columns based on simulated operating conditions.
   >> - Conducted **cost estimation and utility analysis** (CAPEX and OPEX) to support retrofitting and procurement decisions.
   >> - Applied **pinch analysis and exergy analysis** to evaluate and enhance energy integration and thermodynamic efficiency across the system.
-  >> - Assessed **retrofitting feasibility** by integrating performance data, economic viability, and process safety considerations.    
-  >      
-  > **Skills**
-  >> Aspen HYSYS · Aspen Plus · Aspen Dynamics · Chemical Engineering · Process Simulation · Cost-Benefit Analysis · Exergy                               
-  > ---        
-  
+  >> - Assessed **retrofitting feasibility** by integrating performance data, economic viability, and process safety considerations.      
+  >---                      
 </details>    
