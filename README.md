@@ -1,4 +1,4 @@
-| [PDF version](README.pdf) | [Tools](./assets//data-files/tools/)  | Open Topics | [Private Space](https://github.com/makhsry/Desktop) |
+| [PDF version !](README.pdf) | [Tools](./assets//data-files/tools/)  | Open Topics | [Private Space](https://github.com/makhsry/Desktop) |
 | - | - | - | - |
 
 
@@ -159,15 +159,12 @@
 
 <details>
   <summary>
-  <strong>Process Engineer, University of Limerick, Ireland</strong> (2019 - 2022) <img src="./assets/img_files/institutes/UniversityLimerick.jpg" width="20">
+  <strong>Chemical Process Engineer: Analytics in Fluid Bed Spray Dryer (Research Assistant), University of Limerick, Ireland</strong> (2022: Feb - May) <img src="./assets/img_files/institutes/UniversityLimerick.jpg" width="20">
   </summary>
 
-  > [University of Limerick](https://www.ul.ie/)
-  >   
-  >>  Under an [EU Horizon 2020 Marie Sklodowska-Curie Postdoctoral Fellowship](https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-2020_en).                 
-  >>> [Read news here.](https://www.ul.ie/news/eu38-million-investment-in-advanced-manufacturing-and-process-engineering-at-ul)        
+  > [University of Limerick](https://www.ul.ie/)               
   >         
-  > **Project (I)**    
+  > **Project**    
   >> Fluid Bed Spray Dryer Process Monitoring and Engineering, with [Dr. Marcus O'Mahony](https://scholar.google.com/citations?user=zrrZoBkAAAAJ&hl=en).     
   >
   > **Project Goal**
@@ -184,8 +181,22 @@
   >> Data Analytics · Machine Learning · Data-Driven Process Control · Graphical User Interface · MATLAB · Python       
   >                
   >> <img src="./assets/img_files/portfolio/IE-UL-DAT.jpg" width="750">                           
+  >                               
+
+</details>        
+
+
+<details>
+  <summary>
+  <strong>Process Engineer: Continuous Crystallization (Marie Sklodowska-Curie Postdoctoral Fellow), University of Limerick, Ireland</strong> (2019 - 2022) <img src="./assets/img_files/institutes/UniversityLimerick.jpg" width="20">
+  </summary>
+
+  > [University of Limerick](https://www.ul.ie/)
+  >   
+  >>  Under an [EU Horizon 2020 Marie Sklodowska-Curie Postdoctoral Fellowship](https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-2020_en).                 
+  >>> [Read news here.](https://www.ul.ie/news/eu38-million-investment-in-advanced-manufacturing-and-process-engineering-at-ul)                                
   >       
-  > **Project (II)**    
+  > **Project**    
   >> Continueous Cocrystalization via Hot Melt Extrusion in Phamaceuticals, with [Dr. Gavin Walker](https://scholar.google.com/citations?user=h4O37BYAAAAJ&hl=en).    
   >
   > **Project Goal**
