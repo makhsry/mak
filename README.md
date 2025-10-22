@@ -74,7 +74,7 @@
 
 <details>
   <summary>
-  <strong>MASc. Mining and Minerals Engineering</strong> (2023 – 2025) <img src="./assets/img_files/degrees/UBC.png" width="20"> 
+  <strong>MASc. Mining and Minerals Engineering</strong> (2023 – 2025) <img src="./assets/img_files/institutes/UBC.png" width="20"> 
   </summary>
   
   > [The University of British Columbia](https://www.ubc.ca/)
@@ -101,7 +101,7 @@
 
 <details>
   <summary>
-  <strong>MASc. Chemical Engineering - Process Design</strong> (2012 - 2014) <img src="./assets/img_files/degrees/UoT.jpg" width="20">
+  <strong>MASc. Chemical Engineering - Process Design</strong> (2012 - 2014) <img src="./assets/img_files/institutes/UoT.jpg" width="20">
   </summary>
 
   > [University of Tehran](https://ut.ac.ir/en)
@@ -127,7 +127,7 @@
 
 <details>
   <summary>
-  <strong>BASc. Chemical Engineering</strong> (2007 - 2011) <img src="./assets/img_files/degrees/UoT.jpg" width="20">
+  <strong>BASc. Chemical Engineering</strong> (2007 - 2011) <img src="./assets/img_files/institutes/UoT.jpg" width="20">
   </summary>
 
   > [University of Tehran](https://ut.ac.ir/en)
