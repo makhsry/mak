@@ -1,0 +1,38 @@
+name: Convert README.md to PDF
+
+on:
+  push:
+    paths:
+      - README.md
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Pandoc and XeLaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-xetex
+
+      - name: Convert README.md to PDF
+        run: |
+          pandoc README.md -o README.pdf --standalone --pdf-engine=xelatex
+
+      - name: Upload README.pdf as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: README-pdf
+          path: README.pdf
+
+      - name: Commit README.pdf to repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.pdf
+          git commit -m "Update README.pdf" || echo "No changes to commit"
+          git push
