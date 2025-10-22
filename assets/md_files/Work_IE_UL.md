@@ -24,7 +24,7 @@
   > **Skills**
   >> Data Analytics · Machine Learning · Data-Driven Process Control · Graphical User Interface · MATLAB · Python       
   >> 
-  >> <img src="./assets/img_files/portfolio/IE-UL-DAT.jpg" width="500">                           
+  >> <img src="./assets/img_files/portfolio/IE-UL-DAT.jpg" width="750">                           
   >       
   > **Project (II)**    
   >> Continueous Cocrystalization via Hot Melt Extrusion in Phamaceuticals, with [Dr. Gavin Walker](https://scholar.google.com/citations?user=h4O37BYAAAAJ&hl=en).    
@@ -43,6 +43,6 @@
   > **Skills**
   >> Process Simulation · Molecular Dynamics · Density Functional Theory · Raman Spectroscopy · Machine Learning   
   >> 
-  >> <img src="./assets/img_files/portfolio/IE-UL-oftML.jpg" width="500">                         
+  >> <img src="./assets/img_files/portfolio/IE-UL-oftML.jpg" width="750">                         
                          
 </details>        
