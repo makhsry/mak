@@ -36,4 +36,15 @@ echo -e "\n\n" >> "${output_file}"
 cat "${input_dir}Edu_BASC_UoT_ChemEng.md" >> "${output_file}"
 echo -e "\n\n" >> "${output_file}"
 
+echo "## Experience" >> "${output_file}"
+echo -e "\n\n" >> "${output_file}"
+
+
+
+cat "${input_dir}Work_IE_UL.md" >> "${output_file}"
+echo -e "\n\n" >> "${output_file}"
+
+
+
+
 # EoF 
