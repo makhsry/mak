@@ -8,7 +8,7 @@
 ## Professional Summary       
 <details open>
   <summary>
-  <strong>read more</strong>
+  <strong>details</strong>
   </summary>             
        
  > <br>     
@@ -20,7 +20,7 @@
 ## Organizational Culture      
 <details open>
   <summary>
-  <strong>read more</strong>
+  <strong>details</strong>
   </summary>       
 
  > <br>     
@@ -36,7 +36,7 @@
 ## Technical Summary        
 <details open>
   <summary>
-  <strong>read more</strong>
+  <strong>details</strong>
   </summary>
             
  > <br>      
@@ -55,7 +55,7 @@
 ## Find me
 <details open>
   <summary>
-  <strong>read more</strong>
+  <strong>details</strong>
   </summary>               
 
   > <br>           
@@ -75,13 +75,12 @@
 </details>   
 
 
-## Education
+# Education      
 
-
-
-<details open>
+## MASc. Mining and Minerals Engineering (2023 – 2025), <a href="https://www.ubc.ca/">The University of British Columbia</a> <img src="./assets/img_files/institutes/UBC.png" width="20"> 
+<details>
   <summary>
-  <strong>MASc. Mining and Minerals Engineering</strong> (2023 – 2025), <a href="https://www.ubc.ca/">The University of British Columbia</a> <img src="./assets/img_files/institutes/UBC.png" width="20"> 
+  <strong>details</strong> 
   </summary> 
   
   > <br>          
@@ -100,12 +99,12 @@
   >> - Utilized **finite element modeling** (FEM) to simulate heat and mass transfer during drying at various microwave power levels and **mineral types**. 
   >> - Conducted comprehensive **energy demand analysis** to evaluate **potential savings** compared to traditional kiln operations.       
   > ---        
-</details> 
+</details>         
 
-
-<details open>
+## MASc. Chemical Engineering - Process Design (2012 - 2014), <a href="https://ut.ac.ir/en">University of Tehran</a> <img src="./assets/img_files/institutes/UoT.jpg" width="20">           
+<details>
   <summary>
-  <strong>MASc. Chemical Engineering - Process Design</strong> (2012 - 2014), <a href="https://ut.ac.ir/en">University of Tehran</a> <img src="./assets/img_files/institutes/UoT.jpg" width="20">
+  <strong>details</strong> 
   </summary>
 
   > <br>          
@@ -125,10 +124,10 @@
   >---                                          
 </details>    
 
-
-<details open>
+## BASc. Chemical Engineering (2007 - 2011), <a href="https://ut.ac.ir/en">University of Tehran</a> <img src="./assets/img_files/institutes/UoT.jpg" width="20">
+<details>
   <summary>
-  <strong>BASc. Chemical Engineering</strong> (2007 - 2011), <a href="https://ut.ac.ir/en">University of Tehran</a> <img src="./assets/img_files/institutes/UoT.jpg" width="20">
+  <strong>details</strong>           
   </summary>
 
   > <br>         
