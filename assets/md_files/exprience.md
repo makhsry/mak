@@ -120,3 +120,67 @@
   >> - Developed custom tools in **Fortran** and **Python** for simulation pre-processing and post-analysis, including data parsers, Fourier transforms, and specialized routines for trajectory and energy analysis.                                    
   > ---          
 </details>        
+
+## Chemical Engineer: Water Quality Monitoring and Remedition (Research Assistant), <a href="https://enbmsu.info/">Baqiyatallah University of Medical Sciences</a>, Tehran, Iran (2015: Jan. - July)
+<details open>
+  <summary>
+  <strong>details</strong>               
+  </summary>
+
+  > <br>  
+  >                                   
+  >> under [Iran National Science Foundation (INSF)](https://insf.org/en).                                                                                      
+  > with [Dr. Ramezan Ali Taheri](https://scholar.google.com/citations?user=8GlVKFMAAAAJ).                      
+  >                 
+  > **Tasks Performed**       
+  >> - Thoroughly examined presence of **biologically active matters** in **hospitals wastewater** effluents.                           
+  >> - Inspected **wastewater effluent** from hospital sewage to remove biologically active materials, **hormones**, due to their wide use in patient treatments.                     
+  >> - Built and performed high-throughput screening of **1k polymers** for common **estrogen**.                   
+  >> - Identified relevant pairs and determined the removal capacity and routs accordingly.                                      
+  > ---          
+</details>  
+
+## Research Collaborator, <a href="https://enbmsu.info/">Islamic Azad University</a>, Tehran, Iran (2014 - 2017)
+<details open>
+  <summary>
+  <strong>details</strong>               
+  </summary>
+
+  > <br>  
+  >                                   
+  > with [Young Researchers and Elite Club]().                      
+  >                 
+  > **Tasks Performed**       
+  >> - Managed diverse portfolios of research and development projects, ensuring timely delivery, quality outputs, and cross-disciplinary collaboration.                    
+  >> - Authored technical proposals, project schedules, and successfully acquired research funding for innovative environmental and industrial process solutions.                         
+  >> - Directed teams of engineers, scientists, and analysts, maintaining high performance across the lifecycle of multiple concurrent projects.                           
+  >>                                 
+  > **Sample Projects**                      
+  >> - On-site detection and monitoring of pollutants in water and wastewater streams via polymeric passive samplers.                       
+  >> - Translated dilation to attenuated total reflectance Fourier-transform infrared spectroscopy (FTIR-ATR) of polycarbonate, poly (vinyl acetate), and poly (ether urethane) induced by acetonitrile.                        
+  >> - Removal mechanism of heavy metal ions (Pb, Cu, Cd, Zn, and Ni) by using lignin as adsorbent.                     
+  >> - Direct air capture and storage of carbon dioxide (CO2) on biomass and polymers at ambient conditions trough novel 'CO2–water–biomass' network enabling adsorption of 5–56 grams of CO2 per gram of biomass.                           
+  >> - Developed a detailed coated paper process model including convection, conduction, and radiation heat transfer in order to pave routes for optimization of industrial process through adjustments made to the air humidity, belt velocity, temperatures, as well as the distance between drying surface and the radiation heat source.                              
+  >> - Supercritical fluid extraction and purification of high end-value products (drugs and dyes) via supercritical carbon dioxide.                                                            
+  > ---          
+</details>  
+
+## Scientific Computing with MATLAB and C++ (Teacher Assistant), <a href="https://ut.ac.ir/en">University of Tehran</a>, Iran (2009 - 2011) <img src="./assets/img_files/institutes/UoT.jpg" width="20">                   
+<details open>
+  <summary>
+  <strong>details</strong>               
+  </summary>
+
+  > <br>  
+  >                                   
+  > with [Dr. Mohammad Ali Pourpak]().                      
+  >                 
+  > **Tasks Performed**       
+  >> - Developed **custom numerical algorithms** in **MATLAB** and **C++** to solve complex ordinary and partial differential equations (ODEs/PDEs), and implemented **optimization routines** for scientific and engineering applications.                           
+  >> - Applied advanced computational techniques for modeling **physical systems**, performing parameter estimation, and solving **multi-variable optimization problems** with a focus on accuracy, efficiency, and scalability.                                                        
+  > ---          
+</details>               
+
+
+
+
