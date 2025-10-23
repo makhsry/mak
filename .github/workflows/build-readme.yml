@@ -40,14 +40,15 @@ jobs:
       - name: Create LaTeX header file
         run: |
           cat > header.tex << 'EOF'
+          \usepackage{xcolor}
           \usepackage{fancyhdr}
           \pagestyle{fancy}
-          \fancyhead[L]{Milad Asgarpour Khansary}
+          \fancyhead[L]{\large\textbf{Milad Asgarpour Khansary}}
           \fancyhead[C]{} 
-          \fancyhead[R]{Email: miladasgarpour@gmail.com}
+          \fancyhead[R]{\textcolor{blue}Email: miladasgarpour@gmail.com}
           \fancyfoot[L]{}
           \fancyfoot[C]{\thepage}
-          \fancyfoot[R]{Generated on \today\ via GitHub Actions}
+          \fancyfoot[R]{\textcolor{darkgray}Generated on \today\ via GitHub Actions}
           \renewcommand{\headrulewidth}{0.4pt}
           \renewcommand{\footrulewidth}{0.4pt}
           EOF
