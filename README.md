@@ -3,7 +3,7 @@
 ---        
 
 
-# About Me                   
+#                    
 
 ## Professional Summary       
 <details open>
@@ -42,17 +42,20 @@
  > <br>      
  >    
  > - **Engineering Tools**                     
- >> <img src="./assets/img_files/technical/AspenTech.webp" width="120"><img src="./assets/img_files/technical/COMSOL.png" width="250"><img src="./assets/img_files/technical/AutodeskpP3D.png" width="80"><img src="./assets/img_files/technical/Deswik.jpg" width="75"><img src="./assets/img_files/technical/SolidWorks.png" width="80"><img src="./assets/img_files/technical/Vulcan.png" width="175">         
+ >> Aspen Suite, Aspen Hysys, Aspen Plus, Aspen Dynamics, Autodesk Plant 3D, Deswik, Vulcan, Autodesk AutoCAD, COMSOL, SolidWorks, LAMMPS, VASP, CHARMM, Biovia, Ab Initio, Gromacs, Gaussian, Microsoft Office, LaTeX, Git.           
  >    
  > - **Programming**         
- >> <img src="./assets/img_files/technical/CPP.png" width="40"><img src="./assets/img_files/technical/Fx.png" width="50"><img src="./assets/img_files/technical/Java.png" width="40"><img src="./assets/img_files/technical/bash.png" width="40"><img src="./assets/img_files/technical/Python.png" width="40"><img src="./assets/img_files/technical/MATLAB.png" width="40">        
+ >> Python, C++, Fortran, Java, MATLAB, bash.                    
  >       
- > - **Computational Materials**            
- >> <img src="./assets/img_files/technical/LAMMPS.gif" width="150"><img src="./assets/img_files/technical/ABINIT.png" width="80"><img src="./assets/img_files/technical/VASP.png" width="100"><img src="./assets/img_files/technical/CP2K.png" width="60"><img src="./assets/img_files/technical/SIESTA.png" width="60"><img src="./assets/img_files/technical/ASAP.png" width="40"><img src="./assets/img_files/technical/ASE.png" width="40"><img src="./assets/img_files/technical/GROMACS.png" width="150">       
+ > - **Modeling Skills**            
+ >> - Process Flow Diagrams, Piping and Instrumentation Diagrams, CAD, equipment sizing, cost and utility estimation, exergy and pinch, OpEx and CapEx.                
+ >> - Advanced modeling skills across scales:  FEM, DPD, PBM, LBM, QM/MM, MD, DFT, kMC, etc.                
+ >> - Data operations including classification, clustering, regression, segmentation, tree models, ensemble learning, temporal data correlation algorithms such as ARIMA, LSTM, CNN, PCA, via PyTorch, SkiLearn, TensorFlow, SQL, Pandas, NumPy, SciPy, Scikit-Learn, Matplotlib, Seaborn, Jupyter.                                        
+       
 > ---        
 </details>
 
-## Find me
+## Contact 
 <details open>
   <summary>
   <strong>details</strong>
@@ -60,17 +63,9 @@
 
   > <br>           
   >                                                 
-  > **Been in**      
-  >> <img src="./assets/img_files/flags/Iran.png" width="30"> <img src="./assets/img_files/flags/China.png" width="25"> <img src="./assets/img_files/flags/HongKong.png" width="25"> <img src="./assets/img_files/flags/Macau.png" width="25"> <img src="./assets/img_files/flags/Russia.png" width="25"> <img src="./assets/img_files/flags/Germany.png" width="30"> <img src="./assets/img_files/flags/Turkey.png" width="25"> <img src="./assets/img_files/flags/Armenia.png" width="35"> <img src="./assets/img_files/flags/Ireland.png" width="35"> <img src="./assets/img_files/flags/Canada.png" width="35">                
-  >         
-  > **Professional Networks**      
-  >> [<img src="./assets/img_files/socials/Google_Scholar.png" width="40">](https://scholar.google.com/citations?hl=en&user=DZzc424AAAAJ&view_op=list_works&sortby=pubdate) [<img src="./assets/img_files/socials/GitHub.png" width="40">](https://github.com/makhsry) [<img src="./assets/img_files/socials/LinkedIn.png" width="40">](https://www.linkedin.com/in/makhansary/)   
-  >                       
-  > **Social Media**                          
-  >> [<img src="./assets/img_files/socials/Facebook.png" width="40">](https://www.facebook.com/makhansary) [<img src="./assets/img_files/socials/Instagram.png" width="40">](https://www.instagram.com/makhansary/)  
-  >    
-  > **Email**      
-  >> [<img src="./assets/img_files/socials/Gmail.png" width="40">](mailto:miladasgarpour@gmail.com)            
+  > - **Email**: miladasgarpour@gmail.com                      
+  > - **LinkedIn**: https://www.linkedin.com/in/makhansary                      
+  > - **Google Scholar**: https://scholar.google.com/citations?hl=en&user=DZzc424AAAAJ                                                        
   > ---        
 </details>   
 
