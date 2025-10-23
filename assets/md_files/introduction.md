@@ -59,7 +59,9 @@
   > <br>           
   >                                                 
   > - **Email**: miladasgarpour@gmail.com                      
-  > - **LinkedIn**: https://www.linkedin.com/in/makhansary                      
+  > - **Mobile**: 604-762-6875                    
+  > - **LinkedIn**: https://www.linkedin.com/in/makhansary      
+  > - **GitHub**: https://github.com/makhsry/mak                                            
   > - **Google Scholar**: https://scholar.google.com/citations?hl=en&user=DZzc424AAAAJ                                                        
   > ---        
 </details>   
