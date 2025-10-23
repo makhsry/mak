@@ -25,17 +25,30 @@ jobs:
       - name: Run README updater 
         run: bash src/combine_markdown_files.sh
 
-      - name: Install Pandoc and XeLaTeX
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y pandoc texlive-xetex
+      #- name: Install Pandoc and XeLaTeX
+      #  run: |
+      #    sudo apt-get update -qq
+      #    sudo apt-get install -y pandoc texlive-xetex
+      #
+      #- name: Convert README.md to PDF - gfm interprets Markdown like GitHub does 
+      #  run: |
+      #    pandoc README.md -o README.pdf \
+      #      --from=gfm \
+      #      --standalone \
+      #      --pdf-engine=xelatex
 
-      - name: Convert README.md to PDF - gfm interprets Markdown like GitHub does 
-        run: |
-          pandoc README.md -o README.pdf \
-            --from=gfm \
-            --standalone \
+      - name: Convert Markdown to PDF
+        uses: docker://pandoc/latex:latest
+        with:
+          args: >-
+            --from=gfm
+            --output=README.pdf
             --pdf-engine=xelatex
+            --variable=geometry:a4paper
+            --variable=geometry:margin=2cm
+            --variable=graphics=true
+            --standalone
+            README.md
             
       - name: Commit and push changes
         run: |
