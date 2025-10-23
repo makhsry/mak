@@ -47,6 +47,9 @@ jobs:
             --variable=geometry:a4paper
             --variable=geometry:margin=2cm
             --variable=graphics=true
+            --variable=linkcolor=blue
+            --variable=urlcolor=blue
+            --variable=toccolor=blue 
             --standalone
             README.md
             
