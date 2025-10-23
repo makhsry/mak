@@ -25,6 +25,12 @@ jobs:
       - name: Run README updater 
         run: bash src/combine_markdown_files.sh
 
+      - name: Get current date and short SHA
+        id: info
+        run: |
+          echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+          echo "sha=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_OUTPUT
+
       #- name: Install Pandoc and XeLaTeX
       #  run: |
       #    sudo apt-get update -qq
@@ -51,11 +57,10 @@ jobs:
             --variable=urlcolor=blue
             --variable=toccolor=blue 
             --variable=header-left="Milad Asgarpour Khansary"
-            --variable=header-center="Email: miladasgarpour@gmail.com"
-            --variable=header-right="URL: https://github.com/makhsry/mak"
-            --variable=footer-left="Generated via GitHub Actions: ${{ steps.date.outputs.date }}"
+            --variable=header-right="miladasgarpour@gmail.com"
+            --variable=footer-left="Generated: ${{ steps.info.outputs.date }}"
             --variable=footer-center="Page \thepage"
-            --variable=footer-right="Commit: ${{ github.sha }}"
+            --variable=footer-right="github.com/makhsry/mak"
             --syntax-highlighting=tango
             --standalone
             README.md
