@@ -47,7 +47,7 @@ jobs:
           \fancyhead[R]{Email: miladasgarpour@gmail.com}
           \fancyfoot[L]{}
           \fancyfoot[C]{\thepage}
-          \fancyfoot[R]{Generated on \today via GitHub Actions}
+          \fancyfoot[R]{Generated on \today\ via GitHub Actions}
           \renewcommand{\headrulewidth}{0.4pt}
           \renewcommand{\footrulewidth}{0.4pt}
           EOF
