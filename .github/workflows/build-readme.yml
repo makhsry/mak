@@ -22,8 +22,8 @@ jobs:
       - name: Make README executable  
         run: chmod +x src/combine_markdown_files.sh
       
-      - name: Run README updater 
-        run: bash src/combine_markdown_files.sh
+      #- name: Run README updater 
+      #  run: bash src/combine_markdown_files.sh
           
       #- name: Install Pandoc and XeLaTeX
       #  run: |
@@ -37,12 +37,12 @@ jobs:
       #      --standalone \
       #      --pdf-engine=xelatex
 
-      - name: Create temporary copy for PDF generation
-        run: cp README.md README_dummy.md
+      #- name: Create temporary copy for PDF generation
+      #  run: cp README.md README_dummy.md
 
-      - name: Convert HTML images to Markdown for PDF
-        run: |
-          sed -i -E 's|<img src="([^"]*)" width="([^"]*)">|![](\1){ width=\2px }|g' README_dummy.md
+      #- name: Convert HTML images to Markdown for PDF
+      #  run: |
+      #    sed -i -E 's|<img src="([^"]*)" width="([^"]*)">|![](\1){ width=\2px }|g' README_dummy.md
             
       - name: Create LaTeX header file
         run: |
@@ -76,11 +76,11 @@ jobs:
             --variable=toccolor=blue 
             --syntax-highlighting=tango
             --standalone
-            README_dummy.md
+            README.md
             
-      - name: Clean up temporary files
-        run: |
-          rm -f README_dummy.md header.tex      
+      #- name: Clean up temporary files
+      #  run: |
+      #    rm -f README_dummy.md header.tex      
           
       - name: Commit and push changes
         run: |
