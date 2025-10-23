@@ -45,10 +45,10 @@ jobs:
           \pagestyle{fancy}
           \fancyhead[L]{\large\textbf{Milad Asgarpour Khansary}}
           \fancyhead[C]{} 
-          \fancyhead[R]{\textcolor{blue}Email: miladasgarpour@gmail.com}
+          \fancyhead[R]{\textcolor{blue}{Email: miladasgarpour@gmail.com}
           \fancyfoot[L]{}
           \fancyfoot[C]{\thepage}
-          \fancyfoot[R]{\textcolor{darkgray}Generated on \today\ via GitHub Actions}
+          \fancyfoot[R]{\textcolor{red}{Generated on \today\ via GitHub Actions}
           \renewcommand{\headrulewidth}{0.4pt}
           \renewcommand{\footrulewidth}{0.4pt}
           EOF
