@@ -77,10 +77,10 @@ jobs:
           \pagestyle{fancy}
           \fancyhead[L]{\large\textbf{Milad Asgarpour Khansary}}       
           \fancyhead[C]{} 
-          \fancyhead[R]{\small\textcolor{red}{Generated on \today\ via GitHub Actions}}   
+          \fancyhead[R]{}   
           \fancyfoot[L]{}
           \fancyfoot[C]{\thepage}
-          \fancyfoot[R]{}
+          \fancyfoot[R]{\small\textcolor{red}{Generated on \today\ via GitHub Actions}}
           \renewcommand{\headrulewidth}{0.4pt}
           \renewcommand{\footrulewidth}{0.4pt}
           EOF
