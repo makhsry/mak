@@ -80,7 +80,7 @@ jobs:
           \fancyhead[R]{}   
           \fancyfoot[L]{}
           \fancyfoot[C]{\thepage}
-          \fancyfoot[R]{\small\textcolor{red}{Generated on \today\ via GitHub Actions}}
+          \fancyhead[R]{\tiny\scalebox{0.7}{\textcolor{red}{Generated on \today\ via GitHub Actions}}}
           \renewcommand{\headrulewidth}{0.4pt}
           \renewcommand{\footrulewidth}{0.4pt}
           EOF
