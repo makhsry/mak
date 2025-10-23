@@ -36,7 +36,14 @@ jobs:
       #      --from=gfm \
       #      --standalone \
       #      --pdf-engine=xelatex
-      
+
+      - name: Create temporary copy for PDF generation
+        run: cp README.md README_dummy.md
+
+      - name: Convert HTML images to Markdown for PDF
+        run: |
+          sed -i -E 's|<img src="([^"]*)" width="([^"]*)">|![](\1){ width=\2px }|g' README_dummy.md
+            
       - name: Create LaTeX header file
         run: |
           cat > header.tex << 'EOF'
@@ -69,8 +76,12 @@ jobs:
             --variable=toccolor=blue 
             --syntax-highlighting=tango
             --standalone
-            README.md
+            README_dummy.md
             
+      - name: Clean up temporary files
+        run: |
+          rm -f README_dummy.md header.tex      
+          
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
