@@ -19,9 +19,34 @@ jobs:
         with:
           persist-credentials: true # ensures GITHUB_TOKEN is used
 
-      - name: Make README executable  
-        run: chmod +x src/combine_markdown_files.sh
+      #- name: Make README executable  
+      #  run: chmod +x src/combine_markdown_files.sh
       
+      - name: Build README from markdown files
+        run: |
+          input_dir="assets/md_files/"
+          output_file="README.md"
+          
+          # Array of markdown files to concatenate
+          files=(
+            "introduction.md"
+            "education.md"
+            "exprience.md"
+          )
+          
+          # Clear or create output file
+          > "${output_file}"
+          
+          # Loop through files and concatenate
+          for file in "${files[@]}"; do
+            if [ -f "${input_dir}${file}" ]; then
+              cat "${input_dir}${file}" >> "${output_file}"
+              echo -e "\n\n" >> "${output_file}"
+            else
+              echo "Warning: ${input_dir}${file} not found, skipping..."
+            fi
+          done
+
       #- name: Run README updater 
       #  run: bash src/combine_markdown_files.sh
           
@@ -78,9 +103,9 @@ jobs:
             --standalone
             README.md
             
-      #- name: Clean up temporary files
-      #  run: |
-      #    rm -f README_dummy.md header.tex      
+      - name: Clean up temporary files
+        run: |
+          rm -f header.tex      
           
       - name: Commit and push changes
         run: |
