@@ -77,7 +77,7 @@ jobs:
           \pagestyle{fancy}
           \fancyhead[L]{\large\textbf{Milad Asgarpour Khansary}}       
           \fancyhead[C]{} 
-          \fancyhead[R]{\textcolor{red}{Generated on \today\ via GitHub Actions}}   
+          \fancyhead[R]{\small\textcolor{red}{Generated on \today\ via GitHub Actions}}   
           \fancyfoot[L]{}
           \fancyfoot[C]{\thepage}
           \fancyfoot[R]{}
