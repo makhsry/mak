@@ -50,6 +50,12 @@ jobs:
             --variable=linkcolor=blue
             --variable=urlcolor=blue
             --variable=toccolor=blue 
+            --variable=header-left="Milad Asgarpour Khansary"
+            --variable=header-center="Email: miladasgarpour@gmail.com"
+            --variable=header-right="URL: https://github.com/makhsry/mak"
+            --variable=footer-left="Generated via GitHub Actions: ${{ steps.date.outputs.date }}"
+            --variable=footer-center="Page \thepage"
+            --variable=footer-right="Commit: ${{ github.sha }}"
             --syntax-highlighting=tango
             --standalone
             README.md
