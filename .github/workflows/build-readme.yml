@@ -57,9 +57,9 @@ jobs:
             --variable=urlcolor=blue
             --variable=toccolor=blue 
             --variable=header-left="Milad Asgarpour Khansary"
-            --variable=header-right="miladasgarpour@gmail.com"
-            --variable=footer-left="Generated: ${{ steps.info.outputs.date }}"
+            --variable=header-right="miladasgarpour[at]gmail.com"
             --variable=footer-center="Page \thepage"
+            --variable=footer-left="Generated ${{ steps.info.outputs.date }}"
             --variable=footer-right="github.com/makhsry/mak"
             --syntax-highlighting=tango
             --standalone
