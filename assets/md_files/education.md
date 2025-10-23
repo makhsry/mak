@@ -1,7 +1,7 @@
 # Education      
 
 ## MASc. Mining and Minerals Engineering (2023 – 2025), <a href="https://www.ubc.ca/">The University of British Columbia</a> <img src="./assets/img_files/institutes/UBC.png" width="20"> 
-<details>
+<details open>
   <summary>
   <strong>details</strong> 
   </summary> 
@@ -25,7 +25,7 @@
 </details>         
 
 ## MASc. Chemical Engineering - Process Design (2012 - 2014), <a href="https://ut.ac.ir/en">University of Tehran</a> <img src="./assets/img_files/institutes/UoT.jpg" width="20">           
-<details>
+<details open>
   <summary>
   <strong>details</strong> 
   </summary>
@@ -48,7 +48,7 @@
 </details>    
 
 ## BASc. Chemical Engineering (2007 - 2011), <a href="https://ut.ac.ir/en">University of Tehran</a> <img src="./assets/img_files/institutes/UoT.jpg" width="20">
-<details>
+<details open>
   <summary>
   <strong>details</strong>           
   </summary>

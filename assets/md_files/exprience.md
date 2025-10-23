@@ -1,7 +1,7 @@
 # Experience      
 
 ## Chemical Process Engineer: Analytics in Fluid Bed Spray Dryer (Research Assistant), <a href="https://www.ul.ie/">University of Limerick</a>, Ireland (2022: Feb - May) <img src="./assets/img_files/institutes/UniversityLimerick.jpg" width="20">
-<details>
+<details open>
   <summary>
   <strong>details</strong>
   </summary>
@@ -27,7 +27,7 @@
 </details>        
 
 ## Process Engineer: Continuous Crystallization (Marie Sklodowska-Curie Postdoctoral Fellow), <a href="https://www.ul.ie/">University of Limerick</a>, Ireland (2019 - 2022) <img src="./assets/img_files/institutes/UniversityLimerick.jpg" width="20">
-<details>
+<details open>
   <summary>
   <strong>details</strong>
   </summary>
@@ -57,7 +57,7 @@
 </details>        
 
 ## Material Engineer: AI & ML (Research Intern), <a href="https://www.skoltech.ru/en/">Skolkovo Institute of Science and Technology (SkolTech)</a>, Russia (2018: May - October) <img src="./assets/img_files/institutes/Skoltech.png" width="20">
-<details>
+<details open>
   <summary>
   <strong>details</strong>            
   </summary>
@@ -82,7 +82,7 @@
 </details>       
 
 ## Process Engineer: Gas Separation and Capture (Research Assistant), <a href="https://www.cityu.edu.hk/en">City University of Hong Kong</a>, Hong Kong (2017 - 2018) <img src="./assets/img_files/institutes/CityUHK.png" width="20">
-<details>
+<details open>
   <summary>
   <strong>details</strong>               
   </summary>
@@ -106,7 +106,7 @@
 </details>        
 
 ## Visiting Researcher, <a href="https://english.iop.cas.cn/">Institute of Physics & Beijing National Lab for Condensed Matter Physics</a>, <a href="https://english.cas.cn/">Chinese Academy of Sciences</a>, Beijing, China (2017: Sept. - Nov.) <img src="./assets/img_files/institutes/IoPCAS.png" width="20">
-<details>
+<details open>
   <summary>
   <strong>details</strong>               
   </summary>
