@@ -69,18 +69,18 @@ jobs:
       #  run: |
       #    sed -i -E 's|<img src="([^"]*)" width="([^"]*)">|![](\1){ width=\2px }|g' README_dummy.md
             
-      - name: Create LaTeX header file
+      - name: Create LaTeX header file      
         run: |
           cat > header.tex << 'EOF'
           \usepackage{xcolor}
           \usepackage{fancyhdr}
           \pagestyle{fancy}
-          \fancyhead[L]{\large\textbf{Milad Asgarpour Khansary}}
+          \fancyhead[L]{\large\textbf{Milad Asgarpour Khansary}}       
           \fancyhead[C]{} 
-          \fancyhead[R]{\textcolor{blue}{Email: miladasgarpour@gmail.com}}
+          \fancyhead[R]{\textcolor{red}{Generated on \today\ via GitHub Actions}}   
           \fancyfoot[L]{}
           \fancyfoot[C]{\thepage}
-          \fancyfoot[R]{\textcolor{red}{Generated on \today\ via GitHub Actions}}
+          \fancyfoot[R]{}
           \renewcommand{\headrulewidth}{0.4pt}
           \renewcommand{\footrulewidth}{0.4pt}
           EOF
