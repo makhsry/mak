@@ -50,8 +50,7 @@ jobs:
             --variable=linkcolor=blue
             --variable=urlcolor=blue
             --variable=toccolor=blue 
-            --listings
-            --highlight-style=tango
+            --syntax-highlighting=tango
             --standalone
             README.md
             
