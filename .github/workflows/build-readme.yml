@@ -36,7 +36,22 @@ jobs:
       #      --from=gfm \
       #      --standalone \
       #      --pdf-engine=xelatex
-
+      
+      - name: Create LaTeX header file
+        run: |
+          cat > header.tex << 'EOF'
+          \usepackage{fancyhdr}
+          \pagestyle{fancy}
+          \fancyhead[L]{Milad Asgarpour Khansary}
+          \fancyhead[C]{}
+          \fancyhead[R]{}
+          \fancyfoot[L]{}
+          \fancyfoot[C]{\thepage}
+          \fancyfoot[R]{}
+          \renewcommand{\headrulewidth}{0.4pt}
+          \renewcommand{\footrulewidth}{0.4pt}
+          EOF
+      
       - name: Convert Markdown to PDF
         uses: docker://pandoc/latex:latest
         with:
@@ -44,14 +59,13 @@ jobs:
             --from=gfm
             --output=README.pdf
             --pdf-engine=xelatex
+            --include-in-header=header.tex
             --variable=geometry:a4paper
             --variable=geometry:margin=2cm
             --variable=graphics=true
             --variable=linkcolor=blue
             --variable=urlcolor=blue
             --variable=toccolor=blue 
-            --variable=header-left="Milad Asgarpour Khansary"
-            --variable=footer-center="Page \thepage"
             --syntax-highlighting=tango
             --standalone
             README.md
