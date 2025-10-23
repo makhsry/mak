@@ -24,11 +24,6 @@ jobs:
       
       - name: Run README updater 
         run: bash src/combine_markdown_files.sh
-
-      - name: Get current date
-        id: info
-        run: |
-          echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
           
       #- name: Install Pandoc and XeLaTeX
       #  run: |
@@ -56,10 +51,7 @@ jobs:
             --variable=urlcolor=blue
             --variable=toccolor=blue 
             --variable=header-left="Milad Asgarpour Khansary"
-            --variable=header-right="miladasgarpour[at]gmail.com"
             --variable=footer-center="Page \thepage"
-            --variable=footer-left="Generated ${{ steps.info.outputs.date }}"
-            --variable=footer-right="github.com/makhsry/mak"
             --syntax-highlighting=tango
             --standalone
             README.md
