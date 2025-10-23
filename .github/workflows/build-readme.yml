@@ -25,12 +25,11 @@ jobs:
       - name: Run README updater 
         run: bash src/combine_markdown_files.sh
 
-      - name: Get current date and short SHA
+      - name: Get current date
         id: info
         run: |
           echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-          echo "sha=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_OUTPUT
-
+          
       #- name: Install Pandoc and XeLaTeX
       #  run: |
       #    sudo apt-get update -qq
