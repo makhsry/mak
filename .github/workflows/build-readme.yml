@@ -4,10 +4,15 @@ on:
   push:
     branches:
       - main
- #   paths:
- #     - '.assets/**'  
+  paths:
+      - 'assets/md_files/**'
+      - '.github/workflows/update-readme.yml'
+  workflow_dispatch: # Allow manual triggers
   #schedule:
    # - cron: "0 * * * *"
+
+permissions:
+  contents: write
 
 jobs:
   update-readme:
@@ -15,48 +20,80 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1 pinned
         with:
-          persist-credentials: true # ensures GITHUB_TOKEN is used
-
-      #- name: Make README executable  
-      #  run: chmod +x src/combine_markdown_files.sh
+          persist-credentials: false
+          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Build README files from markdown files
         run: |
+          set -euo pipefail # Exit on error, undefined vars, pipe failures
+
           input_dir="assets/md_files/"
           output_file="README.md"
           output_file_dummy="README_dummy.md"
           
+          # Validating input directory exists
+          if [ ! -d "${input_dir}" ]; then
+            echo "Error: Input directory ${input_dir} not found"
+            exit 1
+          fi
+
           # Array of markdown files to concatenate
           files=(
             "introduction.md"
             "education.md"
-            "exprience.md"
+            "experience.md"
           )
+
+          # Validate all required files exist and check sizes
+          for file in "${files[@]}"; do
+            filepath="${input_dir}${file}"
+            
+            # Check file exists
+            if [ ! -f "${filepath}" ]; then
+              echo "Error: Required file ${filepath} not found"
+              exit 1
+            fi
+            
+            # Check file is readable
+            if [ ! -r "${filepath}" ]; then
+              echo "Error: Cannot read file ${filepath}"
+              exit 1
+            fi
+            
+            # Check file size (limit to 2MB per file)
+            size=$(stat -c%s "${filepath}" 2>/dev/null || stat -f%z "${filepath}")
+            if [ "${size}" -gt 2097152 ]; then
+              echo "Error: File ${filepath} exceeds 2MB size limit"
+              exit 1
+            fi
+            
+            echo "Validated: ${filepath} (${size} bytes)"
+          done
           
           # Clear or create output files
           > "${output_file}"
           > "${output_file_dummy}"
 
           # README file that will live on repo has a top header table 
-          cat "${input_dir}headers-top.md" >> "${output_file}"
+          if [ -f "${input_dir}headers-top.md" ]; then
+            cat "${input_dir}headers-top.md" >> "${output_file}"
+          else
+            echo "Warning: headers-top.md not found, skipping header"
+          fi
 
           # Loop through files and concatenate
           for file in "${files[@]}"; do
-            if [ -f "${input_dir}${file}" ]; then
-              cat "${input_dir}${file}" >> "${output_file}"
-              echo -e "\n\n" >> "${output_file}"
-              cat "${input_dir}${file}" >> "${output_file_dummy}"
-              echo -e "\n\n" >> "${output_file_dummy}"
-            else
-              echo "Warning: ${input_dir}${file} not found, skipping..."
-            fi
+            filepath="${input_dir}${file}"
+            cat "${filepath}" >> "${output_file}"
+            echo -e "\n\n" >> "${output_file}"
+            cat "${filepath}" >> "${output_file_dummy}"
+            echo -e "\n\n" >> "${output_file_dummy}"
           done
-
-      #- name: Run README updater 
-      #  run: bash src/combine_markdown_files.sh
           
+          echo "README files built successfully"         
+      
       #- name: Install Pandoc and XeLaTeX
       #  run: |
       #    sudo apt-get update -qq
@@ -68,16 +105,14 @@ jobs:
       #      --from=gfm \
       #      --standalone \
       #      --pdf-engine=xelatex
-
-      #- name: Create temporary copy for PDF generation
-      #  run: cp README.md README_dummy.md
-
       #- name: Convert HTML images to Markdown for PDF
       #  run: |
       #    sed -i -E 's|<img src="([^"]*)" width="([^"]*)">|![](\1){ width=\2px }|g' README_dummy.md
             
       - name: Create LaTeX header file      
         run: |
+          set -euo pipefail
+
           cat > header.tex << 'EOF'
           \usepackage{xcolor}
           \usepackage{fancyhdr}
@@ -92,8 +127,14 @@ jobs:
           \renewcommand{\footrulewidth}{0.4pt}
           EOF
       
+          # Validate header file was created
+          if [ ! -f "header.tex" ]; then
+            echo "Error: Failed to create header.tex"
+            exit 1
+          fi
+
       - name: Convert Markdown to PDF
-        uses: docker://pandoc/latex:latest
+        uses: docker://pandoc/latex:3.1.2-ubuntu
         with:
           args: >-
             --from=gfm
@@ -108,20 +149,83 @@ jobs:
             --variable=toccolor=blue 
             --syntax-highlighting=tango
             --standalone
+            --fail-if-warnings
             README_dummy.md
-            
+
+      - name: Validate generated files
+        run: |
+          set -euo pipefail
+          
+          # Check README.md exists and is not empty
+          if [ ! -s "README.md" ]; then
+            echo "Error: README.md is empty or missing"
+            exit 1
+          fi
+          
+          # Check PDF exists and is not empty
+          if [ ! -s "README.pdf" ]; then
+            echo "Error: README.pdf is empty or missing"
+            exit 1
+          fi
+          
+          # Verify PDF is valid (basic check)
+          if ! file README.pdf | grep -q "PDF"; then
+            echo "Error: README.pdf is not a valid PDF file"
+            exit 1
+          fi
+          
+          echo "All generated files validated successfully"
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --exit-code README.md README.pdf || echo "changes=true" >> $GITHUB_OUTPUT
+     
       - name: Clean up temporary files
         run: |
           rm -f header.tex README_dummy.md      
 
       - name: Commit and push changes
+        if: steps.check_changes.outputs.changes == 'true'
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git add README.pdf
-          git diff --cached --quiet || git commit -m "Automated README update"
+          set -euo pipefail
+          
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Only add specific files
+          git add README.md README.pdf
+          
+          # Verify only expected files are staged
+          staged_files=$(git diff --cached --name-only)
+          for staged_file in $staged_files; do
+            if [[ ! "$staged_file" =~ ^(README\.md|README\.pdf)$ ]]; then
+              echo "Error: Unexpected file staged: $staged_file"
+              exit 1
+            fi
+          done
+          
+          # Commit with [skip ci] to prevent infinite loops
+          git commit -m "Automated README update [skip ci]"
+          
+          # Push using GITHUB_TOKEN
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Summary
+        if: always()
+        run: |
+          echo "### Workflow Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f "README.md" ]; then
+            echo "✅ README.md generated successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ README.md generation failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -f "README.pdf" ]; then
+            echo "✅ README.pdf generated successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ README.pdf generation failed" >> $GITHUB_STEP_SUMMARY
+          fi
 # EoF 
