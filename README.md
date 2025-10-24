@@ -1,6 +1,8 @@
 | [PDF](README.pdf) | [Tools](./assets//data-files/tools/)  | Open Topics | Fun Projects | [Private Space](https://github.com/makhsry/Desktop) |
 | - | - | - | - | - |
----        #                    
+---   
+     
+#                    
 
 ## Professional Summary       
 <details open>
@@ -47,8 +49,7 @@
  > - **Modeling Skills**            
  >> - Process Flow Diagrams, Piping and Instrumentation Diagrams, CAD, equipment sizing, cost and utility estimation, exergy and pinch, OpEx and CapEx.                
  >> - Advanced modeling skills across scales:  FEM, DPD, PBM, LBM, QM/MM, MD, DFT, kMC, etc.                
- >> - Data operations including classification, clustering, regression, segmentation, tree models, ensemble learning, temporal data correlation algorithms such as ARIMA, LSTM, CNN, PCA, via PyTorch, SkiLearn, TensorFlow, SQL, Pandas, NumPy, SciPy, Scikit-Learn, Matplotlib, Seaborn, Jupyter.                                        
-       
+ >> - Data operations including classification, clustering, regression, segmentation, tree models, ensemble learning, temporal data correlation algorithms such as ARIMA, LSTM, CNN, PCA, via PyTorch, SkiLearn, TensorFlow, SQL, Pandas, NumPy, SciPy, Scikit-Learn, Matplotlib, Seaborn, Jupyter.                                         
 > ---        
 </details>
 
@@ -67,6 +68,7 @@
   > - **Google Scholar**: https://scholar.google.com/citations?hl=en&user=DZzc424AAAAJ                                                        
   > ---        
 </details>   
+
 
 
 # Education      
@@ -143,6 +145,7 @@
   >> <img src="./assets/img_files/portfolio/UT-BSc.jpg" width="750">                           
   >---                      
 </details>    
+
 
 
 # Experience      
@@ -327,10 +330,5 @@
   >> - Applied advanced computational techniques for modeling **physical systems**, performing parameter estimation, and solving **multi-variable optimization problems** with a focus on accuracy, efficiency, and scalability.                                                        
   > ---          
 </details>               
-
-
-
-
-
 
 
