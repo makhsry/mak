@@ -1,6 +1,25 @@
 
 # Experience      
 
+## Chemical Process Engineer: Modelling and Optimization (Teaching Assistant), <a href="https://chbe.ubc.ca/">UBC Chemical and Biological Engineering Department</a>, Canada (2022: Sept. - Dec.) 
+<details open>
+  <summary>
+  <strong>details</strong>
+  </summary>
+
+  >  <br>           
+  >                  
+  >                
+  > **Tasks Performed**       
+  >> - Skilled in modeling and optimizing **industrial chemical processes**, with a focus on simulating chemical reactors, emphasizing heterogeneous systems in **Aspen** environments.                      
+  >> - Applied **optimization techniques** within Aspen platforms to enhance **process performance** and **efficiency**.                    
+  >> - Designed and simulated **crude oil distillation processes** using Aspen HYSYS.                        
+  >> - Implemented **dynamic simulation** and **control** strategies to model **real-time** process behavior in HYSYS.                     
+  >> - Created **process flowsheets** for specialty chemicals and reactions using Aspen.                
+  >> - Wrote/modified **FORTRAN subroutines** in Aspen for ad-hoc units / calculations.                           
+  > ---        
+</details>  
+
 ## Chemical Engineer: Cavitation at Nanoscale (Graduate Research Assistant), <a href="https://chbe.ubc.ca/">UBC Chemical and Biological Engineering Department</a>, Canada (2022: May - Dec.) 
 <details open>
   <summary>
@@ -21,7 +40,7 @@
   >> - Created **custom computational routines** for high-throughput molecular dynamics (MD) simulations using **LAMMPS**, tailored for complex **fluid-surface interactions**.                        
   >> - Compiled and optimized LAMMPS on UBC's Sockeye HPC environment for scalable, in-house simulation workflows.                     
   >> - Extended LAMMPS functionality with **custom C++ modules** to meet unique research needs in nanoscale flow modeling.                       
-  >> - Implemented post-processing scripts in ***Python** for automated extraction and visualization of simulation results, including pressure profiles, density distributions, and flow characteristics.                  
+  >> - Implemented post-processing scripts in **Python** for automated extraction and visualization of simulation results, including pressure profiles, density distributions, and flow characteristics.                  
   >> - Collaborated with a **multidisciplinary team** to validate simulation results against theoretical models and experimental data, enhancing cross-domain communication and interpretation.                          
   >                
   >> <img src="./assets/img_files/portfolio/CA-UBC-CHBE.jpg" width="750">                           
