@@ -330,4 +330,24 @@
   > ---          
 </details>               
 
+## Chemical / Process Engineer (Summer Internship), <a href="https://www.ripi.ir/en/">Research Institute of Petroleum Industry (RIPI)</a>, Iran (2011: July - Aug.)                   
+<details open>
+  <summary>
+  <strong>details</strong>               
+  </summary>
+
+  > <br>  
+  >                                   
+  > with [Dr. Nasim Tahouni](https://scholar.google.com/citations?user=jWEhjFcAAAAJ&hl=en).                             
+  >                 
+  > **Tasks Performed**       
+  >> - Designed, simulated and optimized a process for ethane and methane separation using **Aspen Hysys** as part of an internship.                        
+  >> - Produced detailed **process flow diagrams (PFD)**.                      
+  >> - Performed equipment **sizing**, **cost** and **utility** calculations.                        
+  >> - Evaluated equipment procurement options.                         
+  >> - Used **exergy** and **pinch** analysis to enhance the **overall process efficiency**.                                                                 
+  >> <img src="./assets/img_files/portfolio/RIPI.png" width="750">                         
+  > ---           
+</details>     
+
 
