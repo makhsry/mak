@@ -33,7 +33,7 @@
 
   >  <br>           
   >                                   
-  > [Dr. Simcha Srebnik](https://scholar.google.com/citations?user=--v31HgAAAAJ&hl=en).                                      
+  > with [Dr. Simcha Srebnik](https://scholar.google.com/citations?user=--v31HgAAAAJ&hl=en).                                      
   >                
   > **Tasks Performed**       
   >> - Skilled in modeling and optimizing **industrial chemical processes**, with a focus on simulating chemical reactors, emphasizing heterogeneous systems in **Aspen** environments.                      
