@@ -280,23 +280,7 @@
   >> - Developed a detailed coated paper **process model** including convection, conduction, and radiation heat transfer in order to pave routes for optimization of industrial process through adjustments made to the air humidity, belt velocity, temperatures, as well as the distance between drying surface and the radiation heat source.                              
   >> - **Supercritical fluid extraction and purification** of high end-value products (drugs and dyes) via supercritical carbon dioxide.                                                            
   > ---          
-</details>  
-
-## Scientific Computing with MATLAB and C++ (Teaching Assistant), <a href="https://ut.ac.ir/en">University of Tehran</a>, Iran (2009 - 2011)                   
-<details open>
-  <summary>
-  <strong>details</strong>               
-  </summary>
-
-  > <br>  
-  >                                   
-  > with [Dr. Mohammad Ali Pourpak]().                      
-  >                 
-  > **Tasks Performed**       
-  >> - Developed **custom numerical algorithms** in **MATLAB** and **C++** to solve complex ordinary and partial differential equations (ODEs/PDEs), and implemented **optimization routines** for scientific and engineering applications.                           
-  >> - Applied advanced computational techniques for modeling **physical systems**, performing parameter estimation, and solving **multi-variable optimization problems** with a focus on accuracy, efficiency, and scalability.                                                        
-  > ---          
-</details>               
+</details>        
 
 ## Chemical / Process Engineer (Summer Internship), <a href="https://www.ripi.ir/en/">Research Institute of Petroleum Industry (RIPI)</a>, Iran (2011: July - Aug.)                   
 <details open>
@@ -321,4 +305,20 @@
   >> - Evaluated and compared equipment procurement options using technical and economic criteria to support decision-making for pilot-scale implementation.                                                                             
   >> <img src="./assets/img_files/portfolio/IR-RIPI.png" width="750">                         
   > ---           
-</details>     
+</details>         
+
+## Scientific Computing with MATLAB and C++ (Teaching Assistant), <a href="https://ut.ac.ir/en">University of Tehran</a>, Iran (2009 - 2011)                   
+<details open>
+  <summary>
+  <strong>details</strong>               
+  </summary>
+
+  > <br>  
+  >                                   
+  > with [Dr. Mohammad Ali Pourpak]().                      
+  >                 
+  > **Tasks Performed**       
+  >> - Developed **custom numerical algorithms** in **MATLAB** and **C++** to solve complex ordinary and partial differential equations (ODEs/PDEs), and implemented **optimization routines** for scientific and engineering applications.                           
+  >> - Applied advanced computational techniques for modeling **physical systems**, performing parameter estimation, and solving **multi-variable optimization problems** with a focus on accuracy, efficiency, and scalability.                                                        
+  > ---          
+</details>      
