@@ -134,7 +134,7 @@ jobs:
           fi
 
       - name: Convert Markdown to PDF
-        uses: docker://pandoc/latex:3.1.2-ubuntu
+        uses: docker://pandoc/latex:3.4
         with:
           args: >-
             --from=gfm
