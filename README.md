@@ -196,7 +196,7 @@
 
   >  <br>           
   >                                   
-  > with [Dr. Sanja Miskovic](https://scholar.google.com/citations?user=yz11F-8AAAAJ&hl=en) & [Scott Dunbar](https://scholar.google.com/citations?user=4nJdjusAAAAJ&hl=en).                                      
+  > with [Dr. Sanja Miskovic](https://scholar.google.com/citations?user=yz11F-8AAAAJ&hl=en) & [Dr. Scott Dunbar](https://scholar.google.com/citations?user=4nJdjusAAAAJ&hl=en).                                      
   >                
   > **Tasks Performed**       
   >> - Contributed to trainings on **methods for determining the behaviour of large-scale industrial systems** and their application to the design and analysis of such systems.                           
