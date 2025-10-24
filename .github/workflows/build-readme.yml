@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  paths:
+    paths:
       - 'assets/md_files/**'
       - '.github/workflows/update-readme.yml'
   workflow_dispatch: # Allow manual triggers
