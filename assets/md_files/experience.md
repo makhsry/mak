@@ -25,6 +25,36 @@
   > ---        
 </details>          
 
+## Mineral Process Engineer: Process Control (Teaching Assistant), <a href="https://mining.ubc.ca/">UBC Norman B. Keevil Institute of Mining Engineering</a>, Canada (2023/2024: Sept. - Dec.)  
+<details open>
+  <summary>
+  <strong>details</strong>
+  </summary>
+
+  >  <br>           
+  >                                   
+  > with [Dr. Ilija Miskovic](https://scholar.google.com/citations?user=SoXCqtMAAAAJ&hl=en).                                      
+  >                
+  > **Tasks Performed**       
+  >> - Contributed to trainings on methods for **automatic control theory**, PID control, Laplace and z-transforms, loop tuning, frequency response, stability analysis, control strategies in flotation, comminution, dewatering, reagent and bin/sump levels, automated load-haul-dump and drilling equipment, instrumentation and soft sensors.                           
+  > ---        
+</details> 
+
+## Mineral Process Engineer: Modelling and Simulation (Teaching Assistant), <a href="https://mining.ubc.ca/">UBC Norman B. Keevil Institute of Mining Engineering</a>, Canada (2024/2025: Sept. - Dec.)  
+<details open>
+  <summary>
+  <strong>details</strong>
+  </summary>
+
+  >  <br>           
+  >                                   
+  > with [Dr. Sanja Miskovic](https://scholar.google.com/citations?user=yz11F-8AAAAJ&hl=en) & [Scott Dunbar](https://scholar.google.com/citations?user=4nJdjusAAAAJ&hl=en).                                      
+  >                
+  > **Tasks Performed**       
+  >> - Contributed to trainings on **methods for determining the behaviour of large-scale industrial systems** and their application to the design and analysis of such systems.                           
+  > ---        
+</details>               
+
 ## Chemical Process Engineer: Modelling and Optimization (Teaching Assistant), <a href="https://chbe.ubc.ca/">UBC Chemical and Biological Engineering Department</a>, Canada (2022: Sept. - Dec.) 
 <details open>
   <summary>
