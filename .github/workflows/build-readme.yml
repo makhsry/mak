@@ -147,7 +147,7 @@ jobs:
             --variable=linkcolor=blue
             --variable=urlcolor=blue
             --variable=toccolor=blue 
-            --syntax-highlighting=tango
+            --highlight-style=tango
             --standalone
             --fail-if-warnings
             README_dummy.md
