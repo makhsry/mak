@@ -1,3 +1,4 @@
+
 # Experience      
 
 ## Chemical Process Engineer: Analytics in Fluid Bed Spray Dryer (Research Assistant), <a href="https://www.ul.ie/">University of Limerick</a>, Ireland (2022: Feb - May) 
@@ -180,7 +181,3 @@
   >> - Applied advanced computational techniques for modeling **physical systems**, performing parameter estimation, and solving **multi-variable optimization problems** with a focus on accuracy, efficiency, and scalability.                                                        
   > ---          
 </details>               
-
-
-
-

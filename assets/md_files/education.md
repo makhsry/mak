@@ -1,3 +1,4 @@
+
 # Education      
 
 ## MASc. Mining and Minerals Engineering (2023 – 2025), <a href="https://www.ubc.ca/">The University of British Columbia</a>  
