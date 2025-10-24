@@ -22,10 +22,11 @@ jobs:
       #- name: Make README executable  
       #  run: chmod +x src/combine_markdown_files.sh
       
-      - name: Build README from markdown files
+      - name: Build README files from markdown files
         run: |
           input_dir="assets/md_files/"
           output_file="README.md"
+          output_file_dummy="README_dummy.md"
           
           # Array of markdown files to concatenate
           files=(
@@ -34,14 +35,20 @@ jobs:
             "exprience.md"
           )
           
-          # Clear or create output file
+          # Clear or create output files
           > "${output_file}"
-          
+          > "${output_file_dummy}"
+
+          # README file that will live on repo has a top header table 
+          cat "${input_dir}headers-top.md" >> "${output_file}"
+
           # Loop through files and concatenate
           for file in "${files[@]}"; do
             if [ -f "${input_dir}${file}" ]; then
               cat "${input_dir}${file}" >> "${output_file}"
               echo -e "\n\n" >> "${output_file}"
+              cat "${input_dir}${file}" >> "${output_file_dummy}"
+              echo -e "\n\n" >> "${output_file_dummy}"
             else
               echo "Warning: ${input_dir}${file} not found, skipping..."
             fi
@@ -101,12 +108,12 @@ jobs:
             --variable=toccolor=blue 
             --syntax-highlighting=tango
             --standalone
-            README.md
+            README_dummy.md
             
       - name: Clean up temporary files
         run: |
-          rm -f header.tex      
-          
+          rm -f header.tex README_dummy.md      
+
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
