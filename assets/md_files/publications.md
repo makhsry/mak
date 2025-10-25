@@ -49,7 +49,7 @@
 >> 1. [Modeling drying of a coated paper]()                           
 >> 1. [A novel equation of state: determination and validation for dyes and drugs solubility calculations in supercritical carbon dioxide]()                 
 >> 1. [Solubility prediction of some disperse Azo dyes in supercritical carbon dioxide using equation of states (EOSs)]()                       
->> 1. [Modeling of solubility of disperse blue dyes in supercritical carbon dioxide using equation of states (EOSs)}]()                          
+>> 1. [Modeling of solubility of disperse blue dyes in supercritical carbon dioxide using equation of states (EOSs)]()                          
 >                         
 > ---         
 </details>    

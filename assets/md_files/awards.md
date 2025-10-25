@@ -1,7 +1,7 @@
 
 # Awards
                      
-<details open>
+<details>
   <summary>
   <strong>details</strong>
   </summary>             
