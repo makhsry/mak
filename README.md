@@ -471,7 +471,7 @@
 
 
 
-## Awards
+# Awards
                      
 <details open>
   <summary>
@@ -506,7 +506,7 @@
 
 
 
-## Publications
+# Publications
                      
 <details>
   <summary>
