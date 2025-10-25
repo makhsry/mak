@@ -1,5 +1,5 @@
 
-## Publications
+# Publications
                      
 <details>
   <summary>
