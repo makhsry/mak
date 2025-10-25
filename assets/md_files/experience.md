@@ -1,7 +1,7 @@
 
 # Experience      
 
-## Mineral Process Engineer: Mineral Drying (Mitacs Accelerate Internship), <a href="https://mining.ubc.ca/">UBC Norman B. Keevil Institute of Mining Engineering</a>, Canada (2023 Jan. - 2026 Dec.) 
+## Mineral Process Engineer: Mineral Drying (Mitacs Accelerate Internship), <a href="https://mining.ubc.ca/">UBC Norman B. Keevil Institute of Mining Engineering</a>, Canada (2023 Jan. - 2025 Dec.) 
 <details open>
   <summary>
   <strong>details</strong>

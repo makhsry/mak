@@ -45,6 +45,7 @@ jobs:
             "education.md"
             "experience.md"
             "awards.md"
+            "publications.md"
           )
 
           # Validate all required files exist and check sizes
