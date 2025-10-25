@@ -53,7 +53,7 @@
 </details>
 
 ## Contact 
-<details open>
+<details>
   <summary>
   <strong>details</strong>
   </summary>               
@@ -149,7 +149,7 @@
 
 # Experience      
 
-## Mineral Process Engineer: Mineral Drying (Mitacs Accelerate Internship), <a href="https://mining.ubc.ca/">UBC Norman B. Keevil Institute of Mining Engineering</a>, Canada (2023 - 2026) 
+## Mineral Process Engineer: Mineral Drying (Mitacs Accelerate Internship), <a href="https://mining.ubc.ca/">UBC Norman B. Keevil Institute of Mining Engineering</a>, Canada (2023 Jan. - 2026 Dec.) 
 <details open>
   <summary>
   <strong>details</strong>
@@ -291,7 +291,7 @@
   > ---        
 </details>        
 
-## Process Engineer: Continuous Crystallization (Marie Sklodowska-Curie Postdoctoral Fellow), <a href="https://www.ul.ie/">University of Limerick</a>, Ireland (2019 - 2022) 
+## Process Engineer: Continuous Crystallization (Marie Sklodowska-Curie Postdoctoral Fellow), <a href="https://www.ul.ie/">University of Limerick</a>, Ireland (2019 Oct. - 2022 Feb.) 
 <details open>
   <summary>
   <strong>details</strong>
@@ -300,8 +300,6 @@
   > <br>       
   >               
   >>  Under an [EU Horizon 2020 Marie Sklodowska-Curie Postdoctoral Fellowship](https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-2020_en).                 
-  >>> [Read funding news here.](https://www.ul.ie/news/eu38-million-investment-in-advanced-manufacturing-and-process-engineering-at-ul)             
-  >>>                
   >>> [Read outcome highlight here.](https://www.sfi.ie/research-news/news/research-bring-medicines/)                              
   >       
   > **Project**    
@@ -321,7 +319,7 @@
   > ---          
 </details>        
 
-## Material Engineer: AI & ML (Research Intern), <a href="https://www.skoltech.ru/en/">Skolkovo Institute of Science and Technology (SkolTech)</a>, Russia (2018: May - October) 
+## Material Engineer: AI & ML (Research Intern), <a href="https://www.skoltech.ru/en/">Skolkovo Institute of Science and Technology (SkolTech)</a>, Russia (2018: May - Oct.) 
 <details open>
   <summary>
   <strong>details</strong>            
@@ -346,7 +344,7 @@
   > ---                           
 </details>       
 
-## Process Engineer: Gas Separation and Capture (Research Assistant), <a href="https://www.cityu.edu.hk/en">City University of Hong Kong</a>, Hong Kong (2017 - 2018) 
+## Process Engineer: Gas Separation and Capture (Research Assistant), <a href="https://www.cityu.edu.hk/en">City University of Hong Kong</a>, Hong Kong (2017 Nov. - 2018 May) 
 <details open>
   <summary>
   <strong>details</strong>               
@@ -405,7 +403,7 @@
   > ---          
 </details>  
 
-## Research Collaborator, <a href="https://enbmsu.info/">Islamic Azad University</a>, Tehran, Iran (2014 - 2017)
+## Research Collaborator, <a href="https://enbmsu.info/">Islamic Azad University</a>, Tehran, Iran (2014 Sept. - 2017 Sept.)
 <details open>
   <summary>
   <strong>details</strong>               
