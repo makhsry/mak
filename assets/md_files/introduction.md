@@ -51,7 +51,7 @@
 </details>
 
 ## Contact 
-<details open>
+<details>
   <summary>
   <strong>details</strong>
   </summary>               
