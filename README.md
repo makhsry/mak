@@ -216,7 +216,20 @@
   > **Tasks Performed**       
   >> - Contributed to trainings on methods for **automatic control theory**, PID control, Laplace and z-transforms, loop tuning, frequency response, stability analysis, control strategies in flotation, comminution, dewatering, reagent and bin/sump levels, automated load-haul-dump and drilling equipment, instrumentation and soft sensors.                           
   > ---        
-</details>     
+</details>               
+
+## Canada West Coordinator, <a href="https://www.mariecuriealumni.eu/">Marie Curie Alumni Association</a>, <a href="https://www.mariecuriealumni.eu/groups/north-america-chapter">North America Chapter</a>, Canada (2023 Sept. - 2024 Sept.)
+<details>
+  <summary>
+  <strong>details</strong>
+  </summary>
+
+  >  <br>           
+  >                             
+  > **Tasks Performed**       
+  >> - **Coordinated** [MCAA North America](https://www.mariecuriealumni.eu/groups/north-america-chapter) **outreach activities** in Canada west coast for a community of over 300 members.           
+  > ---        
+</details>  
 
 ## Chemical Process Engineer: Modelling and Optimization (Teaching Assistant), <a href="https://chbe.ubc.ca/">UBC Chemical and Biological Engineering Department</a>, Canada (2022: Sept. - Dec.) 
 <details>
@@ -480,29 +493,52 @@
        
  > <br>     
  >          
- > - CIM Vancouver branch's Student-Industry Night Award, amounting 2,500.00 CAD, Nov 2023         
- >> - Issued by CIM | [The Canadian Institute of Mining, Metallurgy and Petroleum](https://www.cim.org/)                
- >> - **one of the three recipients** in 2023.         
+ > ## CIM Vancouver branch's Student-Industry Night Award, amounting 2,500.00 CAD, Nov 2023         
+ >> Issued by CIM | [The Canadian Institute of Mining, Metallurgy and Petroleum](https://www.cim.org/)                
+ >> **one of the three recipients** in 2023.         
  > ---     
  >          
- > - Kashmir Singh Manhas Scholarship in Applied Science, amounting 2,700.00 CAD, Nov 2023         
- >> - Issued by [The University of British Columbia](https://www.ubc.ca/)                                      
- >> - awarded on **the recommendation of the Faculty of Applied Science**, in consultation with the **Faculty of Graduate and Postdoctoral Studies**.         
+ > ## Kashmir Singh Manhas Scholarship in Applied Science, amounting 2,700.00 CAD, Nov 2023         
+ >> Issued by [The University of British Columbia](https://www.ubc.ca/)                                      
+ >> awarded on **the recommendation of the Faculty of Applied Science**, in consultation with the **Faculty of Graduate and Postdoctoral Studies**.         
  > ---  
  >          
- > - Carl and Elsie Halterman Scholarship, amounting 1,675.00 CAD, March 2023         
- >> - Issued by [The University of British Columbia](https://www.ubc.ca/)                                               
+ > ## Carl and Elsie Halterman Scholarship, amounting 1,675.00 CAD, March 2023         
+ >> Issued by [The University of British Columbia](https://www.ubc.ca/)                                               
  > ---  
  >          
- > - [Marie Sklodowska-Curie Postdoctoral Fellowship](https://marie-sklodowska-curie-actions.ec.europa.eu/actions/postdoctoral-fellowships), amounting 75,424.00 Euros, October 2019         
- >> - IIssued by [EU Horizon 2020 Research and Innovation Program](https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-2020_en) and associated with [University of Limerick](https://www.ul.ie/)                                                            
- >> - qualified based on (1) having a MSc degree + (2) at least 4 years of research experience.         
+ > ## [Marie Sklodowska-Curie Postdoctoral Fellowship](https://marie-sklodowska-curie-actions.ec.europa.eu/actions/postdoctoral-fellowships), amounting 75,424.00 Euros, October 2019         
+ >> Issued by [EU Horizon 2020 Research and Innovation Program](https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-2020_en) and associated with [University of Limerick](https://www.ul.ie/)                                                            
+ >> qualified based on (1) having a MSc degree + (2) at least 4 years of research experience.         
  > ---  
  >          
- > - Research Project Replacement to [National Service](https://www.irb-cisr.gc.ca/en/country-information/rir/Pages/index.aspx?doc=458758), January 2015         
- >> - Issued by [Iran’s National Elites Foundation](https://en.bmn.ir/)                                               
+ > ## Research Project Replacement to [National Service](https://www.irb-cisr.gc.ca/en/country-information/rir/Pages/index.aspx?doc=458758), January 2015         
+ >> Issued by [Iran’s National Elites Foundation](https://en.bmn.ir/)                                               
  > ---        
 </details>    
+
+
+
+# Talks
+                     
+<details>
+  <summary>
+  <strong>details</strong>
+  </summary>             
+       
+ > <br>     
+ >          
+ > ## **Panelist**, [University of Ottawa](https://www.uottawa.ca/en), Ottawa, Canada, Nov 2023.       
+ >> Discussed EU based funding opportunities for Canadian and [Marie Curie Alumni Association (MCAA)](https://www.mariecuriealumni.eu/) [North America Chapter](https://www.mariecuriealumni.eu/groups/north-america-chapter) activities
+ >                                
+ > ## **Panelist**, [The University of British Columbia](https://www.ubc.ca/), Vancouver, Canada, Jul 2022.                  
+ >> Discussed how to write a successful [Marie Skłodowska-Curie Action (MSCA)](https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-2020_en) Fellowship proposal.             
+ >                    
+ > ## **Presenter**, [Max-Planck-Institut für Eisenforschung](https://www.mpie.de/), Düsseldorf, Germany, Nov 2018.              
+ >
+ >> Discussed nanohardness from First Principles with active learning on atomic environments ([MLIP](https://gitlab.com/ashapeev/mlip-3))                                           
+ > ---        
+</details>      
 
 
 
@@ -513,12 +549,12 @@
   <strong>details</strong>
   </summary>             
        
- > <br>     
- >          
- > - **For an up-to-date list, please refer to [Google Scholar](https://scholar.google.com/citations?hl=en&user=DZzc424AAAAJ&view_op=list_works&sortby=pubdate)**.            
- >> - [**Citation** 725 | **h-index** 15](https://scholar.google.com/citations?hl=en&user=DZzc424AAAAJ&view_op=list_works&sortby=pubdate).                            
+ > <br>                        
+ >                               
+ > **For an up-to-date list, please refer to [Google Scholar](https://scholar.google.com/citations?hl=en&user=DZzc424AAAAJ&view_op=list_works&sortby=pubdate)**.            
+ >> [**Citation** 725 | **h-index** 15](https://scholar.google.com/citations?hl=en&user=DZzc424AAAAJ&view_op=list_works&sortby=pubdate).                            
  >                         
- >                                 
+ > ---                                  
 >> 1. [Decomposition of PFOA in IEX regeneration wastewater: Comparison of UV/sulfur-based processes, key parameters and submicellar aggregates on degradation kinetics]()                                          
 >> 1. [A molecularly enhanced proof of concept for targeting cocrystals at molecular scale in continuous pharmaceuticals cocrystallization]()                                           
 >> 1. [Nanohardness from First Principles with active learning on atomic environments]()                                         
@@ -556,8 +592,7 @@
 >> 1. [Modeling drying of a coated paper]()                           
 >> 1. [A novel equation of state: determination and validation for dyes and drugs solubility calculations in supercritical carbon dioxide]()                 
 >> 1. [Solubility prediction of some disperse Azo dyes in supercritical carbon dioxide using equation of states (EOSs)]()                       
->> 1. [Modeling of solubility of disperse blue dyes in supercritical carbon dioxide using equation of states (EOSs)]()                          
->                         
+>> 1. [Modeling of solubility of disperse blue dyes in supercritical carbon dioxide using equation of states (EOSs)]()                                              
 > ---         
 </details>    
 
