@@ -68,7 +68,20 @@
   > **Tasks Performed**       
   >> - Contributed to trainings on methods for **automatic control theory**, PID control, Laplace and z-transforms, loop tuning, frequency response, stability analysis, control strategies in flotation, comminution, dewatering, reagent and bin/sump levels, automated load-haul-dump and drilling equipment, instrumentation and soft sensors.                           
   > ---        
-</details>     
+</details>               
+
+## Canada West Coordinator, <a href="https://www.mariecuriealumni.eu/">Marie Curie Alumni Association</a>, <a href="https://www.mariecuriealumni.eu/groups/north-america-chapter">North America Chapter</a>, Canada (2023 Sept. - 2024 Sept.)
+<details>
+  <summary>
+  <strong>details</strong>
+  </summary>
+
+  >  <br>           
+  >                             
+  > **Tasks Performed**       
+  >> - **Coordinated** [MCAA North America](https://www.mariecuriealumni.eu/groups/north-america-chapter) **outreach activities** in Canada west coast for a community of over 300 members.           
+  > ---        
+</details>  
 
 ## Chemical Process Engineer: Modelling and Optimization (Teaching Assistant), <a href="https://chbe.ubc.ca/">UBC Chemical and Biological Engineering Department</a>, Canada (2022: Sept. - Dec.) 
 <details>
