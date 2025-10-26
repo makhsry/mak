@@ -40,10 +40,10 @@
  > <br>      
  >    
  > **Engineering Tools**                     
- >> Aspen Suite, Aspen Hysys, Aspen Plus, Aspen Dynamics, Autodesk Plant 3D, Deswik, Vulcan, Autodesk AutoCAD, COMSOL, SolidWorks, LAMMPS, VASP, CHARMM, Biovia, Ab Initio, Gromacs, Gaussian, Microsoft Office, LaTeX, Git.           
+ >> - Aspen Suite, Autodesk Plant 3D, Deswik, Vulcan, Autodesk AutoCAD, COMSOL, SolidWorks, LAMMPS, VASP, CHARMM, Biovia, Ab Initio, Gromacs, Gaussian, Microsoft Office, LaTeX, Git.           
  >    
  > **Programming**         
- >> Python, C++, Fortran, Java, MATLAB, bash.                    
+ >> - Python, C++, Fortran, Java, MATLAB, bash.                    
  >       
  > **Modeling Skills**            
  >> - Process Flow Diagrams, Piping and Instrumentation Diagrams, CAD, equipment sizing, cost and utility estimation, exergy and pinch, OpEx and CapEx.                
