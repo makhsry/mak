@@ -10,8 +10,7 @@
  >                               
  > **For an up-to-date list, please refer to [Google Scholar](https://scholar.google.com/citations?hl=en&user=DZzc424AAAAJ&view_op=list_works&sortby=pubdate)**.            
  >> [**Citation** 725 | **h-index** 15](https://scholar.google.com/citations?hl=en&user=DZzc424AAAAJ&view_op=list_works&sortby=pubdate).                            
- >                         
- > ---                                  
+ >                                                         
 >> 1. [Decomposition of PFOA in IEX regeneration wastewater: Comparison of UV/sulfur-based processes, key parameters and submicellar aggregates on degradation kinetics]()                                          
 >> 1. [A molecularly enhanced proof of concept for targeting cocrystals at molecular scale in continuous pharmaceuticals cocrystallization]()                                           
 >> 1. [Nanohardness from First Principles with active learning on atomic environments]()                                         
