@@ -1,0 +1,263 @@
+#########################################
+# 		MAK
+# 		2022/07/07
+#       SIMULATION INFO
+#########################################
+# Geometry: 
+# left chamber + nanochannel + (at a later stage right chamber dynamic width)
+# 
+# Boundary: 
+# periodic in y and z : << walls in nanochannel suppress periodic condition 
+# initially peridic in x, then wall appears and expansion occures, see bellow
+#
+# State: 
+# initially only - left chamber + nanochannel - and are filled with water
+# do a NPT and NVE, at the end of NVE, get the xhi of box and build right chamber with dynamic XHI 
+#                                      get xlo and create a small fixed width wall to suppress the priodcity on leftside of left chamber  
+# do NVE   
+# --- 
+# Additional variables: 
+# SHAKE controls water molecule structure 
+# 	shake_out: (0 = never) print SHAKE statistics every this many timesteps 
+# 	shake_iter: max # of iterations in each SHAKE solution 
+# 	shake_tol: accuracy tolerance of SHAKE solution
+# 	shake_bond: number of bond types to include in the SHAKE 
+# 	shake_angle: number of angle types to include in the SHAKE
+# --- 
+# Surface/wall: LJ12-6 (modified) or LJ+Morse defines surface properties 
+# 	wall only interacts with oxygens, no hydrogen interactions 
+# 	lj126_epsilon: kcal/mol strength factor for wall-particle interaction (energy or energy/distance^2 units) 
+# 	lj126_sigma: A - size factor for wall-particle interaction (distance units) 
+# 	lj126_cutoff: cutoff within to apply surface-particle iteraction ***** 
+# 		be MINDFULL of width/height of channel/pore/BOX 
+# --- 
+# 	simT: K simulation temperature
+#  	simP: atm simulation pressure
+# 	seed: seed number, set for reproducibility  
+# 	SC: packing distance, putting water molecules on every direction at such a distance - intitial NPT allows V update
+# 	outthermo: sending thermo outputs this many timesteps
+# 	width: for walls  
+# 	skin: to avoid overlaping particles 
+# --- 
+# 	TIP4P2005.txt  water model 
+# --- 
+#########################################
+#processors * 1 1 # long channel 
+units        real
+atom_style   full
+boundary p p p
+molecule TIP4P2005 TIP4P2005.txt 
+# --------------------------------------- 
+# 		GENERAL
+# --------------------------------------- 
+variable SC equal 3.5
+variable simT equal 300.0 
+variable simP equal 1
+variable seed equal 880713
+# --------------------------------------- 
+# 		MD RUNTIME SETTING 
+# --------------------------------------- 
+timestep 1.0 #fs - timestep
+variable runMD equal 1000000 # = 1ns 
+variable dumpMD equal 10000 # = 10 ps >>> 100 dumps 
+variable outthermo equal 100 # = 0.1ps
+#variable EXPAND equal 1000 # = 1ps
+variable dumpEXPAND equal 1000 # = 1 ps >>> 10 dumps per iter 
+variable dampt equal 100 # = 0.1ps
+# --------------------------------------- 
+#		PARTICLE-WALL PROPERTIES 
+# --------------------------------------- 
+# --- SHAKE for water structure 
+variable shake_out equal 0  
+variable shake_iter equal 20 
+variable shake_tol equal 0.0001  
+variable shake_bond equal 1  
+variable shake_angle equal 1 
+# --- LJ for wall
+variable lj126_epsilon equal 0.16275 
+variable lj126_sigma equal 3.16435 
+variable lj126_cutoff equal 15 # pay attention to the size of pore other particle outside error 
+# --------------------------------------- 
+#		DESIGN SETTINGS 
+# --------------------------------------- 
+# --- overlapping particles 
+variable width equal 2 # 0.5 nm wall thickness 
+variable skin equal 1 # 0.1 nm skin 
+variable scaleupL equal 2 # chamber size / nanchannel size 
+variable scaleupHW equal 5 # chamber size / nanchannel size 
+# --- nanochannel - main - centered at 0 0 0 
+variable channelW equal 50 # 20 nm
+variable channelH equal 50 # 20 nm
+variable channelL equal 1000 # 100 nm
+# --- nanochannel real - to fill water in
+variable channelxhi equal ${channelL}/2
+variable channelxlo equal -${channelL}/2
+variable channelyhi equal ${channelW}/2
+variable channelylo equal -${channelW}/2
+variable channelzhi equal ${channelH}/2
+variable channelzlo equal -${channelH}/2
+region channel block ${channelxlo} ${channelxhi} ${channelylo} ${channelyhi} ${channelzlo} ${channelzhi} side in # nanochannel
+# --- walls
+variable wall_upper_zlo equal ${channelzhi}+${skin}
+variable wall_upper_zhi equal ${channelzhi}+${skin}+${width}
+variable wall_bottom_zlo equal ${channelzlo}-${width}-${skin}
+variable wall_bottom_zhi equal ${channelzlo}-${skin}
+variable wall_left_ylo equal ${channelylo}-${width}-${skin}
+variable wall_left_yhi equal ${channelylo}-${skin}
+variable wall_right_ylo equal ${channelyhi}+${skin}
+variable wall_right_yhi equal ${channelyhi}+${skin}+${width}
+# --- boundary
+region channelw block ${channelxlo} ${channelxhi} ${wall_left_ylo} ${wall_right_yhi} ${wall_bottom_zlo} ${wall_upper_zhi} side in # nanochannel walls 
+# --- chamber 
+variable chamberxlo equal -${scaleupL}*${channelL}/2+${skin}
+variable chamberxhi equal ${channelxlo}-${skin}
+variable chamberylo equal -${scaleupHW}*${channelW}/2
+variable chamberyhi equal ${scaleupHW}*${channelW}/2
+variable chamberzlo equal -${scaleupHW}*${channelH}/2
+variable chamberzhi equal ${scaleupHW}*${channelH}/2
+region chamber block ${chamberxlo} ${chamberxhi} ${chamberylo} ${chamberyhi} ${chamberzlo} ${chamberzhi} side in # nanochannel
+# --- Simulation box centered at 0 0 0 
+region BOX union 2 chamber channelw side in 
+# --- defining box: see https://docs.lammps.org/Howto_tip4p.html 
+create_box 2 BOX& 
+		bond/types 1 &
+		angle/types 1 &
+		extra/bond/per/atom 2 &
+		extra/angle/per/atom 1 &
+		extra/special/per/atom 2 
+# --- defining potentials: see https://docs.lammps.org/Howto_tip4p.html 
+# --- walls 
+region wall_upper block INF INF INF INF ${wall_upper_zlo} INF side out # upper wall 
+region wall_bottom block INF INF INF INF INF ${wall_bottom_zhi} side out  # bottom wall 
+region wall_left block INF INF INF ${wall_left_yhi} INF INF side out  # left wall
+region wall_right block INF INF ${wall_right_ylo} INF INF INF side out  # right wall
+# --- lockers 
+variable dummy1 equal ${chamberxlo}+${skin}
+variable dummy2 equal ${channelxhi}-${skin}
+region lockL block ${chamberxlo} ${dummy1} INF INF INF INF side in # nanochannel
+region lockR block ${dummy2} ${channelxhi} INF INF INF INF side in # nanochannel
+# --- 
+bond_style	harmonic
+bond_coeff 1 0.0 0.9572 # TIP4P/2005 force field
+angle_style	harmonic
+angle_coeff 1 0.0 104.52 # TIP4P/2005 force field
+pair_style	lj/cut/tip4p/long 1 2 1 1 0.1250 12.0
+pair_coeff 1 1 0.16275 3.16435 # TIP4P/2005 force field
+pair_coeff 2 2 0.0 0.0 # TIP4P/2005 force field
+pair_coeff 1 2 0.0 0.0 # TIP4P/2005 force field
+#pair_coeff	3 3 0.04690 2.4299 #Na the CHARMM-27 force field
+#pair_coeff	4 4 0.1500 4.04470 #Cl the CHARMM-27 force field
+kspace_style	pppm/tip4p 1.0e-4 #particle-particle particle-mesh
+# --- defining particles 
+mass 1 15.9994 # O
+mass 2 1.008 # H
+#mass 3 28.990 # Na 
+#mass 4 35.453 # Cl 
+variable radius atom (type==1)*1.0+(type==2)*0.5#+(type==3)*0.25+(type==4)*0.25 # for later visualization 
+lattice sc ${SC} # --- defining lattice: see https://docs.lammps.org/lattice.html 
+create_atoms 0 region channel mol TIP4P2005 ${seed} # filling atom to start simulation 
+create_atoms 0 region chamber mol TIP4P2005 ${seed} # filling atom to start simulation 
+group tip4p type 1 2
+group oxygen type 1
+#group inchannel dynamic all region channel every 1
+#group inchamber dynamic all region chamber every 1
+group oxygens dynamic oxygen region channel every 1
+#group sodium type 3
+#group chlorde type 4
+#group fluid type 1 2 3 4
+#velocity all create ${simT} ${seed} # --- temperature-velocity consideration  
+#run 0
+#velocity all scale ${simT} 
+dump dumpMD all custom ${dumpMD} pre.* id mol type element mass v_radius x y z vx vy vz fx fy fz q # --- defining dumps 
+dump_modify dumpMD element O H #Na Cl
+# --- statrting dynamics for step 1 ...
+#print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+#print "adding salt: NaCl ...."
+#print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+#fix addNa sodium deposit 5 3 1 ${seed} region channel near 0.5 attempt 100
+#fix addCl chlorde deposit 5 4 1 ${seed} region channel near 0.5 attempt 100
+#run 5
+#print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+#print "DONE: adding salt: NaCl"
+#print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+#write_data NaCl_done_*.data
+#write_restart NaCl_done_*.restart
+#unfix addNa
+#unfix addCl
+#set type 3 charge 1.0
+#set type 4 charge -1.0
+velocity all create ${simT} ${seed} # --- temperature-velocity consideration
+run 0
+velocity all scale ${simT}
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+print "Step 1: NVT with Shake at T = ${simT} ...." 
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+fix shakeTIP4P tip4p shake ${shake_tol} ${shake_iter} ${shake_out} b ${shake_bond} a ${shake_angle} # retain water molecule 
+#fix fix_NPT all npt temp ${simT} ${simT} ${dampt} iso ${simP} ${simP} ${dampt} # Volume of chamber and BOX can change
+fix fix_NPT all nvt temp ${simT} ${simT} ${dampt} #iso ${simP} ${simP} ${dampt} # Volume of chamber and BOX can change
+fix lockerL all oneway 1 lockL x # forcing a nonperiod on left 
+fix lockerR all oneway 1 lockR -x # forcing a nonperiod on left 
+# --- wall-particle interaction 
+fix wall_upper oxygens wall/region wall_upper lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} 
+fix wall_bottom oxygens wall/region wall_bottom lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} 
+fix wall_left oxygens wall/region wall_left lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} 
+fix wall_right oxygens wall/region wall_right lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} 
+fix_modify wall_upper energy  yes # adding wall-particle energy 
+fix_modify wall_bottom energy  yes # adding wall-particle energy 
+fix_modify wall_left energy  yes # adding wall-particle energy 
+fix_modify wall_right energy  yes # adding wall-particle energy  
+neigh_modify every 1 check yes
+thermo ${outthermo} # output screen and log
+thermo_style custom &
+		step &
+		temp press density &
+		vol pe ke etotal enthalpy &
+		evdwl etail ecoul epair emol elong &
+		xlo xhi ylo yhi zlo zhi &
+		cellalpha cellbeta cellgamma &
+		cella cellb cellc &
+		pxx pyy pzz pxy pxz pyz &
+		fmax fnorm  
+run ${runMD} 
+# ---
+write_restart step1_done.restart
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+print "DONE: Step 1: NPT with Shake at T = ${simT} K and P = ${simP} atm." 
+unfix fix_NPT
+#unfix lockerR
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+# --- starting dynamics for step 2
+print "Step 2: NVE with Shake at T = ${simT} K ...." 
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+fix fix_NVE all nve  # esnemble is NVE
+#fix fix_NVT all nvt temp ${simT} ${simT} ${dampt} # nanochannel dimension update is not allowed 
+compute waterT tip4p temp # getting temperature and updating it 
+fix adjustT tip4p temp/berendsen ${simT} ${simT} 10 # K K 1fs >>> minimization E <<< 
+fix_modify adjustT temp waterT
+run ${runMD}
+# ---
+write_restart step2_done.restart
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+print "DONE: Step 2: NVE with Shake at T = ${simT} K." 
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+# --- starting evaporation process 
+undump dumpMD
+unfix lockerR
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+print "Starting expansion experiments ...."
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+dump dumpMD all custom ${dumpEXPAND} post.* id mol type element mass v_radius x y z vx vy vz fx fy fz q # --- defining dumps 
+dump_modify dumpMD element O H #Na Cl
+# --- 
+fix Expansion all deform 100 x delta 0 0.001 remap none units box #expansing right side rate = 0.001A/100fs = 0.01A/1ps = 1nm/1ns
+thermo_modify lost ignore
+# --- 
+variable EXPAND equal ceil(0.5*${XHI}*1000000) # doubles the length of nanochannel
+run ${EXPAND} #fs 
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+print "Ending evaporation experiments ..."
+print "All DONE."  
+print "Quiting Now"
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+# End of file
+#

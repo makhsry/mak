@@ -1,0 +1,167 @@
+# ---------------------------------------
+processors * 1 1
+units        real
+atom_style   full
+# --------------------------------------- 
+molecule TIP4P2005 TIP4P2005.txt # TIP4P2005 water model  
+# --------------------------------------- 
+timestep 1.0 #fs
+variable relx equal 10000 # * timesteps 
+# --------------------------------------- 
+variable simT equal 300.0 # K simulation temperature  
+variable simP0 equal 1 # atm simulation pressure 
+variable seed equal 880713 # seed number, set for reproducibility  
+# --------------------------------------- 
+variable SC equal 3.9 #2.5 # packing distance for water molecule, 3.9 = equilibrium water molecule distance 
+# --------------------------------------- 
+variable dampt equal 100 # damping of temperature every N timesteps
+# ---------------------------------------
+variable dumping equal 1.0e2 # sending outputs every timestep 
+# ---------------------------------------
+# shake setting 
+variable shake_out equal 0 # (0 = never) print SHAKE statistics every this many timesteps  
+variable shake_iter equal 20 # max # of iterations in each SHAKE solution 
+variable shake_tol equal 0.0001 # accuracy tolerance of SHAKE solution 
+variable shake_bond equal 1 # number of bond types to include in the SHAKE  
+variable shake_angle equal 1 # number of angle types to include in the SHAKE 
+# --------------------------------------- 
+# sim box total 
+variable BOX_W equal 50#25*${SC} # Angstrom 
+variable BOX_H equal 50#10*${SC} # Angstrom 
+variable BOX_L equal 50#100*${SC} # Angstrom 
+variable box_x equal ${BOX_L}/2
+variable box_y equal ${BOX_W}/2
+variable box_z equal ${BOX_H}/2
+region BOX block -${box_x} ${box_x} -${box_y} ${box_y} -${box_z} ${box_z}
+# --------------------------------------- 
+boundary p p p # periodic boundaries in every direction 
+# ---------------------------------------
+# see: https://docs.lammps.org/Howto_tip4p.html 
+create_box 2 BOX & 
+		bond/types 1 &
+		angle/types 1 &
+		extra/bond/per/atom 2 &
+		extra/angle/per/atom 1 &
+		extra/special/per/atom 2 
+# --------------------------------------- 
+# creating the walls 
+# --------------------------------------- 
+variable width equal 2#*${SC}
+variable skin equal 1#*${SC}
+# --------------------------------------- 
+# channel to act as the pore 
+# --------------------------------------- 
+variable channel_xlo equal -${BOX_L}/2-${skin}
+variable channel_xhi equal ${BOX_L}/2-${skin}
+variable channel_ylo equal -${BOX_W}/2-${skin}
+variable channel_yhi equal ${BOX_W}/2-${skin}
+variable channel_zlo equal -${BOX_H}/2+${width}+${skin}
+variable channel_zhi equal ${BOX_H}/2-${width}-${skin}
+region channel block ${channel_xlo} ${channel_xhi} ${channel_ylo} ${channel_yhi} ${channel_zlo} ${channel_zhi} side in
+# --------------------------------------- 
+bond_style	harmonic
+bond_coeff 1 0.0 0.9572 # TIP4P/2005 force field
+angle_style	harmonic
+angle_coeff 1 0.0 104.52 # TIP4P/2005 force field
+pair_style	lj/cut/tip4p/long 1 2 1 1 0.1250 12.0
+pair_coeff 1 1 0.16275 3.16435 # TIP4P/2005 force field
+pair_coeff 2 2 0.0 0.0 # TIP4P/2005 force field
+pair_coeff 1 2 0.0 0.0 # TIP4P/2005 force field
+kspace_style	pppm/tip4p 1.0e-4 #particle-particle particle-mesh
+# ---------------------------------------
+mass 1 15.9994 # O
+mass 2 1.008 # H
+variable radius atom (type==1)*1.0+(type==2)*0.5
+# ---------------------------------------
+lattice sc ${SC} 
+# ---------------------------------------
+# filling atom to start simulation 
+create_atoms 0 region channel mol TIP4P2005 ${seed}
+write_dump  all custom asbuilt id mol type mass x y z vx vy vz fx fy fz q
+# ---------------------------------------
+group tip4p type  1  2
+group oxygens type  1
+# ---------------------------------------
+velocity all create ${simT} ${seed}
+# temperature-velocity consideration 
+run 0
+velocity all scale ${simT} 
+# ---------------------------------------
+# dumps 
+dump trjz all custom ${dumping} trj.* id mol type element mass v_radius x y z vx vy vz fx fy fz q 
+dump_modify trjz element O H
+# ---------------------------------------
+print "NPT with Shake at T = ${simT} K and P = ${simP0} atm ...." 
+# ---------------------------------------
+# shake takes care of water molecule structure 
+fix shakeTIP4P tip4p shake ${shake_tol} ${shake_iter} ${shake_out} b ${shake_bond} a ${shake_angle}
+# ---------------------------------------
+# NPT esnemble
+fix NPT tip4p npt temp ${simT} ${simT} ${dampt} iso ${simP0} ${simP0} ${dampt} 
+# ---------------------------------------
+neigh_modify delay 2 every 1 check yes
+# ---------------------------------------
+# computes 
+# ---------------------------------------
+# radial distribution function (RDF): O-O in bins=100
+compute RDF tip4p rdf 100 1 1 cutoff 5 
+fix w_RDF tip4p ave/time 100 1 100 c_RDF[*] file computes.rdf mode vector
+# ---------------------------------------
+# mean-squared displacement (MSD) including all effects due to atoms passing through periodic boundaries.
+compute MSD1 tip4p msd 
+fix w_MSD1 tip4p ave/time 100 1 100 c_MSD1[*] file computes.msd1
+# ---------------------------------------
+# the mean-squared displacement (MSD) and non-Gaussian parameter (NGP) including all effects due to atoms passing through periodic boundaries.
+compute MSD2 tip4p msd/nongauss 
+fix w_MSD2 tip4p ave/time 100 1 100 c_MSD2[*] file computes.msd2
+# ---------------------------------------
+# center-of-mass 
+compute COM tip4p com 
+fix w_COM tip4p ave/time 100 1 100 c_COM[*] file computes.com
+# ---------------------------------------
+# radius of gyration Rg including all effects due to atoms passing through periodic boundaries.
+compute Rg tip4p gyration 
+fix w_Rg tip4p ave/time 100 1 100 c_Rg[*] file computes.rg
+# ---------------------------------------
+# velocity auto-correlation function (VACF), averaged over a group of atoms
+compute VACF tip4p vacf 
+fix w_VACF tip4p ave/time 100 1 100 c_VACF[*] file computes.vacf
+# ---------------------------------------
+# temperature and pressure 
+compute thermo_t tip4p temp
+compute Pressure all pressure thermo_t
+fix w_TandP tip4p ave/time 100 1 100 c_thermo_t[*] c_Pressure[*] file computes.tp
+# ---------------------------------------
+# output screen and log
+thermo ${dumping}
+thermo_style custom &
+		step elaplong &
+		temp press density &
+		vol pe ke etotal enthalpy &
+		evdwl etail ecoul epair emol elong &
+		xlo xhi ylo yhi zlo zhi &
+		cellalpha cellbeta cellgamma &
+		cella cellb cellc &
+		pxx pyy pzz pxy pxz pyz &
+		fmax fnorm  
+# ---------------------------------------
+run ${relx} #fs   
+# ---------------------------------------
+print "DONE: NPT with Shake at T = ${simT} K and P = ${simP0} atm." 
+# ---------------------------------------
+print "NVE with Shake at T = ${simT} K ..." 
+unfix NPT
+# ---------------------------------------
+# esnemble is NVE
+fix NVE all nve 
+# ---------------------------------------
+# getting temperature and updating it 
+compute H2O_T tip4p temp
+fix adjustT tip4p temp/berendsen ${simT} ${simT} 10 # K K 1fs >>> minimization E <<< 
+fix_modify adjustT temp H2O_T
+# ---------------------------------------
+run ${relx} #fs 
+# ---------------------------------------
+print "DONE: NVE with Shake at T = ${simT} K." 
+# ---------------------------------------
+# End of file

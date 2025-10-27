@@ -1,0 +1,14 @@
+#!/bin/bash
+#PBS -l walltime=24:00:00,select=1:ncpus=1:mpiprocs=32:mem=1gb
+#PBS -A st-ssrebnik-1
+#PBS -N runner
+#PBS -o out.txt
+#PBS -e err.txt
+#PBS -m abe
+#PBS -M miladasgarpour@gmail.com
+
+cd $PBS_O_WORKDIR # here in scratch write everything
+
+for dir in `ls -d */`; do echo $dir; cd $dir; ../log_parser.sh < log.*; cd ../; done
+
+# End of file 

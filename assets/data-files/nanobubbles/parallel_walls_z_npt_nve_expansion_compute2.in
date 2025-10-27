@@ -1,0 +1,161 @@
+# two paralle walls in z direction blocking particles leaving box from top and bottom - the other two directions remain periodic 
+# ---------------------------------------
+processors * 1 1 # long channel 
+units        real
+atom_style   full
+# --------------------------------------- 
+timestep 1.0 #fs
+variable relx equal 1000000 # * timesteps = 1 ns - < otherwise update everywhere 
+variable dampt equal 100 # damping of temperature every N timesteps
+variable dumping equal 500 # sending dump outputs every timestep - 0.5 ps
+variable outthermo equal 100 # sending thermo outputs every timestep - 0.1 ps
+# --------------------------------------- 
+molecule TIP4P2005 TIP4P2005.txt  # TIP4P2005 water model  
+variable SC equal 2.5 # packing distance for water molecule on every direction - intitial NPT allows V update  
+# --------------------------------------- 
+variable simT equal 300.0 # K simulation temperature  
+variable simP0 equal 1 # atm simulation pressure 
+variable seed equal 880713 # seed number, set for reproducibility  
+# ---------------------------------------
+variable shake_out equal 0 # shake setting : (0 = never) print SHAKE statistics every this many timesteps  
+variable shake_iter equal 20 # shake setting : max # of iterations in each SHAKE solution 
+variable shake_tol equal 0.0001 # shake setting : accuracy tolerance of SHAKE solution 
+variable shake_bond equal 1 # shake setting : number of bond types to include in the SHAKE  
+variable shake_angle equal 1 # shake setting : number of angle types to include in the SHAKE 
+# --------------------------------------- 
+variable lj126_epsilon equal 0.16275 # kcal/mol strength factor for wall-particle interaction (energy or energy/distance^2 units) 
+variable lj126_sigma equal 3.16435 # A - size factor for wall-particle interaction (distance units) 
+variable lj126_cutoff equal 15 # cutoff within to apply surface-particle iteraction 
+# --------------------------------------- 
+variable BOX_W equal 50# sim box total width Angstrom - consider larger than wall cutoff  : 5 nm
+variable BOX_H equal 30# sim box total  height Angstrom - consider larger than wall cutoff  : 3 nm
+variable BOX_L equal 1000# sim box total  length Angstrom : 100 nm
+variable box_x equal ${BOX_L}/2 
+variable box_y equal ${BOX_W}/2
+variable box_z equal ${BOX_H}/2
+region BOX block -${box_x} ${box_x} -${box_y} ${box_y} -${box_z} ${box_z}
+# --------------------------------------- 
+boundary p p p # periodic boundaries in every direction - walls then block some faces  
+# ---------------------------------------
+create_box 2 BOX & 
+		bond/types 1 &
+		angle/types 1 &
+		extra/bond/per/atom 2 &
+		extra/angle/per/atom 1 &
+		extra/special/per/atom 2 # see: https://docs.lammps.org/Howto_tip4p.html 
+# --------------------------------------- 
+variable width equal 2# for walls  
+variable skin equal 1# to avoid overlaping particles 
+# --------------------------------------- 
+variable wall_upper_zlo equal ${BOX_H}/2-${width}+${skin} # upper wall 
+variable wall_upper_zhi equal ${BOX_H}/2-${skin} # upper wall 
+region wall_upper block INF INF INF INF ${wall_upper_zlo} ${wall_upper_zhi} side out # upper wall 
+variable wall_bottom_zlo equal -${BOX_H}/2+${skin} # bottom wall 
+variable wall_bottom_zhi equal -${BOX_H}/2+${width}-${skin} # bottom wall 
+region wall_bottom block INF INF INF INF ${wall_bottom_zlo} ${wall_bottom_zhi} side out  # bottom wall 
+# --------------------------------------- 
+variable channel_xlo equal -${BOX_L}/2-${skin} # channel to act as the pore 
+variable channel_xhi equal ${BOX_L}/2-${skin} # channel to act as the pore 
+variable channel_ylo equal -${BOX_W}/2-${skin} # channel to act as the pore 
+variable channel_yhi equal ${BOX_W}/2-${skin} # channel to act as the pore 
+variable channel_zlo equal -${BOX_H}/2+${width}+${skin} # channel to act as the pore 
+variable channel_zhi equal ${BOX_H}/2-${width}-${skin} # channel to act as the pore 
+region channel block ${channel_xlo} ${channel_xhi} ${channel_ylo} ${channel_yhi} ${channel_zlo} ${channel_zhi} side in # channel to act as the pore 
+# --------------------------------------- 
+# potential - see: https://docs.lammps.org/Howto_tip4p.html 
+bond_style	harmonic
+bond_coeff 1 0.0 0.9572 # TIP4P/2005 force field
+angle_style	harmonic
+angle_coeff 1 0.0 104.52 # TIP4P/2005 force field
+pair_style	lj/cut/tip4p/long 1 2 1 1 0.1250 12.0
+pair_coeff 1 1 0.16275 3.16435 # TIP4P/2005 force field
+pair_coeff 2 2 0.0 0.0 # TIP4P/2005 force field
+pair_coeff 1 2 0.0 0.0 # TIP4P/2005 force field
+kspace_style	pppm/tip4p 1.0e-4 #particle-particle particle-mesh
+# ---------------------------------------
+mass 1 15.9994 # O
+mass 2 1.008 # H
+variable radius atom (type==1)*1.0+(type==2)*0.5 # for later visualization << didn't autorecognized in OVITO anyway 
+# ---------------------------------------
+lattice sc ${SC} # see https://docs.lammps.org/lattice.html
+# ---------------------------------------
+# filling atom to start simulation 
+create_atoms 0 region channel mol TIP4P2005 ${seed}
+write_dump  all custom trj.asbuilt id mol type mass x y z vx vy vz fx fy fz q
+# ---------------------------------------
+group tip4p type  1  2
+group oxygens type  1
+# ---------------------------------------
+velocity all create ${simT} ${seed} # temperature-velocity consideration 
+run 0
+velocity all scale ${simT} 
+# ---------------------------------------
+# dumps 
+dump trjz all custom ${dumping} trj.* id mol type element mass v_radius x y z vx vy vz fx fy fz q 
+dump_modify trjz element O H
+# ---------------------------------------
+print "NPT with Shake at T = ${simT} K and P = ${simP0} atm ...." 
+# ---------------------------------------
+fix shakeTIP4P tip4p shake ${shake_tol} ${shake_iter} ${shake_out} b ${shake_bond} a ${shake_angle} # shake takes care of water molecule structure 
+fix NPT tip4p npt temp ${simT} ${simT} ${dampt} iso ${simP0} ${simP0} ${dampt}  # NPT esnemble
+# ---------------------------------------
+fix wall_upper oxygens wall/region wall_upper lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} # wall effect - pore surface LJ tupe - wall only interacts with oxygens, no hydrogen interactions 
+fix wall_bottom oxygens wall/region wall_bottom lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff}  # wall effect - pore surface LJ tupe - wall only interacts with oxygens, no hydrogen interactions 
+#fix_modify wall_upper energy  yes # adding wall-particle energy 
+#fix_modify wall_bottom energy  yes # adding wall-particle energy 
+neigh_modify delay 2 every 1 check yes
+compute RDF tip4p rdf 100 1 1 cutoff 5 # radial distribution function (RDF): O-O in bins=100
+compute MSD1 tip4p msd # mean-squared displacement (MSD) including all effects due to atoms passing through periodic boundaries.
+compute MSD2 tip4p msd/nongauss # the mean-squared displacement (MSD) and non-Gaussian parameter (NGP) including all effects due to atoms passing through periodic boundaries.
+compute COM tip4p com # center-of-mass 
+compute Rg tip4p gyration # radius of gyration Rg including all effects due to atoms passing through periodic boundaries.
+compute VACF tip4p vacf # velocity auto-correlation function (VACF), averaged over a group of atoms 
+compute thermo_t tip4p temp # temperature and pressure 
+compute Pressure all pressure thermo_t # temperature and pressure 
+fix w_RDF tip4p ave/time 100 1 100 c_RDF[*] file compute_rdf.txt mode vector
+fix w_MSD1 tip4p ave/time 100 1 100 c_MSD1[*] file compute_msd1.txt
+fix w_MSD2 tip4p ave/time 100 1 100 c_MSD2[*] file compute_msd2.txt
+fix w_COM tip4p ave/time 100 1 100 c_COM[*] file compute_com.txt
+fix w_Rg tip4p ave/time 100 1 100 c_Rg[*] file compute_rgy.txt
+fix w_VACF tip4p ave/time 100 1 100 c_VACF[*] file compute_vacf.txt
+fix w_TandP tip4p ave/time 100 1 100 c_thermo_t[*] c_Pressure[*] file compute_tp.txt
+thermo ${outthermo} # output screen and log
+thermo_style custom &
+		step elaplong &
+		temp press density &
+		vol pe ke etotal enthalpy &
+		evdwl etail ecoul epair emol elong &
+		xlo xhi ylo yhi zlo zhi &
+		cellalpha cellbeta cellgamma &
+		cella cellb cellc &
+		pxx pyy pzz pxy pxz pyz &
+		fmax fnorm  
+run ${relx} #fs = 100 ps - see above 
+# ---------------------------------------
+print "DONE: NPT with Shake at T = ${simT} K and P = ${simP0} atm." 
+# ---------------------------------------
+print "NVE with Shake at T = ${simT} K ..." 
+# ---------------------------------------
+unfix NPT # unfixing NPT, the rest remain active 
+fix NVE all nve  # esnemble is NVE
+compute H2O_T tip4p temp # getting temperature and updating it 
+fix adjustT tip4p temp/berendsen ${simT} ${simT} 10 # K K 1fs >>> minimization E <<< 
+fix_modify adjustT temp H2O_T
+run ${relx} #fs = 100 ps - see above  
+# ---------------------------------------
+print "DONE: NVE with Shake at T = ${simT} K." 
+# ---------------------------------------
+print "Expanding system in x direction 1.01 - upto 20 times original size by (1.01^300) ...."
+# ---------------------------------------
+variable iter equal 0
+label looop
+variable iter equal ${iter}+1
+print "iteration ${iter} / 300 ...."
+change_box all x scale 1.01 remap # Expanding the box * 1.01 - remapping atoms from previous box to current box 
+run ${relx} #fs 
+if "${iter} > 300" then quit # controlling the expansion step 
+jump SELF looop
+# ---------------------------------------
+print "DONE." 
+# ---------------------------------------
+# End of file
