@@ -2,7 +2,7 @@
 # Experience      
 
 ## Mineral Process Engineer: Mineral Drying (Mitacs Accelerate Internship), <a href="https://mining.ubc.ca/">UBC Norman B. Keevil Institute of Mining Engineering</a>, Canada (2023 Jan. - 2025 Dec.) 
-<details>
+<details open>
   <summary>
   <strong>details</strong>
   </summary>
@@ -26,7 +26,7 @@
 </details>          
 
 ## Mineral Process Engineer: Modelling and Simulation (Teaching Assistant), <a href="https://mining.ubc.ca/">UBC Norman B. Keevil Institute of Mining Engineering</a>, Canada (2024/2025: Sept. - Dec.)  
-<details>
+<details open>
   <summary>
   <strong>details</strong>
   </summary>
@@ -41,7 +41,7 @@
 </details>               
 
 ## Materials Handling (Teaching Assistant), <a href="https://mining.ubc.ca/">UBC Norman B. Keevil Institute of Mining Engineering</a>, Canada (2025: Sept. - Dec.)  
-<details>
+<details open>
   <summary>
   <strong>details</strong>
   </summary>
@@ -56,7 +56,7 @@
 </details> 
 
 ## Mineral Process Engineer: Process Control (Teaching Assistant), <a href="https://mining.ubc.ca/">UBC Norman B. Keevil Institute of Mining Engineering</a>, Canada (2023/2024: Sept. - Dec.)  
-<details>
+<details open>
   <summary>
   <strong>details</strong>
   </summary>
@@ -71,7 +71,7 @@
 </details>               
 
 ## Canada West Coordinator, <a href="https://www.mariecuriealumni.eu/">Marie Curie Alumni Association</a>, <a href="https://www.mariecuriealumni.eu/groups/north-america-chapter">North America Chapter</a>, Canada (2023 Sept. - 2024 Sept.)
-<details>
+<details open>
   <summary>
   <strong>details</strong>
   </summary>
@@ -84,7 +84,7 @@
 </details>  
 
 ## Chemical Process Engineer: Modelling and Optimization (Teaching Assistant), <a href="https://chbe.ubc.ca/">UBC Chemical and Biological Engineering Department</a>, Canada (2022: Sept. - Dec.) 
-<details>
+<details open>
   <summary>
   <strong>details</strong>
   </summary>
@@ -104,7 +104,7 @@
 </details>  
 
 ## Chemical Engineer: Cavitation at Nanoscale (Graduate Research Assistant), <a href="https://chbe.ubc.ca/">UBC Chemical and Biological Engineering Department</a>, Canada (2022: May - Dec.) 
-<details>
+<details open>
   <summary>
   <strong>details</strong>
   </summary>
@@ -131,7 +131,7 @@
 </details>  
 
 ## Chemical Process Engineer: Analytics in Fluid Bed Spray Dryer (Research Assistant), <a href="https://www.ul.ie/">University of Limerick</a>, Ireland (2022: Feb - May) 
-<details>
+<details open>
   <summary>
   <strong>details</strong>
   </summary>
@@ -157,7 +157,7 @@
 </details>        
 
 ## Process Engineer: Continuous Crystallization (Marie Sklodowska-Curie Postdoctoral Fellow), <a href="https://www.ul.ie/">University of Limerick</a>, Ireland (2019 Oct. - 2022 Feb.) 
-<details>
+<details open>
   <summary>
   <strong>details</strong>
   </summary>
@@ -185,7 +185,7 @@
 </details>        
 
 ## Material Engineer: AI & ML (Research Intern), <a href="https://www.skoltech.ru/en/">Skolkovo Institute of Science and Technology (SkolTech)</a>, Russia (2018: May - Oct.) 
-<details>
+<details open>
   <summary>
   <strong>details</strong>            
   </summary>
@@ -210,7 +210,7 @@
 </details>       
 
 ## Process Engineer: Gas Separation and Capture (Research Assistant), <a href="https://www.cityu.edu.hk/en">City University of Hong Kong</a>, Hong Kong (2017 Nov. - 2018 May) 
-<details>
+<details open>
   <summary>
   <strong>details</strong>               
   </summary>
@@ -234,7 +234,7 @@
 </details>        
 
 ## Visiting Researcher, <a href="https://english.iop.cas.cn/">Institute of Physics & Beijing National Lab for Condensed Matter Physics</a>, <a href="https://english.cas.cn/">Chinese Academy of Sciences</a>, Beijing, China (2017: Sept. - Nov.) 
-<details>
+<details open>
   <summary>
   <strong>details</strong>               
   </summary>
@@ -250,7 +250,7 @@
 </details>        
 
 ## Chemical Engineer: Water Quality Monitoring and Remedition (Research Assistant), <a href="https://enbmsu.info/">Baqiyatallah University of Medical Sciences</a>, Tehran, Iran (2015: Jan. - July)
-<details>
+<details open>
   <summary>
   <strong>details</strong>               
   </summary>
@@ -269,7 +269,7 @@
 </details>  
 
 ## Research Collaborator, <a href="https://enbmsu.info/">Islamic Azad University</a>, Tehran, Iran (2014 Sept. - 2017 Sept.)
-<details>
+<details open>
   <summary>
   <strong>details</strong>               
   </summary>
@@ -294,7 +294,7 @@
 </details>        
 
 ## Chemical / Process Engineer (Summer Internship), <a href="https://www.ripi.ir/en/">Research Institute of Petroleum Industry (RIPI)</a>, Iran (2011: July - Aug.)                   
-<details>
+<details open>
   <summary>
   <strong>details</strong>               
   </summary>
@@ -319,7 +319,7 @@
 </details>         
 
 ## Scientific Computing with MATLAB and C++ (Teaching Assistant), <a href="https://ut.ac.ir/en">University of Tehran</a>, Iran (2009 - 2011)                   
-<details>
+<details open>
   <summary>
   <strong>details</strong>               
   </summary>
