@@ -222,13 +222,13 @@ jobs:
           echo "### Workflow Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           if [ -f "README.md" ]; then
-            echo "✅ README.md generated successfully" >> $GITHUB_STEP_SUMMARY
+            echo "README.md generated successfully" >> $GITHUB_STEP_SUMMARY
           else
-            echo "❌ README.md generation failed" >> $GITHUB_STEP_SUMMARY
+            echo "README.md generation failed" >> $GITHUB_STEP_SUMMARY
           fi
           if [ -f "README.pdf" ]; then
-            echo "✅ README.pdf generated successfully" >> $GITHUB_STEP_SUMMARY
+            echo "README.pdf generated successfully" >> $GITHUB_STEP_SUMMARY
           else
-            echo "❌ README.pdf generation failed" >> $GITHUB_STEP_SUMMARY
+            echo "README.pdf generation failed" >> $GITHUB_STEP_SUMMARY
           fi
 # EoF 
