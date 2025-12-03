@@ -125,7 +125,7 @@ jobs:
           \fancyhead[R]{}   
           \fancyfoot[L]{}
           \fancyfoot[C]{\thepage}
-          \fancyfoot[R]{\tiny\scalebox{1.0}{\textcolor{red}{Generated on \today\ by \includegraphics[height=1.25ex]{assets/img_files/socials/GitHub.png}github-actions[bot]}}}
+          \fancyfoot[R]{\tiny\scalebox{1.0}{\textcolor{red}{Generated on \today\ by \includegraphics[height=1.25ex]{assets/logos/GitHub.png}github-actions[bot]}}}
           \renewcommand{\headrulewidth}{0.4pt}
           \renewcommand{\footrulewidth}{0.4pt}
           EOF
