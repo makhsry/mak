@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'assets/md_files/**'
+      - 'assets/**'
       - '.github/workflows/**'
   #schedule:
   # - cron: "0 * * * *"
@@ -231,4 +231,34 @@ jobs:
           else
             echo "README.pdf generation failed" >> $GITHUB_STEP_SUMMARY
           fi
+  #
+  SCSS-to-CSS:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1 pinned
+        with:
+          persist-credentials: true # required to push back files 
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Install Dart Sass
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget
+          wget https://github.com/sass/dart-sass/releases/download/1.77.5/dart-sass-1.77.5-linux-x64.tar.gz
+          sudo tar -xvf dart-sass-1.77.5-linux-x64.tar.gz -C /usr/local/bin/
+          sudo ln -s /usr/local/bin/dart-sass/sass /usr/local/bin/sass
+
+      - name: Compile SCSS → CSS (with source map)
+        run: |
+          sass assets/scss/main.scss assets/css/main.css --source-map
+      
+      - name: Commit compiled CSS
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add assets/css/main.css assets/css/main.css.map || true
+          git commit -m "Build CSS from SCSS [automated]" || true
+          git push
 # EoF 
