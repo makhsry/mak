@@ -1,0 +1,30 @@
+.profile-box {
+    display: flex;
+    gap: 2rem;
+    background: $bg-light;
+    padding: 2rem;
+    border-radius: 4px;
+    border: 1px solid $border-light;
+    align-items: center;
+
+    .profile-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: #ddd;
+        flex-shrink: 0;
+    }
+
+    .profile-content {
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: $text-dark;
+        }
+
+        p {
+            color: $text-medium;
+            margin-bottom: 0.5rem;
+        }
+    }
+}

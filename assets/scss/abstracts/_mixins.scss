@@ -1,0 +1,6 @@
+// Example reusable mixin for flexbox alignment
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

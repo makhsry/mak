@@ -1,0 +1,28 @@
+// Import order matters: abstracts → base → layout → components → utils
+
+// Abstracts
+@import "abstracts/variables";
+@import "abstracts/mixins";
+
+// Base styles
+@import "base/reset";
+@import "base/typography";
+@import "base/global";
+
+// Layout
+@import "layout/header";
+@import "layout/footer";
+@import "layout/container";
+@import "layout/sections";
+
+// Pages
+@import "pages/hero";
+
+// Components
+@import "components/buttons";
+@import "components/cards";
+@import "components/profile";
+@import "components/news";
+
+// Utilities
+@import "utils/responsive";
