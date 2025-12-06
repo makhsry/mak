@@ -232,7 +232,7 @@ jobs:
             echo "README.pdf generation failed" >> $GITHUB_STEP_SUMMARY
           fi
   #
-  SCSS-to-CSS:
+  build_site:
     runs-on: ubuntu-latest
 
     steps:
@@ -252,13 +252,23 @@ jobs:
 
       - name: Compile SCSS → CSS (with source map)
         run: |
-          sass assets/scss/main.scss assets/css/main.css --source-map
+          sass assets/scss/main.scss assets/css/main.css --source-map 
       
-      - name: Commit compiled CSS
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add assets/css/main.css assets/css/main.css.map || true
-          git commit -m "Build CSS from SCSS [automated]" || true
-          git push
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./   # upload ENTIRE repo including compiled CSS
+  
+  deploy_site:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy GitHub Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
 # EoF 
