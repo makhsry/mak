@@ -1,0 +1,144 @@
+# --- Intrusion/Extrusion experiments --- 
+# only a pore is included 
+# Next:> hydrophobicity of surface  
+clear
+# ---------------------------------------
+units        real
+atom_style   full
+# ---------------------------------------
+molecule TIP4P2005 TIP4P2005.txt # TIP4P2005 water model 
+# ---------------------------------------
+variable simT equal 298.0 # K simulation temperature 
+variable seed equal 880713 # seed number, set for reproducibility 
+# ---------------------------------------
+variable dumping equal 1.0e3 # sending outputs every timestep
+# ---------------------------------------
+variable poreR equal 10 # pore radii Angstrom 
+variable poreL equal 500 # pore length Angstrom
+# ---------------------------------------
+variable widthX equal 20 # 2*wing width - Angstrom 
+variable widthYZ equal 50 # wing width - Angstrom 
+variable gap equal 0.1 # gap allowance for high packed system and relaxation - Angstrom - due to pppm scheme 
+# ---------------------------------------
+variable SC equal 3.9 # must be consistent with poreR # packing distance for water molecule, 3.9 = equilibrium water molecule distance
+# ---------------------------------------
+variable dampt equal 100 #fs damping every # timestep temperature in NVT 
+variable thermostatN equal 1 # single thermostat
+variable shake_out equal 0 # (0 = never) print SHAKE statistics every this many timesteps 
+variable shake_iter equal 20 # max # of iterations in each SHAKE solution
+variable shake_tol equal 0.0001 # accuracy tolerance of SHAKE solution
+variable shake_bond equal 1 # number of bond types to include in the SHAKE 
+variable shake_angle equal 1 # number of angle types to include in the SHAKE 
+variable lj126_epsilon equal 1.0772#*(1.0e-21)*0.2390057361*0.001 # *** strength factor for wall-particle interaction (energy or energy/distance^2 units)
+variable lj126_sigma equal 3.154 # size factor for wall-particle interaction (distance units)
+variable lj126_cutoff equal 10 #${poreR}/${lj126_sigma} # cutoff within to apply surface-particle iteraction
+# LJ-water: see: https://pubs.acs.org/doi/10.1021/acs.jctc.9b00941 
+# ---------------------------------------
+variable boxX equal ${poreL}/2+${gap}+${widthX}/2+${gap} # Simulation box X
+variable boxY equal ${poreR}+${gap}+${widthYZ}/2+${gap} # Simulation box Y
+variable boxZ equal ${poreR}+${gap}+${widthYZ}/2+${gap} # Simulation box Z
+region BOX block -${boxX} ${boxX} -${boxY} ${boxY} -${boxZ} ${boxZ}
+# ---------------------------------------
+variable porer equal ${poreR}-${gap} # pore true r 
+variable poreXli equal (-${poreL}/2)+${gap} # pore lower X
+variable poreXhi equal (${poreL}/2)-${gap} # pore higher X
+region porer cylinder x 0 0 ${porer} ${poreXli} ${poreXhi} side in
+variable poreXlo equal (-${poreL}/2) # pore lower X
+variable poreXho equal (${poreL}/2) # pore higher X
+region poreR cylinder x 0 0 ${poreR} ${poreXlo} ${poreXho} side in
+# ---------------------------------------
+variable wingRxl equal ${poreL}/2+${gap} # right wing lower X
+variable wingRxh equal ${poreL}/2+${gap}+${widthX}/2 # right wing higher X
+variable wingRyl equal -${boxY} # right wing lower Y
+variable wingRyh equal ${boxY} # right wing higher Y
+variable wingRzl equal -${boxZ} # right wing lower Z
+variable wingRzh equal ${boxZ} # right wing higher Z
+region wingR block ${wingRxl} ${wingRxh} ${wingRyl} ${wingRyh} ${wingRzl} ${wingRzh} side in
+variable wingLxl equal -${boxX} # left wing lower X
+variable wingLxh equal -${poreL}/2-${gap} # left wing higher X
+variable wingLyl equal -${boxY} # left wing lower Y
+variable wingLyh equal ${boxY} # left wing higher Y
+variable wingLzl equal -${boxZ} # left wing lower Z
+variable wingLzh equal ${boxZ} # left wing higher Z
+region wingL block ${wingLxl} ${wingLxh} ${wingLyl} ${wingLyh} ${wingLzl} ${wingLzh} side in
+# ---------------------------------------
+variable pistonWidth equal ${gap}/2
+variable pistonRlimit equal (${wingRxh}+${wingRxl})/2
+variable pistonLlimit equal (${wingLxh}+${wingLxl})/2
+variable shiftR equal ramp(0,${pistonRlimit})
+variable shiftL equal ramp(0,${pistonLlimit})
+variable pistonRxl equal ${wingRxh}
+variable pistonRxh equal ${wingRxh}+${pistonWidth}
+variable pistonLxl equal ${wingLxl}
+variable pistonLxh equal ${wingLxl}+${pistonWidth}
+region PISTONr block ${pistonRxl} ${pistonRxh} ${wingRyl} ${wingRyh} ${wingRzl} ${wingRzh} side out move v_shiftR NULL NULL
+region PISTONl block ${pistonLxl} ${pistonLxh} ${wingLyl} ${wingLyh} ${wingLzl} ${wingLzh} side out move v_shiftL NULL NULL
+# ---------------------------------------
+print "building simulation BOX ...." 
+boundary p p p # periodic boundaries in every direction 
+create_box 2 BOX & 
+		bond/types 1 &
+		angle/types 1 &
+		extra/bond/per/atom 2 &
+		extra/angle/per/atom 1 &
+		extra/special/per/atom 2
+# ---------------------------------------
+print "potential settings for TIP4P2005 water model ...." 
+# see: https://docs.lammps.org/Howto_tip4p.html 
+bond_style	harmonic
+bond_coeff 1 0.0 0.9572 # TIP4P/2005 force field
+angle_style	harmonic
+angle_coeff 1 0.0 104.52 # TIP4P/2005 force field
+pair_style	lj/cut/tip4p/long 1 2 1 1 0.1250 12.0
+pair_coeff 1 1 0.16275 3.16435 # TIP4P/2005 force field
+pair_coeff 2 2 0.0 0.0 # TIP4P/2005 force field
+pair_coeff 1 2 0.0 0.0 # TIP4P/2005 force field
+kspace_style	pppm/tip4p 1.0e-4 #particle-particle particle-mesh
+# ---------------------------------------
+mass 1 15.9994 # O
+mass 2 1.008 # H
+# ---------------------------------------
+print "filling water in wings, pore is empty initially ...." 
+lattice sc ${SC} 
+create_atoms 0 region wingR mol TIP4P2005 ${seed} # filling right wing 
+create_atoms 0 region wingL mol TIP4P2005 ${seed} # filling left wing 
+# ---------------------------------------
+print "group assignments ...." 
+group tip4p type  1  2
+group Oxy type  1
+group oxygens dynamic Oxy region porer every 1
+group Rwing region wingR
+group Lwing region wingL
+# ---------------------------------------
+print "Intrusion at simulation T with shake ...." 
+timestep 0.1 #fs
+dump TRJz_intrusion all custom ${dumping} intrusion.* id mol type mass x y z vx vy vz fx fy fz q
+fix NVT_intrusion all nvt temp ${simT} ${simT} ${dampt} #tchain ${thermostatN} #ensemble NVT Nose-Hoover
+fix shakeTIP4P_intrusion tip4p shake ${shake_tol} ${shake_iter} ${shake_out} b ${shake_bond} a ${shake_angle} # takes care of water molecule structure
+fix PistonR_intrusion all wall/region PISTONr morse 1.0 1.0 1.5 ${SC}
+fix PistonR_intrusion all wall/region PISTONl morse 1.0 1.0 1.5 ${SC}
+fix surface_intrusion oxygens wall/region poreR lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} # wall only interacts with oxygens, no hydrogen interactions 
+neigh_modify delay 2 every 1 check yes
+thermo ${dumping}
+thermo_style custom step temp press vol density pe ke etotal enthalpy
+run 1000000000 # = 100 ns
+# ---------------------------------------
+unfix NVT_intrusion
+unfix shakeTIP4P_intrusion
+unfix PistonR_intrusion
+unfix PistonL_intrusion
+unfix surface_intrusion
+# ---------------------------------------
+#print "+++++++++++++++++++++++++++++++++++++++++"
+#print "++++++++++++++++++++++++++++++++++++"
+#print "+++++++++++++++++++++++++++++++"
+#print "++++++++++++++++++++++++++"
+#print "+++++++++++++++++++++"
+#print "++++++++++++++++"
+#print "+++++++++++"
+#print "++++++"
+#print "+"
+# ---------------------------------------
+#thermo_modify lost ignore
+# ---------------------------------------
+# End of file

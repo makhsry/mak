@@ -1,0 +1,202 @@
+# ---------------------------------------
+processors * 1 1
+units        real
+atom_style   full
+# --------------------------------------- 
+molecule TIP4P2005 TIP4P2005.txt # TIP4P2005 water model  
+# --------------------------------------- 
+variable simT equal 300.0 # K simulation temperature  
+variable seed equal 880713 # seed number, set for reproducibility  
+# --------------------------------------- 
+variable SC equal 2.5 # packing distance for water molecule, 3.9 = equilibrium water molecule distance 
+# --------------------------------------- 
+variable dampt equal 100 # damping of temperature every N timesteps
+# shake setting 
+variable shake_out equal 0 # (0 = never) print SHAKE statistics every this many timesteps  
+variable shake_iter equal 20 # max # of iterations in each SHAKE solution 
+variable shake_tol equal 0.0001 # accuracy tolerance of SHAKE solution 
+variable shake_bond equal 1 # number of bond types to include in the SHAKE  
+variable shake_angle equal 1 # number of angle types to include in the SHAKE  
+# LJ-water: see: https://pubs.acs.org/doi/10.1021/acs.jctc.9b00941 
+variable lj126_epsilon equal 1.0772#*(1.0e-21)*0.2390057361*0.001 # *** strength factor for wall-particle interaction (energy or energy/distance^2 units) 
+variable lj126_sigma equal 3.154 # size factor for wall-particle interaction (distance units) 
+variable lj126_cutoff equal 15 #${poreR}/${lj126_sigma} # cutoff within to apply surface-particle iteraction 
+# valve/gate of Morse type if any 
+variable cutoff equal 2*${SC} # for Morse 
+# --------------------------------------- 
+# sim box total 
+variable BOX_W equal 25*${SC} # Angstrom 
+variable BOX_H equal 10*${SC} # Angstrom 
+variable BOX_L equal 100*${SC} # Angstrom 
+variable box_x equal ${BOX_L}/2
+variable box_y equal ${BOX_W}/2
+variable box_z equal ${BOX_H}/2
+region BOX block -${box_x} ${box_x} -${box_y} ${box_y} -${box_z} ${box_z}
+# --------------------------------------- 
+# creating the channel using four side walls - so particles never fall outside the region << LMPS error 
+# --------------------------------------- 
+variable width equal 2*${SC}
+variable skin equal 0.5*${SC}
+# --------------------------------------- 
+# front wall 
+variable wall_front_xlo equal -${BOX_L}/2
+variable wall_front_xhi equal ${BOX_L}/2
+variable wall_front_ylo equal -${BOX_W}/2+${skin}
+variable wall_front_yhi equal -${BOX_W}/2+${width}-${skin}
+variable wall_front_zlo equal -${BOX_H}/2+${skin}
+variable wall_front_zhi equal ${BOX_H}/2-${skin}
+region wall_front block ${wall_front_xlo} ${wall_front_xhi} ${wall_front_ylo} ${wall_front_yhi} ${wall_front_zlo} ${wall_front_zhi} side out 
+# --------------------------------------- 
+# back wall
+variable wall_back_xlo equal -${BOX_L}/2
+variable wall_back_xhi equal ${BOX_L}/2
+variable wall_back_ylo equal ${BOX_W}/2-${width}+${skin}
+variable wall_back_yhi equal ${BOX_W}/2-${skin}
+variable wall_back_zlo equal -${BOX_H}/2+${skin}
+variable wall_back_zhi equal ${BOX_H}/2-${skin}
+region wall_back block ${wall_back_xlo} ${wall_back_xhi} ${wall_back_ylo} ${wall_back_yhi} ${wall_back_zlo} ${wall_back_zhi} side out 
+# --------------------------------------- 
+# upper wall 
+variable wall_upper_xlo equal -${BOX_L}/2
+variable wall_upper_xhi equal ${BOX_L}/2
+variable wall_upper_ylo equal -${BOX_W}/2+${skin}
+variable wall_upper_yhi equal ${BOX_W}/2-${skin}
+variable wall_upper_zlo equal ${BOX_H}/2-${width}+${skin}
+variable wall_upper_zhi equal ${BOX_H}/2-${skin}
+region wall_upper block ${wall_upper_xlo} ${wall_upper_xhi} ${wall_upper_ylo} ${wall_upper_yhi} ${wall_upper_zlo} ${wall_upper_zhi} side out 
+# --------------------------------------- 
+# bottom wall 
+variable wall_bottom_xlo equal -${BOX_L}/2
+variable wall_bottom_xhi equal ${BOX_L}/2
+variable wall_bottom_ylo equal -${BOX_W}/2+${skin}
+variable wall_bottom_yhi equal ${BOX_W}/2-${skin}
+variable wall_bottom_zlo equal -${BOX_H}/2+${skin}
+variable wall_bottom_zhi equal -${BOX_H}/2+${width}-${skin}
+region wall_bottom block ${wall_bottom_xlo} ${wall_bottom_xhi} ${wall_bottom_ylo} ${wall_bottom_yhi} ${wall_bottom_zlo} ${wall_bottom_zhi} side out 
+# --------------------------------------- 
+# channel to act as the pore - not used !
+# --------------------------------------- 
+variable channel_xlo equal -${BOX_L}/2
+variable channel_xhi equal ${BOX_L}/2
+variable channel_ylo equal -${BOX_W}/2+${width}+${skin}
+variable channel_yhi equal ${BOX_W}/2-${width}-${skin}
+variable channel_zlo equal -${BOX_H}/2+${width}+${skin}
+variable channel_zhi equal ${BOX_H}/2-${width}-${skin}
+region channel block ${channel_xlo} ${channel_xhi} ${channel_ylo} ${channel_yhi} ${channel_zlo} ${channel_zhi} side in
+# --------------------------------------- 
+# designing the pore filling 
+# --------------------------------------- 
+variable unfilled equal 0.50 # % of pore that is empty at the begining of sim 
+# --------------------------------------- 
+variable pack_L equal (${channel_xhi}-${channel_xlo})*(1-${unfilled})/2
+# --------------------------------------- 
+# pack on left 
+variable pack_left_xlo equal ${channel_xlo}+${skin}
+variable pack_left_xhi equal ${pack_left_xlo}+${pack_L}
+region pack_left block ${pack_left_xlo} ${pack_left_xhi} ${channel_ylo} ${channel_yhi} ${channel_zlo} ${channel_zhi} side in
+# --------------------------------------- 
+# pack on right 
+variable pack_right_xhi equal ${channel_xhi}-${skin}
+variable pack_right_xlo equal ${pack_right_xhi}-${pack_L}
+region pack_right block ${pack_right_xlo} ${pack_right_xhi} ${channel_ylo} ${channel_yhi} ${channel_zlo} ${channel_zhi} side in
+# --------------------------------------- 
+# gate adjucent to pack_left
+variable gate_left_xlo equal ${pack_left_xhi}+2*${skin}
+variable gate_left_xhi equal ${gate_left_xlo}+10*${skin}
+region gate_left block ${gate_left_xlo} ${gate_left_xhi} ${channel_ylo} ${channel_yhi} ${channel_zlo} ${channel_zhi} side out
+region gate_left_showcase block ${gate_left_xlo} ${gate_left_xhi} ${channel_ylo} ${channel_yhi} ${channel_zlo} ${channel_zhi} side in
+# --------------------------------------- 
+# gate adjucent to pack_right
+variable gate_right_xhi equal ${pack_right_xlo}-2*${skin}
+variable gate_right_xlo equal ${gate_right_xhi}-10*${skin}
+region gate_right block ${gate_right_xlo} ${gate_right_xhi} ${channel_ylo} ${channel_yhi} ${channel_zlo} ${channel_zhi} side out
+region gate_right_showcase block ${gate_right_xlo} ${gate_right_xhi} ${channel_ylo} ${channel_yhi} ${channel_zlo} ${channel_zhi} side in
+# --------------------------------------- 
+boundary p p p # periodic boundaries in every direction 
+# see: https://docs.lammps.org/Howto_tip4p.html 
+create_box 2 BOX & 
+		bond/types 1 &
+		angle/types 1 &
+		extra/bond/per/atom 2 &
+		extra/angle/per/atom 1 &
+		extra/special/per/atom 2 
+# ---------------------------------------
+bond_style	harmonic
+bond_coeff 1 0.0 0.9572 # TIP4P/2005 force field
+angle_style	harmonic
+angle_coeff 1 0.0 104.52 # TIP4P/2005 force field
+pair_style	lj/cut/tip4p/long 1 2 1 1 0.1250 12.0
+pair_coeff 1 1 0.16275 3.16435 # TIP4P/2005 force field
+pair_coeff 2 2 0.0 0.0 # TIP4P/2005 force field
+pair_coeff 1 2 0.0 0.0 # TIP4P/2005 force field
+kspace_style	pppm/tip4p 1.0e-4 #particle-particle particle-mesh
+# ---------------------------------------
+mass 1 15.9994 # O
+mass 2 1.008 # H
+# ---------------------------------------
+lattice sc ${SC} 
+# ---------------------------------------
+# showcasing the system design ...
+# location of: pack_left 
+#create_atoms 0 region pack_left mol TIP4P2005 ${seed}
+#write_dump  all custom sys_pack_left id mol type mass x y z vx vy vz fx fy fz q
+# ---------------------------------------
+# location of: pack_right
+#create_atoms 0 region pack_right mol TIP4P2005 ${seed}
+#write_dump  all custom sys_pack_right id mol type mass x y z vx vy vz fx fy fz q
+# ---------------------------------------
+# location of: gate_left 
+#create_atoms 0 region gate_left_showcase mol TIP4P2005 ${seed}
+#write_dump  all custom sys_gate_left id mol type mass x y z vx vy vz fx fy fz q
+# ---------------------------------------
+# location of: gate_right
+#create_atoms 0 region gate_right_showcase mol TIP4P2005 ${seed}
+#write_dump  all custom sys_gate_right id mol type mass x y z vx vy vz fx fy fz q
+# ---------------------------------------
+# cleaning the showcase regions 
+#region gate_right_showcase delete
+#region gate_left_showcase delete
+# ---------------------------------------
+# filling atom to start simulation 
+create_atoms 0 region pack_left mol TIP4P2005 ${seed}
+create_atoms 0 region pack_right mol TIP4P2005 ${seed}
+write_dump  all custom sys_pack id mol type mass x y z vx vy vz fx fy fz q
+# ---------------------------------------
+group tip4p type  1  2
+group oxygens type  1
+# ---------------------------------------
+variable dumping equal 1.0e2 # sending outputs every timestep 
+print "NVE with Shake at specified T: ${simT} ...."
+timestep 0.1 # avoiding close contacts due to tight packing of water molecule - for caution 
+velocity all create ${simT} ${seed}
+run 0
+velocity all scale ${simT} # temperature-velocity consideration 
+dump trjz all custom ${dumping} trj.* id mol type mass x y z vx vy vz fx fy fz q
+# esnemble is NVE
+fix NVE all nve
+# shake takes care of water molecule structure 
+fix shakeTIP4P tip4p shake ${shake_tol} ${shake_iter} ${shake_out} b ${shake_bond} a ${shake_angle}
+compute H2O_T tip4p temp
+fix adjust tip4p temp/berendsen ${simT} ${simT} 10 # K K 1fs >>> minimization E <<< 
+fix_modify	adjust temp H2O_T
+# gates on right and left within the pore Morse type 
+fix gate_left tip4p wall/region gate_left morse 1.0 1.0 1.5 ${cutoff}
+fix gate_right tip4p wall/region gate_right morse 1.0 1.0 1.5 ${cutoff}
+# pore surface LJ tupe - wall only interacts with oxygens, no hydrogen interactions 
+fix pore_front oxygens wall/region wall_front lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} 
+fix pore_back oxygens wall/region wall_back lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} 
+fix pore_upper oxygens wall/region wall_upper lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} 
+fix pore_bottom oxygens wall/region wall_bottom lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} 
+#
+neigh_modify every 1 check yes
+thermo ${dumping}
+thermo_style custom step temp press vol density pe ke etotal enthalpy
+run 1000 #fs -->> 0.1 ps  
+# ---------------------------------------
+# removing the right wall, allowing vacuum
+print "removing gates, allowig flow in pore ...."
+unfix gate_left
+unfix gate_right
+run 10000000 #fs -->> 1000 ps  
+# ---------------------------------------
+# End of file

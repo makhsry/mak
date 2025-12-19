@@ -1,0 +1,265 @@
+#########################################
+# 		MAK
+# 		2022/07.11
+#       SIMULATION INFO
+#########################################
+# Single bubble seeded experiment 
+# A bubble is nucleated via FIX EVAPORATE at some X, Y, Z position 
+# in this version: bubble is STUBBORN
+# 
+# Geometry: 
+# nanochannel where y,z-direction: two parallel walls placed normal in z direction to blocking particles
+#   x,direction: remain periodic
+# --- 
+# Step 1: NPT with Shake at T and P. 
+# 	nptMD: runs MD under NPT for this many timesteps 
+# --- 
+# Step 2: NVE with Shake at T
+# 	nveMD: runs MD under NVE for this many timesteps 
+# --- 
+# Step 3: Bubble gowth ****************************
+# 	via fix evaporate 
+# --- 
+# SHAKE controls water molecule structure 
+# 	shake_out: (0 = never) print SHAKE statistics every this many timesteps 
+# 	shake_iter: max # of iterations in each SHAKE solution 
+# 	shake_tol: accuracy tolerance of SHAKE solution
+# 	shake_bond: number of bond types to include in the SHAKE 
+# 	shake_angle: number of angle types to include in the SHAKE
+# --- 
+# Surface/wall: LJ12-6 (modified) or LJ+Morse defines surface properties 
+# 	wall only interacts with oxygens, no hydrogen interactions 
+# 	lj126_epsilon: kcal/mol strength factor for wall-particle interaction (energy or energy/distance^2 units) 
+# 	lj126_sigma: A - size factor for wall-particle interaction (distance units) 
+# 	lj126_cutoff: cutoff within to apply surface-particle iteraction ***** 
+# 		be MINDFULL of width/height of channel/pore/BOX 
+# --- 
+# Design setting - simulation box 
+# 	BOX_W: simulation box total width Angstrom 
+# 	BOX_H: simulation box total  height Angstrom 
+# 	BOX_L: simulation box total  length Angstrom 
+# 	width: for walls  
+# 	skin: to avoid overlaping particles 
+# --- 
+# Additional variables: 
+# 	simT: K simulation temperature
+#  	simP: atm simulation pressure
+# 	seed: seed number, set for reproducibility  
+# 	SC: packing distance, putting water molecules on every direction at such a distance - intitial NPT allows V update
+# 	outthermo: sending thermo outputs this many timesteps
+# --- 
+# 	TIP4P2005.txt  water model 
+# --- 
+#########################################
+processors * 1 1 # long channel 
+units        real
+atom_style   full
+boundary p p p
+molecule TIP4P2005 TIP4P2005.txt 
+# --------------------------------------- 
+# 		GENERAL
+# --------------------------------------- 
+variable SC equal 3.5
+variable simT equal 300.0 
+variable simP equal 1
+variable seed equal 880713
+# --------------------------------------- 
+# 		MD RUNTIME SETTING 
+# --------------------------------------- 
+timestep 1.0 #fs - timestep
+variable nptMD equal 100000#0 # = 1ns 
+variable nptDUMP equal 10000 # = 10 ps >>> 100 dumps 
+variable nveMD equal 100000#0 # = 1ns 
+variable nveDUMP equal 10000 # = 10 ps >>> 100 dumps
+variable outthermo equal 100 # = 0.1ps
+variable EXPAND equal 1000000 # = 1ns # total nucleation time 
+variable expDUMP equal 10000 # = 10 ps >>> 100 dumps
+variable dampt equal 100 # = 0.1ps
+variable stubborn equal 1 # stubborn bubble = 1
+# --------------------------------------- 
+#		PARTICLE-WALL PROPERTIES 
+# --------------------------------------- 
+# --- SHAKE for water structure 
+variable shake_out equal 0  
+variable shake_iter equal 20 
+variable shake_tol equal 0.0001  
+variable shake_bond equal 1  
+variable shake_angle equal 1 
+# --- LJ for wall
+variable lj126_epsilon equal 0.16275 
+variable lj126_sigma equal 3.16435 
+variable lj126_cutoff equal 15
+# --------------------------------------- 
+#		DESIGN SETTINGS 
+# --------------------------------------- 
+variable BOX_W equal 100# =10nm
+variable BOX_H equal 50#=5nm
+variable BOX_L equal 1000# =100nm
+variable width equal 5
+variable skin equal 2
+# ---
+#########################################
+# ---------------------------------------
+#		Next by lammps   
+# ---------------------------------------
+# --- Simulation box centered at 0 0 0 
+variable box_xhi equal ${BOX_L}/2 
+variable box_xlo equal -${BOX_L}/2 
+variable box_yhi equal ${BOX_W}/2
+variable box_ylo equal -${BOX_W}/2
+variable box_zhi equal ${BOX_H}/2
+variable box_zlo equal -${BOX_H}/2
+# --- Side walls - open-eneded in x direction 
+variable wall_upper_zlo equal ${box_zhi}-${width} 
+variable wall_upper_zhi equal ${box_zhi}
+variable wall_bottom_zlo equal ${box_zlo}
+variable wall_bottom_zhi equal ${box_zlo}+${width}
+variable wall_left_ylo equal ${box_ylo}
+variable wall_left_yhi equal ${box_ylo}+${width}
+variable wall_right_ylo equal ${box_yhi}-${width}
+variable wall_right_yhi equal ${box_yhi}
+# --- Channel squared 
+variable channel_xlo equal ${box_xlo}+${skin}
+variable channel_xhi equal ${box_xhi}-${skin}  
+variable channel_ylo equal ${wall_left_yhi}+${skin}
+variable channel_yhi equal ${wall_right_ylo}-${skin} 
+variable channel_zlo equal ${wall_bottom_zhi}+${skin}
+variable channel_zhi equal ${wall_upper_zlo}-${skin}
+# --- 
+region BOX block ${box_xlo} ${box_xhi} ${box_ylo} ${box_yhi} ${box_zlo} ${box_zhi}
+# --- defining box: see https://docs.lammps.org/Howto_tip4p.html 
+create_box 2 BOX& 
+		bond/types 1 &
+		angle/types 1 &
+		extra/bond/per/atom 2 &
+		extra/angle/per/atom 1 &
+		extra/special/per/atom 2 
+# --- Walls
+region wall_upper block INF INF INF INF ${wall_upper_zlo} ${wall_upper_zhi} side out # upper wall 
+region wall_bottom block INF INF INF INF ${wall_bottom_zlo} ${wall_bottom_zhi} side out  # bottom wall 
+region wall_left block INF INF ${wall_left_ylo} ${wall_left_yhi} INF INF side out  # left wall
+region wall_right block INF INF ${wall_right_ylo} ${wall_right_yhi} INF INF side out  # right wall
+# --- Channel 
+region channel block ${channel_xlo} ${channel_xhi} ${channel_ylo} ${channel_yhi} ${channel_zlo} ${channel_zhi} side in 
+# --- defining potentials: see https://docs.lammps.org/Howto_tip4p.html 
+bond_style	harmonic
+bond_coeff 1 0.0 0.9572 # TIP4P/2005 force field
+angle_style	harmonic
+angle_coeff 1 0.0 104.52 # TIP4P/2005 force field
+pair_style	lj/cut/tip4p/long 1 2 1 1 0.1250 12.0
+pair_coeff 1 1 0.16275 3.16435 # TIP4P/2005 force field
+pair_coeff 2 2 0.0 0.0 # TIP4P/2005 force field
+pair_coeff 1 2 0.0 0.0 # TIP4P/2005 force field
+#pair_coeff	3 3 0.04690 2.4299 #Na the CHARMM-27 force field
+#pair_coeff	4 4 0.1500 4.04470 #Cl the CHARMM-27 force field
+kspace_style	pppm/tip4p 1.0e-4 #particle-particle particle-mesh
+# --- defining particles 
+mass 1 15.9994 # O
+mass 2 1.008 # H
+#mass 3 28.990 # Na
+#mass 4 35.453 # Cl
+variable radius atom (type==1)*1.0+(type==2)*0.5#+(type==3)*0.25+(type==4)*0.25 # for later visualization 
+lattice sc ${SC} # --- defining lattice: see https://docs.lammps.org/lattice.html 
+create_atoms 0 region channel mol TIP4P2005 ${seed} # filling atom to start simulation 
+group tip4p type  1  2
+group oxygens type  1
+#group sodium type 3
+#group chlorde type 4
+#group fluid type 1 2 3 4
+#velocity all create ${simT} ${seed} # --- temperature-velocity consideration  
+#run 0
+#velocity all scale ${simT} 
+dump nptDUMPs all custom ${nptDUMP} npt.* id mol type element mass v_radius x y z vx vy vz fx fy fz q # --- defining dumps 
+dump_modify nptDUMPs element O H #Na Cl
+# --- statrting dynamics for step 1 ...
+#print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+#print "adding salt: NaCl ...."
+#print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+#fix addNa sodium deposit 5 3 1 ${seed} region channel near 0.5 attempt 100
+#fix addCl chlorde deposit 5 4 1 ${seed} region channel near 0.5 attempt 100
+#run 5
+#print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+#print "DONE: adding salt: NaCl"
+#print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+#write_data NaCl_done_*.data
+#write_restart NaCl_done_*.restart
+#unfix addNa
+#unfix addCl
+#set type 3 charge 1.0
+#set type 4 charge -1.0
+velocity all create ${simT} ${seed} # --- temperature-velocity consideration
+run 0
+velocity all scale ${simT}
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+print "Step 1: NPT with Shake at T = ${simT} K and P = ${simP} atm ...." 
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+fix shakeTIP4P tip4p shake ${shake_tol} ${shake_iter} ${shake_out} b ${shake_bond} a ${shake_angle}
+fix nptFIX all npt temp ${simT} ${simT} ${dampt} iso ${simP} ${simP} ${dampt} 
+fix wall_upper oxygens wall/region wall_upper lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} 
+fix wall_bottom oxygens wall/region wall_bottom lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} 
+fix wall_left oxygens wall/region wall_left lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} 
+fix wall_right oxygens wall/region wall_right lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} 
+fix_modify wall_upper energy  yes # adding wall-particle energy 
+fix_modify wall_bottom energy  yes # adding wall-particle energy 
+fix_modify wall_left energy  yes # adding wall-particle energy 
+fix_modify wall_right energy  yes # adding wall-particle energy 
+neigh_modify delay 2 every 1 check yes
+thermo ${outthermo} # output screen and log
+thermo_style custom &
+		step elaplong &
+		temp press density &
+		vol pe ke etotal enthalpy &
+		evdwl etail ecoul epair emol elong &
+		xlo xhi ylo yhi zlo zhi &
+		cellalpha cellbeta cellgamma &
+		cella cellb cellc &
+		pxx pyy pzz pxy pxz pyz &
+		fmax fnorm  
+thermo_modify lost ignore # due to forced bubble at a later stage 
+run ${nptMD} 
+# ---
+write_restart npt_done.restart
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+print "DONE: NPT with Shake at T = ${simT} K and P = ${simP} atm." 
+undump nptDUMPs 
+unfix nptFIX # unfixing NPT, the rest remain active 
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+# --- starting dynamics for step 2
+print "NVE with Shake at T = ${simT} K ..." 
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+fix nveFIX all nve  # esnemble is NVE
+dump nveDUMPs all custom ${nveDUMP} nve.* id mol type element mass v_radius x y z vx vy vz fx fy fz q # --- defining dumps 
+dump_modify nveDUMPs element O H #Na Cl
+compute H2O_T tip4p temp # getting temperature and updating it 
+fix adjustT tip4p temp/berendsen ${simT} ${simT} 10 # K K 1fs >>> minimization E <<< 
+fix_modify adjustT temp H2O_T
+run ${nveMD}
+# ---
+write_restart nve_done.restart
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+print "DONE: NVE with Shake at T = ${simT} K." 
+undump nveDUMPs
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+# --- Bubble  ******************************************
+variable bubbleR equal 10#Angstrom
+variable XHI equal xhi
+variable bubbleX equal 0
+variable bubbleY equal 0
+variable bubbleZ equal 0
+region bubble sphere ${bubbleX} ${bubbleY} ${bubbleZ} ${bubbleR} side in # Bubble 
+# --- starting bubble growth process 
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+print "Including a seeded-bubble of size R = ${bubbleR} at X = ${bubbleX}, Y = ${bubbleY}, Z = ${bubbleZ}." 
+print "Allowing bubble to evolve ...."
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+dump bubbleDUMPs all custom ${expDUMP} bubble.* id mol type element mass v_radius x y z vx vy vz fx fy fz q # --- defining dumps 
+dump_modify bubbleDUMPs element O H #Na Cl
+fix nucleate all evaporate ${stubborn} 1000000 bubble ${seed} molecule yes # 
+run ${stubborn} # now not a stubborn bubble 
+unfix nucleate # now not a stubborn bubble
+run ${EXPAND} #fs 
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+print "All DONE." 
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+# End of file
+#

@@ -1,0 +1,112 @@
+# ---------------------------------------
+processors * 1 1
+units        real
+atom_style   full
+# ---------------------------------------
+molecule TIP4P2005 TIP4P2005.txt # TIP4P2005 water model 
+# ---------------------------------------
+variable simT equal 300.0 # K simulation temperature 
+variable seed equal 880713 # seed number, set for reproducibility 
+# ---------------------------------------
+variable SC equal 2.5 # packing distance for water molecule, 3.9 = equilibrium water molecule distance
+# ---------------------------------------
+variable dumping equal 1.0e3 # sending outputs every timestep
+variable dampt equal 100 #fs damping every N
+variable thermostatN equal 1 # single thermostat
+variable shake_out equal 0 # (0 = never) print SHAKE statistics every this many timesteps 
+variable shake_iter equal 20 # max # of iterations in each SHAKE solution
+variable shake_tol equal 0.0001 # accuracy tolerance of SHAKE solution
+variable shake_bond equal 1 # number of bond types to include in the SHAKE 
+variable shake_angle equal 1 # number of angle types to include in the SHAKE 
+variable lj126_epsilon equal 1.0772#*(1.0e-21)*0.2390057361*0.001 # *** strength factor for wall-particle interaction (energy or energy/distance^2 units)
+variable lj126_sigma equal 3.154 # size factor for wall-particle interaction (distance units)
+variable lj126_cutoff equal 2*${SC} #${poreR}/${lj126_sigma} # cutoff within to apply surface-particle iteraction
+variable cutoff equal 2*${SC} # for Morse 
+# LJ-water: see: https://pubs.acs.org/doi/10.1021/acs.jctc.9b00941 
+# ---------------------------------------
+variable slab_W equal 10*${SC} # Angstrom 
+variable slab_H equal 10*${SC} # Angstrom 
+variable slab_L equal 100*${SC} # Angstrom
+variable slab_w equal ${slab_W}/2 # Angstrom 
+variable slab_h equal ${slab_H}/2 # Angstrom 
+variable slab_l equal ${slab_L}/2 # Angstrom
+region slab block -${slab_l} ${slab_l} -${slab_w} ${slab_w} -${slab_h} ${slab_h} side in
+# ---------------------------------------
+variable skin equal 1.5*${SC}
+variable slabi_w equal ${slab_w}-${skin} # Angstrom 
+variable slabi_h equal ${slab_h}-${skin} # Angstrom 
+variable slabi_l equal ${slab_l}-${skin} # Angstrom
+region slabi block -${slabi_l} ${slabi_l} -${slabi_w} ${slabi_w} -${slabi_h} ${slabi_h} side in
+# ---------------------------------------
+variable wall_left_xhi equal -${slab_l}
+variable wall_left_xlo equal ${wall_left_xhi}-2*${SC}
+region wall_left_out block ${wall_left_xlo} ${wall_left_xhi} -${slab_w} ${slab_w} -${slab_h} ${slab_h} side out
+region wall_left_in block ${wall_left_xlo} ${wall_left_xhi} -${slab_w} ${slab_w} -${slab_h} ${slab_h} side in
+# ---------------------------------------
+variable gate_xlo equal ${slab_l}
+variable gate_xhi equal ${gate_xlo}+2*${SC}
+region gate_out block ${gate_xlo} ${gate_xhi} -${slab_w} ${slab_w} -${slab_h} ${slab_h} side out
+region gate_in block ${gate_xlo} ${gate_xhi} -${slab_w} ${slab_w} -${slab_h} ${slab_h} side in
+# ---------------------------------------
+variable vacuum_xlo equal ${gate_xhi}
+variable vacuum_xhi equal ${gate_xhi}+100*${SC}
+region vacuum block ${vacuum_xlo} ${vacuum_xhi} -${slab_w} ${slab_w} -${slab_h} ${slab_h} side in
+# ---------------------------------------
+variable lock_xlo equal ${vacuum_xhi}
+variable lock_xhi equal ${lock_xlo}+2*${SC}
+region lock_in block ${lock_xlo} ${lock_xhi} -${slab_w} ${slab_w} -${slab_h} ${slab_h} side in
+region lock_out block ${lock_xlo} ${lock_xhi} -${slab_w} ${slab_w} -${slab_h} ${slab_h} side out
+# ---------------------------------------
+region BOX union 5 wall_left_in slab gate_in vacuum lock_in
+# ---------------------------------------
+boundary p p p # periodic boundaries in every direction 
+# see: https://docs.lammps.org/Howto_tip4p.html 
+create_box 2 BOX & 
+		bond/types 1 &
+		angle/types 1 &
+		extra/bond/per/atom 2 &
+		extra/angle/per/atom 1 &
+		extra/special/per/atom 2 
+# ---------------------------------------
+bond_style	harmonic
+bond_coeff 1 0.0 0.9572 # TIP4P/2005 force field
+angle_style	harmonic
+angle_coeff 1 0.0 104.52 # TIP4P/2005 force field
+pair_style	lj/cut/tip4p/long 1 2 1 1 0.1250 12.0
+pair_coeff 1 1 0.16275 3.16435 # TIP4P/2005 force field
+pair_coeff 2 2 0.0 0.0 # TIP4P/2005 force field
+pair_coeff 1 2 0.0 0.0 # TIP4P/2005 force field
+kspace_style	pppm/tip4p 1.0e-4 #particle-particle particle-mesh
+# ---------------------------------------
+mass 1 15.9994 # O
+mass 2 1.008 # H
+# ---------------------------------------
+lattice sc ${SC} 
+create_atoms 0 region slabi mol TIP4P2005 ${seed}
+write_dump  all custom trj.input id mol type mass x y z vx vy vz fx fy fz q
+# ---------------------------------------
+group tip4p type  1  2
+group oxygens type  1
+# ---------------------------------------
+print "NVE with Shake at specified T: ${simT} ...."
+timestep 0.1 # avoiding close contacts due to tight packing of water molecule - for caution 
+velocity all create ${simT} ${seed}
+dump trjz all custom ${dumping} trj.* id mol type mass x y z vx vy vz fx fy fz q
+fix NVE all nve
+fix shakeTIP4P tip4p shake ${shake_tol} ${shake_iter} ${shake_out} b ${shake_bond} a ${shake_angle} # takes care of water molecule structure 
+compute H2O_T tip4p temp
+fix adjust tip4p temp/berendsen ${simT} ${simT} 10 # K K 1fs >>> minimization E <<< 
+fix_modify	adjust temp H2O_T
+fix surface_wall_left tip4p wall/region wall_left_out morse 1.0 1.0 1.5 ${cutoff}
+fix surface_gate tip4p wall/region gate_out morse 1.0 1.0 1.5 ${cutoff}
+fix surface_channel oxygens wall/region BOX lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} # wall only interacts with oxygens, no hydrogen interactions 
+fix surface_lock tip4p wall/region lock_out morse 1000.0 1.0 1.5 ${cutoff}
+neigh_modify delay 2 every 1 check yes
+thermo ${dumping}
+thermo_style custom step temp press vol density pe ke etotal enthalpy
+run 100000 #fs -->> 10 ps  
+# ---------------------------------------
+unfix surface_gate # removing the right wall, allowing vacuum
+run 1000000 #fs -->> 100 ps  
+# ---------------------------------------
+# End of file

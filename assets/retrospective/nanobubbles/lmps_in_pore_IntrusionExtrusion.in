@@ -1,0 +1,147 @@
+# --- Intrusion/Extrusion experiments --- 
+# only a pore is included 
+# Next:> hydrophobicity of surface  
+clear
+# ---------------------------------------
+units        real
+atom_style   full
+# ---------------------------------------
+molecule TIP4P2005 TIP4P2005.txt # TIP4P2005 water model 
+# ---------------------------------------
+variable simT equal 300.0 # K simulation temperature 
+variable seed equal 880713 # seed number, set for reproducibility 
+# ---------------------------------------
+variable dumping equal 1.0e3 # sending outputs every timestep
+# ---------------------------------------
+variable SC equal 3.75 # packing distance for water molecule, 3.9 = equilibrium water molecule distance
+# ---------------------------------------
+variable poreR equal 2*${SC} # pore radii Angstrom 
+variable poreL equal 10*${SC} # pore length Angstrom
+# ---------------------------------------
+variable gap equal 1 # gap allowance for high packed system and relaxation - Angstrom 
+variable pistonShift equal 0.2 # Angstrom
+variable zip equal 0.35 # compression ratio 
+variable pistonWidth equal ${gap}*5
+variable pistonRlimit equal ${zip}*${poreL}/2
+variable pistonLlimit equal -${pistonRlimit}
+# ---------------------------------------
+variable dampt equal 100 #fs damping every # timestep temperature in NVT 
+variable thermostatN equal 1 # single thermostat
+variable shake_out equal 0 # (0 = never) print SHAKE statistics every this many timesteps 
+variable shake_iter equal 20 # max # of iterations in each SHAKE solution
+variable shake_tol equal 0.0001 # accuracy tolerance of SHAKE solution
+variable shake_bond equal 1 # number of bond types to include in the SHAKE 
+variable shake_angle equal 1 # number of angle types to include in the SHAKE 
+variable lj126_epsilon equal 1.0772#*(1.0e-21)*0.2390057361*0.001 # *** strength factor for wall-particle interaction (energy or energy/distance^2 units)
+variable lj126_sigma equal 3.154 # size factor for wall-particle interaction (distance units)
+variable lj126_cutoff equal 10 #${poreR}/${lj126_sigma} # cutoff within to apply surface-particle iteraction
+# LJ-water: see: https://pubs.acs.org/doi/10.1021/acs.jctc.9b00941 
+# ---------------------------------------
+variable boxX equal 2*${pistonWidth}+${poreL}/2+(2*${gap}) # Simulation box X
+variable boxY equal ${poreR}+(2*${gap}) # Simulation box Y
+variable boxZ equal ${poreR}+(2*${gap}) # Simulation box Z
+region BOX block -${boxX} ${boxX} -${boxY} ${boxY} -${boxZ} ${boxZ}
+# ---------------------------------------
+variable porer equal ${poreR}-${gap} # pore true r 
+variable poreXli equal (-${poreL}/2)+${gap} # pore lower X
+variable poreXhi equal (${poreL}/2)-${gap} # pore higher X
+region porer cylinder x 0 0 ${porer} ${poreXli} ${poreXhi} side in
+variable poreXlo equal (-${poreL}/2) # pore lower X
+variable poreXho equal (${poreL}/2) # pore higher X
+region poreR cylinder x 0 0 ${poreR} ${poreXlo} ${poreXho} side in
+# ---------------------------------------
+boundary p p p # periodic boundaries in every direction 
+create_box 2 BOX & 
+		bond/types 1 &
+		angle/types 1 &
+		extra/bond/per/atom 2 &
+		extra/angle/per/atom 1 &
+		extra/special/per/atom 2
+# ---------------------------------------
+# see: https://docs.lammps.org/Howto_tip4p.html 
+bond_style	harmonic
+bond_coeff 1 0.0 0.9572 # TIP4P/2005 force field
+angle_style	harmonic
+angle_coeff 1 0.0 104.52 # TIP4P/2005 force field
+pair_style	lj/cut/tip4p/long 1 2 1 1 0.1250 12.0
+pair_coeff 1 1 0.16275 3.16435 # TIP4P/2005 force field
+pair_coeff 2 2 0.0 0.0 # TIP4P/2005 force field
+pair_coeff 1 2 0.0 0.0 # TIP4P/2005 force field
+kspace_style	pppm/tip4p 1.0e-4 #particle-particle particle-mesh
+# ---------------------------------------
+mass 1 15.9994 # O
+mass 2 1.008 # H
+# ---------------------------------------
+lattice sc ${SC} 
+create_atoms 0 region porer mol TIP4P2005 ${seed} # filling the pore
+# ---------------------------------------
+group pore region porer
+group tip4p type  1  2
+group oxygens type  1
+# ---------------------------------------
+#minimize 1.0e-4 1.0e-6 100 1000
+# Intrusion at simulation T with shake .... 
+# ---------------------------------------
+variable pistonRlo equal ${poreXho}
+variable pistonRhi equal ${poreXho}+${pistonWidth}
+variable pistonLlo equal ${poreXlo}-${pistonWidth}
+variable pistonLhi equal ${poreXlo}
+# ---------------------------------------
+reset_timestep 0
+variable iter equal 1 
+timestep 0.1 #fs
+dump TRJz all custom ${dumping} dump.* id mol type mass x y z vx vy vz fx fy fz q
+fix NVT all nvt temp ${simT} ${simT} ${dampt} #tchain ${thermostatN} #ensemble NVT Nose-Hoover
+fix shakeTIP4P tip4p shake ${shake_tol} ${shake_iter} ${shake_out} b ${shake_bond} a ${shake_angle} # takes care of water molecule structure
+fix surface oxygens wall/region poreR lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} # wall only interacts with oxygens, no hydrogen interactions 
+neigh_modify delay 2 every 1 check yes
+thermo ${dumping}
+thermo_style custom step temp press vol density pe ke etotal enthalpy
+# ---------------------------------------
+label movePiston
+	if "${pistonRlo} <= ${pistonRlimit}" then &
+	"variable pistonShift equal -0.1" &
+	"print 'switch mode : Extrusion'"
+	if "${pistonRhi} >= ${poreXho}" then &
+	"variable pistonShift equal 0.1" &
+	"print 'switch mode : Intrusion'"
+	variable pistonRlo equal ${pistonRlo}-${pistonShift}
+	variable pistonRhi equal ${pistonRhi}-${pistonShift}
+	variable pistonLlo equal ${pistonLlo}+${pistonShift}
+	variable pistonLhi equal ${pistonLhi}+${pistonShift}
+	print "piston right xh,xl ${pistonRhi}: ${pistonRlo}"
+	print "piston left xh,xl ${pistonLhi}: ${pistonLlo}"
+	region PISTONr_${iter} block ${pistonRlo} ${pistonRhi} -${boxY} ${boxY} -${boxZ} ${boxZ} side out
+	region PISTONl_${iter} block ${pistonLlo} ${pistonLhi} -${boxY} ${boxY} -${boxZ} ${boxZ} side out
+	#region PISTONr_${iter} cylinder x 0 0 ${poreR} ${pistonRlo} ${pistonRhi} side out
+	#region PISTONl_${iter} cylinder x 0 0 ${poreR} ${pistonLlo} ${pistonLhi} side out	
+	fix PistonR_${iter} all wall/region PISTONr_${iter} morse 1.0 1.0 1.5 ${SC}
+	fix PistonL_${iter} all wall/region PISTONl_${iter} morse 1.0 1.0 1.5 ${SC}
+	run 100000 # fs = 10ps
+	#unfix PistonR_${iter}
+	#unfix PistonL_${iter}
+	#region PISTONr_${iter} delete
+	#region PISTONl_${iter} delete
+	variable iter equal ${iter}+1
+	print "iteration = ${iter}"
+jump SELF movePiston
+# ---------------------------------------
+unfix NVT
+unfix shakeTIP4P
+unfix PistonR
+unfix PistonL
+unfix surface
+# ---------------------------------------
+#print "+++++++++++++++++++++++++++++++++++++++++"
+#print "++++++++++++++++++++++++++++++++++++"
+#print "+++++++++++++++++++++++++++++++"
+#print "++++++++++++++++++++++++++"
+#print "+++++++++++++++++++++"
+#print "++++++++++++++++"
+#print "+++++++++++"
+#print "++++++"
+#print "+"
+# ---------------------------------------
+#thermo_modify lost ignore
+# ---------------------------------------
+# End of file

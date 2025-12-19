@@ -1,0 +1,156 @@
+#########################################
+# 		MAK - 2022/07/28
+#########################################
+processors * 1 1 # long channel
+units        real
+atom_style   full
+boundary p p p
+molecule TIP4P2005 TIP4P2005.txt # TIP4P model
+# --------------------------------------- 
+# 		GENERAL
+# --------------------------------------- 
+variable SC equal 3.1 # packing 
+variable simT equal 300.0 # Temperature 
+variable simP equal 1 # pressure 
+variable seed equal 880713 # seed number 
+# --------------------------------------- 
+# 		MD RUNTIME SETTING 
+# --------------------------------------- 
+timestep 1.0 #fs - timestep
+variable MD equal 1000000 # = 1ns 
+variable WRITE equal 100 # = 0.1 ps >>> 10000 dumps
+variable outthermo equal 100 # = 0.1ps
+variable EVAPORATE equal 10000000 # = 10ns # total evporation time 
+variable THISOFTEN equal 1 # evaporate this often
+variable dampt equal 100 # = 0.1ps
+variable dampp equal 1000 # = 0.25ps
+# --------------------------------------- 
+#		PARTICLE-WALL PROPERTIES 
+# --------------------------------------- 
+# --- SHAKE for water structure 
+variable shake_out equal 0  
+variable shake_iter equal 20 
+variable shake_tol equal 0.0001  
+variable shake_bond equal 1  
+variable shake_angle equal 1 
+# --- LJ for wall
+variable lj126_epsilon equal 0.16275 
+variable lj126_sigma equal 3.16435 
+variable lj126_cutoff equal 15
+# --------------------------------------- 
+#		DESIGN SETTINGS 
+# --------------------------------------- 
+variable BOX_W equal 100 # 10 nm
+variable BOX_H equal 50 # 5 nm
+variable BOX_L equal 1000 # =100 nm
+variable skin equal 1
+# --- Simulation box centered at 0 0 0 
+variable box_xhi equal ${BOX_L}/2 
+variable box_xlo equal -${BOX_L}/2 
+variable box_yhi equal ${BOX_W}/2
+variable box_ylo equal -${BOX_W}/2
+variable box_zhi equal ${BOX_H}/2
+variable box_zlo equal -${BOX_H}/2
+region BOX block ${box_xlo} ${box_xhi} ${box_ylo} ${box_yhi} ${box_zlo} ${box_zhi} open 1 open 3 open 4 units box # xhi is closed now 
+# --- defining box: see https://docs.lammps.org/Howto_tip4p.html 
+create_box 2 BOX& 
+		bond/types 1 &
+		angle/types 1 &
+		extra/bond/per/atom 2 &
+		extra/angle/per/atom 1 &
+		extra/special/per/atom 2 
+# --- defining potentials: see https://docs.lammps.org/Howto_tip4p.html 
+# updating wall after box is created as open keyword seq changed above 
+#region BOXx block INF EDGE INF INF EDGE EDGE open 1 open 3 open 4 units box # (xlo, xhi : current EDGE), (ylo, yhi : INF), (zlo, zhi : current EDGE)
+region BOXx block INF INF INF INF EDGE EDGE open 1 open 3 open 4 units box  # will be updated after NPT
+# --- core box centered at 0 0 0 - filling particles 
+variable box_hix equal xhi-${skin}
+variable box_lox equal xlo+${skin}
+variable box_hiy equal yhi-${skin}
+variable box_loy equal ylo+${skin}
+variable box_hiz equal zhi-${skin}
+variable box_loz equal zlo+${skin}
+region BX block ${box_lox} ${box_hix} ${box_loy} ${box_hiy} ${box_loz} ${box_hiz} units box 
+# --- 
+bond_style	harmonic
+bond_coeff 1 0.0 0.9572 # TIP4P/2005 force field
+angle_style	harmonic
+angle_coeff 1 0.0 104.52 # TIP4P/2005 force field
+pair_style	lj/cut/tip4p/long 1 2 1 1 0.1250 12.0 # change 12 to 15 
+pair_coeff 1 1 0.16275 3.16435 # TIP4P/2005 force field
+pair_coeff 2 2 0.0 0.0 # TIP4P/2005 force field
+pair_coeff 1 2 0.0 0.0 # TIP4P/2005 force field
+kspace_style	pppm/tip4p 1.0e-4 #particle-particle particle-mesh 
+# --- defining particles 
+mass 1 15.9994 # O
+mass 2 1.008 # H
+variable radius atom (type==1)*1.0+(type==2)*0.5
+lattice sc ${SC} # --- defining lattice: see https://docs.lammps.org/lattice.html 
+create_atoms 0 region BX mol TIP4P2005 ${seed} # filling atom to start simulation 
+#delete_atoms overlap 0.3 all all mol yes # bad input config
+group tip4p type  1  2
+group oxygens type  1
+dump DUMPs all custom ${WRITE} pre.* id mol type element mass v_radius x y z vx vy vz fx fy fz q # --- defining dumps 
+dump_modify DUMPs element O H 
+velocity all create ${simT} ${seed} # --- temperature-velocity consideration
+run 0
+velocity all scale ${simT}
+delete_atoms overlap 0.3 all all mol yes # bad input config 
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+print "Step 1: Bringing system to equilibrium under NPT with Shake at T = ${simT} K and P = ${simP} atm ...." 
+fix shakeTIP4P tip4p shake ${shake_tol} ${shake_iter} ${shake_out} b ${shake_bond} a ${shake_angle}
+#fix nvefix all nve  # esnemble is NVE 
+fix fix_NPT all npt temp ${simT} ${simT} ${dampt} iso ${simP} ${simP} ${dampp} # Volume of chamber and BOX can change
+fix walls oxygens wall/region BOXx lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} 
+fix_modify walls energy  yes # adding wall-particle energy 
+#neigh_modify delay 2 every 1 check yes
+thermo ${outthermo} # output screen and log
+thermo_style custom &
+		step &
+		temp press density &
+		vol pe ke etotal enthalpy &
+		evdwl etail ecoul epair emol elong &
+		xlo xhi ylo yhi zlo zhi &
+		pxx pyy pzz pxy pxz pyz &
+		fmax fnorm atoms
+thermo_modify lost ignore # due to forced bubble at a later stage 
+run ${MD} 
+# ---
+print "DONE: Step 1." 
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+region BOXx delete
+region BOXx block INF EDGE INF INF EDGE EDGE open 1 open 3 open 4 units box  # now stoping at right side 
+unfix walls 
+fix walls oxygens wall/region BOXx lj126 ${lj126_epsilon} ${lj126_sigma} ${lj126_cutoff} 
+fix_modify walls energy  yes # adding wall-particle energy 
+print "Step 2: Switching to NVE with Shake and thermostat at T = ${simT} K ...." 
+unfix fix_NPT
+fix nvefix all nve  # esnemble is NVE
+compute H2O_T tip4p temp # getting temperature and updating it 
+fix adjustT tip4p temp/berendsen ${simT} ${simT} 10 # K K 1fs >>> minimization E <<< 
+fix_modify adjustT temp H2O_T
+run ${MD} 
+print "DONE: Step 2." 
+# --- starting dynamics for step 3
+# --- evaporation slice
+variable slice_xlo equal xlo # getting current boundaries 
+variable sliced equal 5*${skin}
+variable slice_xhi equal ${slice_xlo}+${sliced}
+region slice block ${slice_xlo} ${slice_xhi} INF INF INF INF units box 
+# --- right gate 
+#variable gate_xhi equal xhi # getting current boundaries 
+#variable gate_xlo equal ${gate_xhi}-${skin}
+#region gate block ${gate_xlo} ${gate_xhi} INF INF INF INF units box 
+print "Step 3: Monitoring evaporation ...." 
+undump DUMPs
+dump DUMPs all custom ${WRITE} post.* id mol type element mass v_radius x y z vx vy vz fx fy fz q # --- defining dumps 
+dump_modify DUMPs element O H
+#fix rightmost all wall/reflect xhi EDGE # --- rightmost gate -- not in ppp
+#fix noleft all oneway 1 gate -x
+fix evaporates all evaporate ${THISOFTEN} 1000000 slice ${seed} molecule yes # remove everything in this region at every thisoften timestep 
+run ${EVAPORATE}
+print "DONE: Step 3: Monitoring evaporation." 
+print "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+write_restart restart.last
+print "All DONE." 
+# End of file 
