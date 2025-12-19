@@ -1,0 +1,12 @@
+.container {
+    max-width: $container-width;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: $text-medium;
+    margin-bottom: 2rem;
+}
