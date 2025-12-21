@@ -98,7 +98,7 @@ def convert_md_to_html():
     # Define paths
     about_folder = 'assets/site/content/old_markdown'
     css_folder = 'assets/site/style/css'
-    html_folder = 'assets/site/html'
+    html_folder = 'assets/site/view'
     
     # Read CSS content
     print("Reading CSS files...")

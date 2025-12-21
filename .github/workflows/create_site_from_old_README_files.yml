@@ -223,11 +223,6 @@ jobs:
           python assets/site/builders/create_site_from_old_README_files.py
           echo "HTML generation complete!"
       
-      - name: List generated HTML files
-        run: |
-          echo "Generated HTML files:"
-          ls -la assets/site/view/*.html
-      
       - name: Install Dart Sass
         run: |
           sudo apt-get update
@@ -246,7 +241,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add assets/site/view/* assets/site/style/css/main.css assets/site/style/css/main.css.map
+          git add assets/site/view assets/site/style/css/main.css assets/site/style/css/main.css.map
           git diff --staged --quiet || git commit -m "Auto-generate HTML and CSS files [skip ci]"
       
       - name: Push changes
