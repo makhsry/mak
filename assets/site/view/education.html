@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education</title>
+    <style>
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #fff;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.intro-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+header {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+header nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header nav .logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+}
+header nav .logo a {
+  color: #333;
+}
+header nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+header nav ul li a {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+footer {
+  background: #2c3e50;
+  color: #fff;
+  padding: 3rem 2rem;
+  margin-top: 4rem;
+}
+footer .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+footer .footer-section h4 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+footer .footer-section p,
+footer .footer-section a {
+  font-size: 0.9rem;
+  color: #bbb;
+  line-height: 1.8;
+}
+footer .footer-section a:hover {
+  color: #fff;
+}
+footer .footer-bottom {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid #444;
+  text-align: center;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.section {
+  margin-bottom: 4rem;
+}
+.section-header {
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+.section-header h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #333;
+}
+
+.hero {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  color: #333;
+}
+.hero p {
+  font-size: 1.2rem;
+  color: #666;
+  font-style: italic;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #007bff;
+  color: white;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+.btn-primary:hover {
+  background: #0056b3;
+  text-decoration: none;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.card-image {
+  width: 100%;
+  height: 200px;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 0.9rem;
+}
+.card-content {
+  padding: 1.5rem;
+}
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+.card-meta {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+.card-text {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.profile-box {
+  display: flex;
+  gap: 2rem;
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  align-items: center;
+}
+.profile-box .profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #ddd;
+  flex-shrink: 0;
+}
+.profile-box .profile-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+.profile-box .profile-content p {
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.news-list {
+  list-style: none;
+}
+.news-list .news-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.news-list .news-item:last-child {
+  border-bottom: none;
+}
+.news-list .news-item .news-date {
+  font-size: 0.9rem;
+  color: #999;
+  margin-bottom: 0.25rem;
+}
+.news-list .news-item .news-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #007bff;
+}
+
+@media (max-width: 768px) {
+  header nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  header nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .profile-box {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */
+
+
+        
+        /* Additional styling for structure */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        .notice-banner {
+            background-color: #fff3cd;
+            border-bottom: 2px solid #ffc107;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        footer {
+            margin-top: 60px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Education</h1>
+<h2>MASc. Mining and Minerals Engineering (2023 – 2025), <a href="https://www.ubc.ca/">The University of British Columbia</a></h2>
+<details open>
+  <summary>
+  <strong>details</strong> 
+  </summary> 
+
+  > <br>          
+  >   
+  > **Project**     
+  >> Microwave assisted drying of minerals, with [Dr. Ali G. Madiseh](https://scholar.google.com/citations?user=37lpUjsAAAAJ&hl=en).
+  >
+  > **Project Goal**
+  >> **Retrofitting of conventional drying unit operations** at a local industrial mining partner.
+  >      
+  > **Project Summary**
+  >> Inspected and evaluated, experimentally and numerically (via Finite Element Modeling in COMSOL), the **feasibility and applicability** of microwave-based heating systems at a local **mining industrial partner** for the **retrofitting of conventional drying unit operations**.
+  > 
+  > **Tasks Performed**     
+  >> - Performed experimental and numerical analysis of **mineral drying behavior under microwave exposure**. 
+  >> - Utilized **finite element modeling** (FEM) to simulate heat and mass transfer during drying at various microwave power levels and **mineral types**. 
+  >> - Conducted comprehensive **energy demand analysis** to evaluate **potential savings** compared to traditional kiln operations.       
+  > ---        
+</details>
+
+<pre class="codehilite"><code>
+</code></pre>
+
+<h2>MASc. Chemical Engineering - Process Design (2012 - 2014), <a href="https://ut.ac.ir/en">University of Tehran</a></h2>
+<details open>
+  <summary>
+  <strong>details</strong> 
+  </summary>
+
+  > <br>          
+  >   
+  > **Project** 
+  >> Thermo-kinetic modeling of the wet phase inversion process for polymeric membranes fabrication, with [Dr. Mohammad Ali Aroon](https://scholar.google.com/citations?user=IxP_tLUAAAAJ&hl=en).
+  >
+  > **Project Goal**
+  >> Developed a **comprehensive thermo-kinetic model** to simulate the wet phase inversion process for fabricating polymeric membranes, focusing on Multiphysics coupling and accurate prediction of **polymeric flat-sheet membrane structure evolution**.     
+  > 
+  > **Tasks Performed**   
+  >> - Constructed and solved **coupled heat, mass, and momentum transport models under non-equilibrium thermodynamics**, incorporating **moving boundary conditions in multiphase, multicomponent porous systems**.
+  >> - Formulated and implemented **partial and ordinary differential equation solvers (PDE/ODE)** to capture the transient dynamics of solvent-nonsolvent exchange and polymer precipitation.
+  >> - Wrote custom **code in Fortran, MATLAB, and C++** for high-fidelity numerical simulations and sensitivity analyses.
+  >> - **Validated computational results against experimental measurements**, achieving strong agreement in membrane morphology predictions.
+  >> - Gained insight into phase separation kinetics, diffusion mechanisms, and the impact of process parameters on membrane performance and structure.        
+  >---                                          
+</details>
+
+<pre class="codehilite"><code>
+</code></pre>
+
+<h2>BASc. Chemical Engineering (2007 - 2011), <a href="https://ut.ac.ir/en">University of Tehran</a></h2>
+<details open>
+  <summary>
+  <strong>details</strong>           
+  </summary>
+
+  > <br>         
+  >   
+  > **Project**    
+  >> Simulation and cost evaluation of hot section of BIPC olefin plant, with [Dr. Nasim Tahouni](https://scholar.google.com/citations?user=jWEhjFcAAAAJ&hl=en).
+  >
+  > **Project Goal**
+  >> Used **Aspen Hysys** and **Aspen Plus** to evaluate **retrofitting** of industrial scale **petroleum refinery** complex by producing process flow diagram (**PFD**), piping/process & instrumentation diagram (**P&ID**), **cost** and **utility**, pinch and exergy.      
+  > 
+  > **Tasks Performed**       
+  >> - Simulated existing and proposed **process configurations using Aspen HYSYS and Aspen Plus**, focusing on optimizing reactor and separation systems for olefin recovery.      
+  >> - Developed and **documented detailed Process Flow Diagrams (PFDs) and Piping & Instrumentation Diagrams (P&IDs)** to map unit operations, control loops, and equipment connectivity.
+  >> - Performed **equipment sizing and specification** for heat exchangers, reactors, compressors, and distillation columns based on simulated operating conditions.
+  >> - Conducted **cost estimation and utility analysis** (CAPEX and OPEX) to support retrofitting and procurement decisions.
+  >> - Applied **pinch analysis and exergy analysis** to evaluate and enhance energy integration and thermodynamic efficiency across the system.
+  >> - Assessed **retrofitting feasibility** by integrating performance data, economic viability, and process safety considerations.      
+  >        
+  >> <img src="./assets/portfolio/UT-BSc.jpg" width="750">                           
+  >---                      
+</details>
+
+<pre class="codehilite"><code>
+</code></pre>
+    </div>
+    
+    <footer>
+        <div class="container">
+            
+        </div>
+    </footer>
+</body>
+</html>
