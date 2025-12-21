@@ -332,7 +332,7 @@
   >> - Built a digital twin using advanced **data analytics** and implemented a **machine learning-based process controller**, integrating both real-time (in-line) & historical (offline) **sensor data streams**-Raman spectroscopy.                
   >> - Utilized Density Functional Theory (DFT) and molecular dynamics (MD) simulations to analyze **molecular interactions**, guiding optimal cocrystal formation **pathways** and identifying **key process descriptors**.                  
   >> - Integrated **Raman spectrometer** data into a live control system, enabling real-time feedback and control within a continuous manufacturing environment through predictive ML models.                   
-  >> <img src="./assets/portfolio/IE_UL_ofML.jpg" width="750">                         
+  >> <img src="./assets/portfolio/IE_UL_oftML.jpg" width="750">                         
   > ---          
 </details>        
 
