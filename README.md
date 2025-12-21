@@ -145,7 +145,7 @@
   >> - Applied **pinch analysis and exergy analysis** to evaluate and enhance energy integration and thermodynamic efficiency across the system.
   >> - Assessed **retrofitting feasibility** by integrating performance data, economic viability, and process safety considerations.      
   >        
-  >> <img src="./assets/portfolio/UT-BSc.jpg" width="750">                           
+  >> <img src="./assets/portfolio/UT_BSc.jpg" width="750">                           
   >---                      
 </details>    
 
@@ -278,7 +278,7 @@
   >> - Implemented post-processing scripts in **Python** for automated extraction and visualization of simulation results, including pressure profiles, density distributions, and flow characteristics.                  
   >> - Collaborated with a **multidisciplinary team** to validate simulation results against theoretical models and experimental data, enhancing cross-domain communication and interpretation.                          
   >                
-  >> <img src="./assets/portfolio/CA-UBC-CHBE.jpg" width="750">                           
+  >> <img src="./assets/portfolio/CA_UBC_CHBE.jpg" width="750">                           
   > ---        
 </details>  
 
@@ -304,7 +304,7 @@
   >> - Designed pipelines for real-time data ingestion and synchronization from multiple sensor sources, ensuring temporal alignment and reliable analytics under dynamic plant conditions.                  
   >> - Collaborated with process engineers and control specialists to translate sensor insights into actionable process improvements and control strategies.                       
   >                
-  >> <img src="./assets/portfolio/IE-UL-DAT.jpg" width="750">                           
+  >> <img src="./assets/portfolio/IE_UL_DAT.jpg" width="750">                           
   > ---        
 </details>        
 
@@ -332,7 +332,7 @@
   >> - Built a digital twin using advanced **data analytics** and implemented a **machine learning-based process controller**, integrating both real-time (in-line) & historical (offline) **sensor data streams**-Raman spectroscopy.                
   >> - Utilized Density Functional Theory (DFT) and molecular dynamics (MD) simulations to analyze **molecular interactions**, guiding optimal cocrystal formation **pathways** and identifying **key process descriptors**.                  
   >> - Integrated **Raman spectrometer** data into a live control system, enabling real-time feedback and control within a continuous manufacturing environment through predictive ML models.                   
-  >> <img src="./assets/portfolio/IE-UL-oftML.jpg" width="750">                         
+  >> <img src="./assets/portfolio/IE_UL_ofML.jpg" width="750">                         
   > ---          
 </details>        
 
@@ -357,7 +357,7 @@
   >> - Implemented and trained **Machine Learning Interatomic Potentials** (MLIPs) using active learning strategies to improve accuracy with minimal data.       
   >> - **Automated** molecular dynamics (MD) simulations using LAMMPS and density functional theory (DFT) calculations using VASP for large-scale material screening **across multiple HPC clusters**.        
   >> - Wrote modular and efficient code in Python and Bash, managing environments and version control using Git.            
-  >> <img src="./assets/portfolio/RU-SkolTech.jpg" width="750">                                                 
+  >> <img src="./assets/portfolio/RU_SkolTech.jpg" width="750">                                                 
   > ---                           
 </details>       
 
@@ -381,7 +381,7 @@
   >> - Conducted Density Functional Theory (DFT) calculations to map **reaction pathways** between lithium and target gases, identifying favorable thermodynamic and kinetic conditions.                 
   >> - Developed microkinetic and kinetic Monte Carlo models to simulate **reaction dynamics** and **upscale lab-scale findings for process-scale feasibility**.             
   >> - Demonstrated **on-demand recovery** of nitrogen and lithium through electrochemical regeneration, showcasing **material circularity** and long-term process sustainability.                                   
-  >> <img src="./assets/portfolio/HK-CityUHK.jpg" width="750">                         
+  >> <img src="./assets/portfolio/HK_CityUHK.jpg" width="750">                         
   > ---          
 </details>        
 
@@ -466,7 +466,7 @@
   >> - Conducted **cost analysis**, including **capital expenditure (CAPEX)**, **operating expenditure (OPEX)**, and utility consumption, to assess **economic feasibility** and guide procurement strategies.               
   >> - Applied **exergy analysis** and **pinch analysis** to identify thermodynamic inefficiencies and optimize energy integration, improving process sustainability and reducing waste heat.                     
   >> - Evaluated and compared equipment procurement options using technical and economic criteria to support decision-making for pilot-scale implementation.                                                                             
-  >> <img src="./assets/portfolio/IR-RIPI.png" width="750">                         
+  >> <img src="./assets/portfolio/IR_RIPI.png" width="750">                         
   > ---           
 </details>         
 
