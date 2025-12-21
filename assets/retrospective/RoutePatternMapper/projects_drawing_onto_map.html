@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Pattern Mapper - Complete</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+        #root { width: 100vw; height: 100vh; }
+        .leaflet-container { background: #d4dadc; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        function RoutePatternMapper() {
+            const [userLocation, setUserLocation] = useState(null);
+            const [locationError, setLocationError] = useState(null);
+            const [routeTypes, setRouteTypes] = useState({ bike: true, walking: false, road: false, trail: false });
+            const [showRouteFilter, setShowRouteFilter] = useState(false);
+            const [drawingMode, setDrawingMode] = useState(false);
+            const [patternComplete, setPatternComplete] = useState(false);
+            const [lineThickness, setLineThickness] = useState(3);
+            const [drawnPaths, setDrawnPaths] = useState([]);
+            const [currentPath, setCurrentPath] = useState([]);
+            const [isDrawing, setIsDrawing] = useState(false);
+            const [notification, setNotification] = useState(null);
+            const [routeSearching, setRouteSearching] = useState(false);
+            const [searchProgress, setSearchProgress] = useState(0);
+            const [searchStatus, setSearchStatus] = useState('');
+            const [matchedRoute, setMatchedRoute] = useState(null);
+            const [routeType, setRouteType] = useState('loop');
+            const [showExportMenu, setShowExportMenu] = useState(false);
+
+            const mapRef = useRef(null);
+            const leafletMapRef = useRef(null);
+            const userMarkerRef = useRef(null);
+            const canvasRef = useRef(null);
+
+            useEffect(() => {
+                if (window.L && mapRef.current && !leafletMapRef.current) {
+                    const map = window.L.map(mapRef.current).setView([51.505, -0.09], 13);
+                    window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '© OpenStreetMap contributors',
+                        maxZoom: 19
+                    }).addTo(map);
+                    leafletMapRef.current = map;
+
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(
+                            (position) => {
+                                const { latitude, longitude } = position.coords;
+                                setUserLocation({ lat: latitude, lng: longitude });
+                                map.setView([latitude, longitude], 15);
+                                const userIcon = window.L.divIcon({
+                                    html: '<div style="background: #3b82f6; width: 20px; height: 20px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>',
+                                    iconSize: [20, 20], iconAnchor: [10, 10]
+                                });
+                                userMarkerRef.current = window.L.marker([latitude, longitude], { icon: userIcon }).addTo(map);
+                            },
+                            () => {
+                                setLocationError(true);
+                                setUserLocation({ lat: 51.505, lng: -0.09 });
+                                map.setView([51.505, -0.09], 15);
+                            }
+                        );
+                    }
+                }
+            }, []);
+
+            useEffect(() => {
+                if ((drawingMode || patternComplete) && canvasRef.current) {
+                    const canvas = canvasRef.current;
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = canvas.offsetWidth;
+                    canvas.height = canvas.offsetHeight;
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    drawnPaths.forEach(({ path, thickness }) => {
+                        if (path.length < 2) return;
+                        ctx.beginPath();
+                        ctx.strokeStyle = '#3b82f6';
+                        ctx.lineWidth = thickness;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                        ctx.moveTo(path[0].x, path[0].y);
+                        for (let i = 1; i < path.length; i++) {
+                            ctx.lineTo(path[i].x, path[i].y);
+                        }
+                        ctx.stroke();
+                    });
+
+                    if (currentPath.length > 1) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = '#3b82f6';
+                        ctx.lineWidth = lineThickness;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                        ctx.moveTo(currentPath[0].x, currentPath[0].y);
+                        for (let i = 1; i < currentPath.length; i++) {
+                            ctx.lineTo(currentPath[i].x, currentPath[i].y);
+                        }
+                        ctx.stroke();
+                    }
+                }
+            }, [drawingMode, patternComplete, drawnPaths, currentPath, lineThickness]);
+
+            const startDrawing = (e) => {
+                if (!drawingMode) return;
+                setIsDrawing(true);
+                const rect = canvasRef.current.getBoundingClientRect();
+                const x = (e.clientX || e.touches[0].clientX) - rect.left;
+                const y = (e.clientY || e.touches[0].clientY) - rect.top;
+                setCurrentPath([{ x, y }]);
+            };
+
+            const draw = (e) => {
+                if (!isDrawing || !drawingMode) return;
+                const rect = canvasRef.current.getBoundingClientRect();
+                const x = (e.clientX || e.touches?.[0]?.clientX) - rect.left;
+                const y = (e.clientY || e.touches?.[0]?.clientY) - rect.top;
+                setCurrentPath(prev => [...prev, { x, y }]);
+            };
+
+            const stopDrawing = () => {
+                if (isDrawing && currentPath.length > 0) {
+                    setDrawnPaths(prev => [...prev, { path: currentPath, thickness: lineThickness }]);
+                    setCurrentPath([]);
+                }
+                setIsDrawing(false);
+            };
+
+            const toggleRouteType = (type) => {
+                setRouteTypes(prev => ({ ...prev, [type]: !prev[type] }));
+            };
+
+            const getActiveRouteTypes = () => Object.keys(routeTypes).filter(type => routeTypes[type]);
+
+            const showNotification = (message, type = 'error') => {
+                setNotification({ message, type });
+                setTimeout(() => setNotification(null), 5000);
+            };
+
+            const simplifyPath = (paths) => {
+                const allPoints = [];
+                paths.forEach(({ path }) => allPoints.push(...path));
+                if (allPoints.length < 3) return allPoints;
+                const simplified = [allPoints[0]];
+                const epsilon = 10;
+                const perpendicularDistance = (point, lineStart, lineEnd) => {
+                    const dx = lineEnd.x - lineStart.x;
+                    const dy = lineEnd.y - lineStart.y;
+                    const mag = Math.sqrt(dx * dx + dy * dy);
+                    if (mag === 0) return Math.sqrt((point.x - lineStart.x) ** 2 + (point.y - lineStart.y) ** 2);
+                    const u = Math.max(0, Math.min(1, ((point.x - lineStart.x) * dx + (point.y - lineStart.y) * dy) / (mag * mag)));
+                    const closestX = lineStart.x + u * dx;
+                    const closestY = lineStart.y + u * dy;
+                    return Math.sqrt((point.x - closestX) ** 2 + (point.y - closestY) ** 2);
+                };
+                const simplifyRecursive = (points, start, end) => {
+                    if (end - start <= 1) return;
+                    let maxDist = 0, maxIndex = start;
+                    for (let i = start + 1; i < end; i++) {
+                        const dist = perpendicularDistance(points[i], points[start], points[end]);
+                        if (dist > maxDist) { maxDist = dist; maxIndex = i; }
+                    }
+                    if (maxDist > epsilon) {
+                        simplifyRecursive(points, start, maxIndex);
+                        simplified.push(points[maxIndex]);
+                        simplifyRecursive(points, maxIndex, end);
+                    }
+                };
+                simplifyRecursive(allPoints, 0, allPoints.length - 1);
+                simplified.push(allPoints[allPoints.length - 1]);
+                return simplified;
+            };
+
+            const findMatchingRoute = async () => {
+                setRouteSearching(true);
+                setSearchProgress(10);
+                setSearchStatus('Analyzing pattern...');
+                
+                const simplifiedPattern = simplifyPath(drawnPaths);
+                if (simplifiedPattern.length < 2) {
+                    showNotification('Pattern too simple. Draw more details.', 'error');
+                    setRouteSearching(false);
+                    return;
+                }
+
+                setSearchProgress(40);
+                setSearchStatus('Converting to coordinates...');
+                
+                const bounds = leafletMapRef.current.getBounds();
+                const canvasRect = canvasRef.current.getBoundingClientRect();
+                const mapBounds = leafletMapRef.current.getBounds();
+                const latSpan = mapBounds.getNorth() - mapBounds.getSouth();
+                const lngSpan = mapBounds.getEast() - mapBounds.getWest();
+                
+                const patternGeoPoints = simplifiedPattern.map(point => {
+                    const relX = (point.x / canvasRect.width) - 0.5;
+                    const relY = (point.y / canvasRect.height) - 0.5;
+                    return {
+                        lat: userLocation.lat - (relY * latSpan),
+                        lng: userLocation.lng + (relX * lngSpan)
+                    };
+                });
+
+                setSearchProgress(80);
+                setSearchStatus('Generating demo route...');
+                
+                await new Promise(resolve => setTimeout(resolve, 1500));
+
+                const routeCoords = patternGeoPoints.map(p => [p.lat, p.lng]);
+                if (routeType === 'loop' && routeCoords.length > 0) {
+                    routeCoords.push(routeCoords[0]);
+                }
+
+                const haversineDistance = (p1, p2) => {
+                    const R = 6371;
+                    const dLat = (p2[0] - p1[0]) * Math.PI / 180;
+                    const dLng = (p2[1] - p1[1]) * Math.PI / 180;
+                    const a = Math.sin(dLat / 2) ** 2 + Math.cos(p1[0] * Math.PI / 180) * Math.cos(p2[0] * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
+                    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                };
+
+                let distance = 0;
+                for (let i = 1; i < routeCoords.length; i++) {
+                    distance += haversineDistance(routeCoords[i - 1], routeCoords[i]);
+                }
+
+                const matchResult = {
+                    coordinates: routeCoords,
+                    distance: distance.toFixed(2),
+                    type: routeType,
+                    routeTypes: getActiveRouteTypes()
+                };
+
+                setMatchedRoute(matchResult);
+                setSearchProgress(100);
+                setSearchStatus('Complete!');
+
+                const L = window.L;
+                const routeLine = L.polyline(routeCoords, { color: '#ef4444', weight: 5, opacity: 0.8 }).addTo(leafletMapRef.current);
+                matchResult.leafletLayer = routeLine;
+                leafletMapRef.current.fitBounds(routeLine.getBounds(), { padding: [50, 50] });
+
+                setTimeout(() => { setSearchProgress(0); setSearchStatus(''); }, 2000);
+                setRouteSearching(false);
+            };
+
+            const exportAsGPX = () => {
+                if (!matchedRoute?.coordinates) return;
+                const routeName = `Route-${new Date().toISOString().split('T')[0]}`;
+                const gpxContent = `<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Route Pattern Mapper" xmlns="http://www.topografix.com/GPX/1/1">
+  <trk><name>${routeName}</name><trkseg>
+${matchedRoute.coordinates.map(c => `    <trkpt lat="${c[0]}" lon="${c[1]}"><ele>0</ele></trkpt>`).join('\n')}
+  </trkseg></trk>
+</gpx>`;
+                const blob = new Blob([gpxContent], { type: 'application/gpx+xml' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${routeName}.gpx`;
+                a.click();
+                URL.revokeObjectURL(url);
+                showNotification('GPX downloaded!', 'success');
+                setShowExportMenu(false);
+            };
+
+            const exportAsKML = () => {
+                if (!matchedRoute?.coordinates) return;
+                const routeName = `Route-${new Date().toISOString().split('T')[0]}`;
+                const kmlContent = `<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document><name>${routeName}</name>
+    <Placemark><LineString><coordinates>
+${matchedRoute.coordinates.map(c => `${c[1]},${c[0]},0`).join('\n')}
+    </coordinates></LineString></Placemark>
+  </Document>
+</kml>`;
+                const blob = new Blob([kmlContent], { type: 'application/vnd.google-earth.kml+xml' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${routeName}.kml`;
+                a.click();
+                URL.revokeObjectURL(url);
+                showNotification('KML downloaded!', 'success');
+                setShowExportMenu(false);
+            };
+
+            return (
+                <div className="w-full h-screen flex flex-col bg-gray-100">
+                    <div className="bg-blue-600 text-white p-4 shadow-lg">
+                        <div className="flex items-center justify-between">
+                            <h1 className="text-xl font-bold">Route Pattern Mapper</h1>
+                            <div className="text-sm">Complete Web App</div>
+                        </div>
+                    </div>
+
+                    <div className="flex-1 relative">
+                        <div ref={mapRef} className="w-full h-full" />
+
+                        {(drawingMode || patternComplete) && (
+                            <canvas
+                                ref={canvasRef}
+                                className={`absolute inset-0 w-full h-full ${drawingMode ? 'cursor-crosshair' : 'pointer-events-none'}`}
+                                style={{ zIndex: 900 }}
+                                onMouseDown={startDrawing}
+                                onMouseMove={draw}
+                                onMouseUp={stopDrawing}
+                                onMouseLeave={stopDrawing}
+                                onTouchStart={(e) => { e.preventDefault(); startDrawing(e); }}
+                                onTouchMove={(e) => { e.preventDefault(); draw(e); }}
+                                onTouchEnd={stopDrawing}
+                            />
+                        )}
+
+                        {notification && (
+                            <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-xl z-[2000] ${
+                                notification.type === 'error' ? 'bg-red-500 text-white' :
+                                notification.type === 'warning' ? 'bg-yellow-500 text-white' : 'bg-green-500 text-white'
+                            }`}>
+                                <p className="font-medium">{notification.message}</p>
+                            </div>
+                        )}
+
+                        {drawingMode && (
+                            <div className="absolute top-4 left-4 bg-white rounded-lg shadow-xl p-4 z-[1001]">
+                                <h3 className="font-semibold mb-3">Draw Pattern</h3>
+                                <div className="space-y-3">
+                                    <div>
+                                        <label className="text-sm mb-1 block">Thickness: {lineThickness}px</label>
+                                        <input type="range" min="1" max="10" value={lineThickness}
+                                            onChange={(e) => setLineThickness(Number(e.target.value))}
+                                            className="w-full" />
+                                    </div>
+                                    <div className="flex gap-2">
+                                        <button onClick={() => setDrawnPaths(p => p.slice(0, -1))}
+                                            disabled={drawnPaths.length === 0}
+                                            className="flex-1 px-3 py-2 bg-gray-100 rounded hover:bg-gray-200 disabled:opacity-50">
+                                            Undo
+                                        </button>
+                                        <button onClick={() => { setDrawnPaths([]); setCurrentPath([]); }}
+                                            className="flex-1 px-3 py-2 bg-gray-100 rounded hover:bg-gray-200">
+                                            Clear
+                                        </button>
+                                    </div>
+                                    <button onClick={() => { setDrawingMode(false); setPatternComplete(true); }}
+                                        disabled={drawnPaths.length === 0}
+                                        className="w-full px-4 py-3 bg-green-600 text-white rounded font-semibold hover:bg-green-700 disabled:opacity-50">
+                                        Done
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+
+                        {userLocation && !drawingMode && !patternComplete && (
+                            <>
+                                <button onClick={() => setShowRouteFilter(!showRouteFilter)}
+                                    className="absolute top-4 right-4 bg-white p-3 rounded-lg shadow-lg hover:bg-gray-50 flex items-center gap-2 z-[1000]">
+                                    <span className="text-sm font-medium">Routes</span>
+                                    {getActiveRouteTypes().length > 0 && (
+                                        <span className="bg-blue-600 text-white text-xs px-2 py-0.5 rounded-full">
+                                            {getActiveRouteTypes().length}
+                                        </span>
+                                    )}
+                                </button>
+                                <button onClick={() => setDrawingMode(true)}
+                                    className="absolute top-20 right-4 bg-blue-600 text-white p-3 rounded-lg shadow-lg hover:bg-blue-700 z-[1000]">
+                                    ✏️ Draw Pattern
+                                </button>
+                            </>
+                        )}
+
+                        {patternComplete && !matchedRoute && (
+                            <div className="absolute top-40 right-4 bg-white rounded-lg shadow-xl p-4 z-[1000]">
+                                <h3 className="font-semibold mb-3">Find Route</h3>
+                                <div className="flex gap-2 mb-4">
+                                    <button onClick={() => setRouteType('loop')}
+                                        className={`flex-1 px-3 py-2 rounded ${routeType === 'loop' ? 'bg-blue-600 text-white' : 'bg-gray-100'}`}>
+                                        Loop
+                                    </button>
+                                    <button onClick={() => setRouteType('open')}
+                                        className={`flex-1 px-3 py-2 rounded ${routeType === 'open' ? 'bg-blue-600 text-white' : 'bg-gray-100'}`}>
+                                        Open
+                                    </button>
+                                </div>
+                                <button onClick={findMatchingRoute} disabled={routeSearching}
+                                    className="w-full px-4 py-3 bg-green-600 text-white rounded font-semibold hover:bg-green-700 disabled:opacity-50">
+                                    {routeSearching ? 'Searching...' : '🔍 Find Route'}
+                                </button>
+                                {routeSearching && (
+                                    <div className="mt-3">
+                                        <div className="w-full bg-gray-200 rounded-full h-2">
+                                            <div className="bg-green-600 h-full rounded-full transition-all"
+                                                style={{ width: `${searchProgress}%` }}></div>
+                                        </div>
+                                        <p className="text-xs text-center mt-2">{searchStatus}</p>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {matchedRoute && (
+                            <div className="absolute bottom-24 left-4 right-4 bg-white rounded-lg shadow-xl p-4 z-[1000]">
+                                <div className="flex justify-between mb-3">
+                                    <div>
+                                        <h3 className="font-bold text-lg">Route Found!</h3>
+                                        <p className="text-sm text-gray-600">{matchedRoute.type === 'loop' ? 'Closed Loop' : 'Open Path'}</p>
+                                    </div>
+                                    <button onClick={() => { 
+                                        if (matchedRoute.leafletLayer) leafletMapRef.current.removeLayer(matchedRoute.leafletLayer);
+                                        setMatchedRoute(null); setPatternComplete(false); setDrawnPaths([]);
+                                    }} className="text-gray-400 hover:text-gray-600">✕</button>
+                                </div>
+                                <div className="space-y-2 mb-4">
+                                    <div className="flex justify-between py-2 border-t">
+                                        <span className="text-sm text-gray-600">Distance</span>
+                                        <span className="font-semibold">{matchedRoute.distance} km</span>
+                                    </div>
+                                    <div className="flex justify-between py-2 border-t">
+                                        <span className="text-sm text-gray-600">Route Types</span>
+                                        <span className="font-semibold">{getActiveRouteTypes().join(', ')}</span>
+                                    </div>
+                                </div>
+                                <button onClick={() => setShowExportMenu(!showExportMenu)}
+                                    className="w-full px-4 py-2 bg-blue-600 text-white rounded font-medium hover:bg-blue-700 mb-2">
+                                    💾 Export & Save
+                                </button>
+                                {showExportMenu && (
+                                    <div className="space-y-2">
+                                        <button onClick={exportAsGPX}
+                                            className="w-full px-3 py-2 bg-white border rounded hover:bg-gray-50 text-sm">
+                                            📥 Download GPX (Strava, Garmin)
+                                        </button>
+                                        <button onClick={exportAsKML}
+                                            className="w-full px-3 py-2 bg-white border rounded hover:bg-gray-50 text-sm">
+                                            📥 Download KML (Google Maps)
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {showRouteFilter && (
+                            <div className="absolute top-20 right-4 bg-white rounded-lg shadow-xl w-64 p-4 z-[1000]">
+                                <h3 className="font-semibold mb-3">Route Types</h3>
+                                {[
+                                    { key: 'bike', label: '🚴 Bike Paths' },
+                                    { key: 'walking', label: '🚶 Walking' },
+                                    { key: 'road', label: '🚗 Roads' },
+                                    { key: 'trail', label: '🏃 Trails' }
+                                ].map(({ key, label }) => (
+                                    <button key={key} onClick={() => toggleRouteType(key)}
+                                        className={`w-full p-3 mb-2 rounded ${routeTypes[key] ? 'bg-blue-100 border-2 border-blue-600' : 'bg-gray-50'}`}>
+                                        {label}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+
+                        {userLocation && !drawingMode && (
+                            <button onClick={() => leafletMapRef.current.setView([userLocation.lat, userLocation.lng], 15)}
+                                className="absolute bottom-6 right-6 bg-white p-3 rounded-full shadow-lg hover:bg-gray-50 z-[1000]">
+                                📍
+                            </button>
+                        )}
+                    </div>
+
+                    {locationError && (
+                        <div className="bg-yellow-500 text-white p-2 text-center text-sm">
+                            Using demo location - Grant location access for accuracy
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        ReactDOM.render(<RoutePatternMapper />, document.getElementById('root'));
+    </script>
+</body>
+</html>
