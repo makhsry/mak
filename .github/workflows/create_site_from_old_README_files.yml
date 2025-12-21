@@ -220,7 +220,7 @@ jobs:
       - name: Generate HTML files from README.md
         run: |
           echo "Generating HTML files from README.md..."
-          python assets/site/builders/create_site_from_old_README_files.py
+          python assets/site/builders/create_site_from_markdown_files.py
           echo "HTML generation complete!"
       
       - name: Install Dart Sass

@@ -29,11 +29,11 @@ def get_css_files(css_folder):
     
     return css_files
 
-def create_css_links(css_files, css_folder_rel):
+def create_css_links(css_files, css_folder):
     """Create HTML link tags for CSS files."""
     links = []
     for css_file in css_files:
-        links.append(f'    <link rel="stylesheet" href="{css_folder_rel}/{css_file}">')
+        links.append(f'    <link rel="stylesheet" href="{css_folder}/{css_file}">')
     return '\n'.join(links)
 
 def create_html_template(title, content, footer_html, css_links, notice_html=None):
@@ -74,12 +74,12 @@ def create_html_template(title, content, footer_html, css_links, notice_html=Non
 def convert_md_to_html():
     """Main function to convert markdown files to HTML."""
     # Define paths
-    md_folder = 'assets/site/content/old_markdown'  # Current directory where .md files are
+    md_folder = 'assets/site/content' #/old_markdown'  # Current directory where .md files are
     css_folder = 'assets/site/style/css'
     html_folder = 'assets/site/view'
     
     # Absolute path from root
-    css_folder_rel = '/assets/site/style/css'
+    css_folder = '/assets/site/style/css'
     
     # Get CSS files
     print("Finding CSS files...")
@@ -91,7 +91,7 @@ def convert_md_to_html():
         print(f"Found {len(css_files)} CSS file(s): {', '.join(css_files)}")
     
     # Create CSS link tags
-    css_links = create_css_links(css_files, css_folder_rel)
+    css_links = create_css_links(css_files, css_folder)
     
     # Read footer
     footer_path = 'footer.md'
