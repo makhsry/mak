@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talks</title>
+    <style>
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #fff;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.intro-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+header {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+header nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header nav .logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+}
+header nav .logo a {
+  color: #333;
+}
+header nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+header nav ul li a {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+footer {
+  background: #2c3e50;
+  color: #fff;
+  padding: 3rem 2rem;
+  margin-top: 4rem;
+}
+footer .footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+footer .footer-section h4 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+footer .footer-section p,
+footer .footer-section a {
+  font-size: 0.9rem;
+  color: #bbb;
+  line-height: 1.8;
+}
+footer .footer-section a:hover {
+  color: #fff;
+}
+footer .footer-bottom {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid #444;
+  text-align: center;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.section {
+  margin-bottom: 4rem;
+}
+.section-header {
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+.section-header h2 {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #333;
+}
+
+.hero {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  color: #333;
+}
+.hero p {
+  font-size: 1.2rem;
+  color: #666;
+  font-style: italic;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #007bff;
+  color: white;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+.btn-primary:hover {
+  background: #0056b3;
+  text-decoration: none;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.card-image {
+  width: 100%;
+  height: 200px;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 0.9rem;
+}
+.card-content {
+  padding: 1.5rem;
+}
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+.card-meta {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+.card-text {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.profile-box {
+  display: flex;
+  gap: 2rem;
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  align-items: center;
+}
+.profile-box .profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #ddd;
+  flex-shrink: 0;
+}
+.profile-box .profile-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+.profile-box .profile-content p {
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.news-list {
+  list-style: none;
+}
+.news-list .news-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.news-list .news-item:last-child {
+  border-bottom: none;
+}
+.news-list .news-item .news-date {
+  font-size: 0.9rem;
+  color: #999;
+  margin-bottom: 0.25rem;
+}
+.news-list .news-item .news-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #007bff;
+}
+
+@media (max-width: 768px) {
+  header nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  header nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .profile-box {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */
+
+
+        
+        /* Additional styling for structure */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        .notice-banner {
+            background-color: #fff3cd;
+            border-bottom: 2px solid #ffc107;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        footer {
+            margin-top: 60px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Talks</h1>
+<ul>
+<li>
+<p><a href="https://www.uottawa.ca/en">University of Ottawa</a>, Ottawa, Canada, Nov 2023. Discussed EU based funding opportunities for Canadian and <a href="https://www.mariecuriealumni.eu/">Marie Curie Alumni Association (MCAA)</a> <a href="https://www.mariecuriealumni.eu/groups/north-america-chapter">North America Chapter</a> activities.      </p>
+</li>
+<li>
+<p><a href="https://www.ubc.ca/">The University of British Columbia</a>, Vancouver, Canada, Jul 2022. Discussed how to write a successful <a href="https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-2020_en">Marie Skłodowska-Curie Action (MSCA)</a> Fellowship proposal.</p>
+</li>
+<li>
+<p><a href="https://www.mpie.de/">Max-Planck-Institut für Eisenforschung</a>, Düsseldorf, Germany, Nov 2018. Discussed nanohardness from First Principles with active learning on atomic environments (<a href="https://gitlab.com/ashapeev/mlip-3">MLIP</a>).             </p>
+</li>
+</ul>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <pre><code>
+</code></pre>
+<p><strong>Email</strong>: miladasgarpour@gmail.com    <br />
+<strong>Mobile</strong>: 604-762-6875    <br />
+<strong>LinkedIn</strong>: https://www.linkedin.com/in/makhansary     <br />
+<strong>GitHub</strong>: https://github.com/makhsry/mak   <br />
+<strong>Google Scholar</strong>: https://scholar.google.com/citations?hl=en&amp;user=DZzc424AAAAJ       </p>
+        </div>
+    </footer>
+</body>
+</html>
