@@ -246,7 +246,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add *.html assets/site/style/css/main.css assets/site/style/css/main.css.map
+          git add assets/site/view/* assets/site/style/css/main.css assets/site/style/css/main.css.map
           git diff --staged --quiet || git commit -m "Auto-generate HTML and CSS files [skip ci]"
       
       - name: Push changes

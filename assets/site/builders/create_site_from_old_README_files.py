@@ -96,7 +96,7 @@ def create_html_template(title, content, footer_html, css_content, notice_html=N
 def convert_md_to_html():
     """Main function to convert markdown files to HTML."""
     # Define paths
-    about_folder = 'assets/site/content'
+    about_folder = 'assets/site/content/old_markdown'
     css_folder = 'assets/site/style/css'
     html_folder = 'assets/site/html'
     
