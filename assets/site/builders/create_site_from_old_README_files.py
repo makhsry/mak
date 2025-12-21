@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Markdown to HTML Converter
-Converts .md files from about/ folder to HTML with CSS styling
+Converts .md files to HTML with linked CSS files from assets/site/style/css
 """
 
 import os
@@ -18,55 +18,33 @@ def write_file(filepath, content):
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(content)
 
-def get_css_content(css_folder):
-    """Read all CSS files and combine them."""
-    css_content = ""
+def get_css_files(css_folder):
+    """Get list of CSS files in the folder."""
+    css_files = []
     css_path = Path(css_folder)
     
     if css_path.exists():
         for css_file in sorted(css_path.glob('*.css')):
-            css_content += read_file(css_file) + "\n"
+            css_files.append(css_file.name)
     
-    return css_content
+    return css_files
 
-def create_html_template(title, content, footer_html, css_content, notice_html=None):
-    """Create complete HTML document with CSS and footer."""
+def create_css_links(css_files, css_folder_rel):
+    """Create HTML link tags for CSS files."""
+    links = []
+    for css_file in css_files:
+        links.append(f'    <link rel="stylesheet" href="{css_folder_rel}/{css_file}">')
+    return '\n'.join(links)
+
+def create_html_template(title, content, footer_html, css_links, notice_html=None):
+    """Create complete HTML document with linked CSS files and footer."""
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
-    <style>
-        {css_content}
-        
-        /* Additional styling for structure */
-        body {{
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        }}
-        
-        .notice-banner {{
-            background-color: #fff3cd;
-            border-bottom: 2px solid #ffc107;
-            padding: 15px 20px;
-            text-align: center;
-        }}
-        
-        .container {{
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }}
-        
-        footer {{
-            margin-top: 60px;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-top: 1px solid #dee2e6;
-        }}
-    </style>
+{css_links}
 </head>
 <body>
 """
@@ -96,16 +74,27 @@ def create_html_template(title, content, footer_html, css_content, notice_html=N
 def convert_md_to_html():
     """Main function to convert markdown files to HTML."""
     # Define paths
-    about_folder = 'assets/site/content/old_markdown'
+    md_folder = 'assets/site/content/old_markdown'  # Current directory where .md files are
     css_folder = 'assets/site/style/css'
     html_folder = 'assets/site/view'
     
-    # Read CSS content
-    print("Reading CSS files...")
-    css_content = get_css_content(css_folder)
+    # Relative path from HTML folder to CSS folder
+    css_folder_rel = '../../style/css'
+    
+    # Get CSS files
+    print("Finding CSS files...")
+    css_files = get_css_files(css_folder)
+    
+    if not css_files:
+        print(f"Warning: No CSS files found in {css_folder}")
+    else:
+        print(f"Found {len(css_files)} CSS file(s): {', '.join(css_files)}")
+    
+    # Create CSS link tags
+    css_links = create_css_links(css_files, css_folder_rel)
     
     # Read footer
-    footer_path = os.path.join(about_folder, 'footer.md')
+    footer_path = 'footer.md'
     footer_html = ""
     if os.path.exists(footer_path):
         print("Reading footer.md...")
@@ -115,25 +104,21 @@ def convert_md_to_html():
         print("Warning: footer.md not found")
     
     # Read notice
-    notice_path = os.path.join(about_folder, 'notice.md')
+    notice_path = 'notice.md'
     notice_html = None
     if os.path.exists(notice_path):
         print("Reading notice.md...")
         notice_md = read_file(notice_path)
         notice_html = markdown.markdown(notice_md)
     else:
-        print("Warning: notice.md not found")
+        print("Info: notice.md not found (optional)")
     
     # Create html folder if it doesn't exist
     os.makedirs(html_folder, exist_ok=True)
     
-    # Process all .md files in about folder
-    about_path = Path(about_folder)
-    if not about_path.exists():
-        print(f"Error: {about_folder} folder not found")
-        return
-    
-    md_files = list(about_path.glob('*.md'))
+    # Find all .md files in current directory
+    md_path = Path(md_folder)
+    md_files = list(md_path.glob('*.md'))
     
     # Filter out footer.md and notice.md
     md_files = [f for f in md_files if f.name not in ['footer.md', 'notice.md']]
@@ -148,11 +133,14 @@ def convert_md_to_html():
         # Read markdown content
         md_content = read_file(md_file)
         
-        # Convert to HTML
-        html_content = markdown.markdown(md_content, extensions=['extra', 'codehilite'])
+        # Convert to HTML with extensions for better formatting
+        html_content = markdown.markdown(
+            md_content, 
+            extensions=['extra', 'codehilite', 'tables', 'fenced_code']
+        )
         
         # Determine if this is the home page
-        is_home = md_file.stem.lower() in ['home', 'index', 'readme']
+        is_home = md_file.stem.lower() in ['home', 'index', 'readme', 'introduction']
         
         # Create full HTML with template
         title = md_file.stem.replace('_', ' ').replace('-', ' ').title()
@@ -160,17 +148,32 @@ def convert_md_to_html():
             title, 
             html_content, 
             footer_html, 
-            css_content,
+            css_links,
             notice_html if is_home else None
         )
         
-        # Write to html folder
-        output_file = os.path.join(html_folder, f"{md_file.stem}.html")
-        write_file(output_file, full_html)
+        # Determine output filename - use index.html for introduction.md
+        if md_file.stem.lower() == 'introduction':
+            output_filename = 'index.html'
+            print(f"Converted: {md_file.name} -> index.html (home page)")
+        else:
+            output_filename = f"{md_file.stem}.html"
+            print(f"Converted: {md_file.name} -> {output_filename}")
         
-        print(f"Converted: {md_file.name} -> {md_file.stem}.html")
+        # Write to html folder
+        output_file = os.path.join(html_folder, output_filename)
+        write_file(output_file, full_html)
     
-    print(f"\nConversion complete! HTML files saved in '{html_folder}/' folder")
+    print(f"\n{'='*60}")
+    print(f"Conversion complete!")
+    print(f"HTML files saved in: {html_folder}/")
+    print(f"CSS files linked from: {css_folder}/")
+    print(f"{'='*60}")
 
 if __name__ == "__main__":
-    convert_md_to_html()
+    try:
+        convert_md_to_html()
+    except Exception as e:
+        print(f"\nError: {str(e)}")
+        import traceback
+        traceback.print_exc()
