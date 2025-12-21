@@ -78,8 +78,8 @@ def convert_md_to_html():
     css_folder = 'assets/site/style/css'
     html_folder = 'assets/site/view'
     
-    # Relative path from HTML folder to CSS folder
-    css_folder_rel = '../../style/css'
+    # Absolute path from root
+    css_folder_rel = '/assets/site/style/css'
     
     # Get CSS files
     print("Finding CSS files...")
