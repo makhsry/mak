@@ -1,0 +1,297 @@
+name: Build and Deploy to Pages from old README files 
+
+on:
+  #push:
+  #  branches:
+  #    - main
+  #  paths:
+  #    - 'assets/md_files/**'
+  #    - 'assets/blog/**'
+  #    - '.github/workflows/**'
+  #    - 'README.md'
+  #    - 'md_to_html_parser.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Job 1: Update README from markdown files
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build README files from markdown files
+        run: |
+          set -euo pipefail
+
+          input_dir="assets/site/content/old_markdown/"
+          output_file="README.md"
+          output_file_dummy="README_dummy.md"
+
+          # Array of markdown files to concatenate
+          files=(
+            "introduction.md"
+            "education.md"
+            "experience.md"
+            "awards.md"
+            "talks.md"
+            "publications.md"
+          )
+
+          # Validate all required files exist and check sizes
+          #for file in "${files[@]}"; do
+          #  filepath="${input_dir}${file}"
+          #  if [ ! -f "${filepath}" ]; then
+          #    echo "Error: Required file ${filepath} not found"
+          #    exit 1
+          #  fi
+          #  if [ ! -r "${filepath}" ]; then
+          #    echo "Error: Cannot read file ${filepath}"
+          #    exit 1
+          #  fi
+          #  size=$(stat -c%s "${filepath}" 2>/dev/null || stat -f%z "${filepath}")
+          #  if [ "${size}" -gt 2097152 ]; then
+          #    echo "Error: File ${filepath} exceeds 2MB size limit"
+          #    exit 1
+          #  fi
+          #  echo "Validated: ${filepath} (${size} bytes)"
+          #done
+          
+          > "${output_file}"
+          > "${output_file_dummy}"
+
+          if [ -f "${input_dir}headers-top.md" ]; then
+            cat "${input_dir}headers-top.md" >> "${output_file}"
+          else
+            echo "Warning: headers-top.md not found, skipping header"
+          fi
+
+          for file in "${files[@]}"; do
+            filepath="${input_dir}${file}"
+            cat "${filepath}" >> "${output_file}"
+            echo -e "\n\n" >> "${output_file}"
+            cat "${filepath}" >> "${output_file_dummy}"
+            echo -e "\n\n" >> "${output_file_dummy}"
+          done
+          
+          echo "README files built successfully"
+      
+      - name: Create LaTeX header file
+        run: |
+          set -euo pipefail
+
+          cat > header.tex << 'EOF'
+          \usepackage{xcolor}
+          \usepackage{fancyhdr}
+          \pagestyle{fancy}
+          \fancyhead[L]{\large\textbf{Milad Asgarpour Khansary (MAK)}}
+          \fancyhead[C]{}
+          \fancyhead[R]{}
+          \fancyfoot[L]{}
+          \fancyfoot[C]{\thepage}
+          \fancyfoot[R]{\tiny\scalebox{1.0}{\textcolor{red}{Generated on \today\ by \includegraphics[height=1.25ex]{assets/logos/GitHub.png}github-actions[bot]}}}
+          \renewcommand{\headrulewidth}{0.4pt}
+          \renewcommand{\footrulewidth}{0.4pt}
+          EOF
+      
+          if [ ! -f "header.tex" ]; then
+            echo "Error: Failed to create header.tex"
+            exit 1
+          fi
+
+      - name: Convert Markdown to PDF
+        uses: docker://pandoc/latex:3.4
+        with:
+          args: >-
+            --from=gfm
+            --output=MAK_Resume.pdf
+            --pdf-engine=xelatex
+            --include-in-header=header.tex
+            --variable=geometry:a4paper
+            --variable=geometry:margin=2cm
+            --variable=graphics=true
+            --variable=linkcolor=blue
+            --variable=urlcolor=blue
+            --variable=toccolor=blue
+            --highlight-style=tango
+            --standalone
+            --fail-if-warnings
+            README_dummy.md
+
+      - name: Validate generated files
+        run: |
+          set -euo pipefail
+          
+          if [ ! -s "README.md" ]; then
+            echo "Error: README.md is empty or missing"
+            exit 1
+          fi
+          
+          if [ ! -s "MAK_Resume.pdf" ]; then
+            echo "Error: MAK_Resume.pdf is empty or missing"
+            exit 1
+          fi
+          
+          if ! file MAK_Resume.pdf | grep -q "PDF"; then
+            echo "Error: README.pdf is not a valid PDF file"
+            exit 1
+          fi
+          
+          echo "All generated files validated successfully"
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --exit-code README.md README.pdf || echo "changes=true" >> $GITHUB_OUTPUT
+     
+      - name: Clean up temporary files
+        run: |
+          rm -f header.tex README_dummy.md
+
+      - name: Commit and push README changes
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          set -euo pipefail
+          
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add README.md MAK_Resume.pdf
+          
+          staged_files=$(git diff --cached --name-only)
+          for staged_file in $staged_files; do
+            if [[ ! "$staged_file" =~ ^(README\.md|MAK_Resume\.pdf)$ ]]; then
+              echo "Error: Unexpected file staged: $staged_file"
+              exit 1
+            fi
+          done
+          
+          git commit -m "Automated README update [skip ci]"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Summary
+        if: always()
+        run: |
+          echo "### README Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f "README.md" ]; then
+            echo "README.md generated successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "README.md generation failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -f "MAK_Resume.pdf" ]; then
+            echo "MAK_Resume.pdf generated successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "MAK_Resume.pdf generation failed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # Job 2: Generate HTML files from README.md and compile SCSS
+  build:
+    runs-on: ubuntu-latest
+    needs: update-readme
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main  # Ensure we get the latest README.md
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Generate HTML files from README.md
+        run: |
+          echo "Generating HTML files from README.md..."
+          python assets/site/builders/create_site_from_old_README_files.py
+          echo "HTML generation complete!"
+      
+      - name: List generated HTML files
+        run: |
+          echo "Generated HTML files:"
+          ls -la assets/site/view/*.html
+      
+      - name: Install Dart Sass
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget
+          wget https://github.com/sass/dart-sass/releases/download/1.77.5/dart-sass-1.77.5-linux-x64.tar.gz
+          sudo tar -xvf dart-sass-1.77.5-linux-x64.tar.gz -C /usr/local/bin/
+          sudo ln -s /usr/local/bin/dart-sass/sass /usr/local/bin/sass
+
+      - name: Compile SCSS to CSS (with source map)
+        run: |
+          echo "Compiling SCSS to CSS..."
+          sass assets/site/style/scss/main.scss assets/site/style/css/main.css --source-map
+          echo "CSS compilation complete!"
+      
+      - name: Commit generated HTML and CSS files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add *.html assets/site/style/css/main.css assets/site/style/css/main.css.map
+          git diff --staged --quiet || git commit -m "Auto-generate HTML and CSS files [skip ci]"
+      
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'assets/site/view'
+      
+      - name: Build Summary
+        if: always()
+        run: |
+          echo "### Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f "index.html" ]; then
+            echo "HTML files generated successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "HTML generation failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -f "assets/site/style/css/main.css" ]; then
+            echo "CSS compiled successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "CSS compilation failed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+  # Job 3: Deploy to GitHub Pages
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+      
+      - name: Deployment Summary
+        if: always()
+        run: |
+          echo "### Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Site deployed to: ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
