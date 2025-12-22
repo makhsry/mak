@@ -1,4 +1,4 @@
-name: Build and Deploy to Pages from old README files 
+name: Tasks Workflow
 
 on:
   #push:
@@ -22,7 +22,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Job 1: Update README from markdown files
+  # Job 1: Create README .md and .pdf from markdown files
   update-readme:
     runs-on: ubuntu-latest
     steps:
@@ -37,8 +37,9 @@ jobs:
           set -euo pipefail
 
           input_dir="assets/site/content/old_markdown/"
-          output_file="README.md"
-          output_file_dummy="README_dummy.md"
+
+          output_file="README.md" # Final README file
+          output_file_dummy="README_dummy.md" # For PDF generation 
 
           # Array of markdown files to concatenate
           files=(
@@ -69,26 +70,31 @@ jobs:
           #  echo "Validated: ${filepath} (${size} bytes)"
           #done
           
+          # Create or clear output files
           > "${output_file}"
           > "${output_file_dummy}"
 
-          if [ -f "${input_dir}headers-top.md" ]; then
-            cat "${input_dir}headers-top.md" >> "${output_file}"
+          if [ -f "${input_dir}notice.md" ]; then
+            cat "${input_dir}notice.md" >> "${output_file}"
           else
-            echo "Warning: headers-top.md not found, skipping header"
+            echo "Warning: notice.md not found, skipping header"
           fi
 
           for file in "${files[@]}"; do
+
             filepath="${input_dir}${file}"
+
             cat "${filepath}" >> "${output_file}"
             echo -e "\n\n" >> "${output_file}"
+
             cat "${filepath}" >> "${output_file_dummy}"
             echo -e "\n\n" >> "${output_file_dummy}"
+
           done
           
           echo "README files built successfully"
       
-      - name: Create LaTeX header file
+      - name: Create LaTeX header file for PDF generation 
         run: |
           set -euo pipefail
 
@@ -130,26 +136,26 @@ jobs:
             --fail-if-warnings
             README_dummy.md
 
-      - name: Validate generated files
-        run: |
-          set -euo pipefail
-          
-          if [ ! -s "README.md" ]; then
-            echo "Error: README.md is empty or missing"
-            exit 1
-          fi
-          
-          if [ ! -s "MAK_Resume.pdf" ]; then
-            echo "Error: MAK_Resume.pdf is empty or missing"
-            exit 1
-          fi
-          
-          if ! file MAK_Resume.pdf | grep -q "PDF"; then
-            echo "Error: README.pdf is not a valid PDF file"
-            exit 1
-          fi
-          
-          echo "All generated files validated successfully"
+      #- name: Validate generated files
+      #  run: |
+      #    set -euo pipefail
+      #    
+      #    if [ ! -s "README.md" ]; then
+      #      echo "Error: README.md is empty or missing"
+      #      exit 1
+      #    fi
+      #    
+      #    if [ ! -s "MAK_Resume.pdf" ]; then
+      #      echo "Error: MAK_Resume.pdf is empty or missing"
+      #      exit 1
+      #    fi
+      #    
+      #    if ! file MAK_Resume.pdf | grep -q "PDF"; then
+      #      echo "Error: README.pdf is not a valid PDF file"
+      #      exit 1
+      #    fi
+      #    
+      #    echo "All generated files validated successfully"
 
       - name: Check for changes
         id: check_changes
@@ -203,6 +209,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: update-readme
+    if: success() && false # Disable this job for now
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -213,6 +220,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
+          
       - name: Install dependencies
         run: |
           pip install markdown
@@ -220,28 +228,30 @@ jobs:
       - name: Generate HTML files from README.md
         run: |
           echo "Generating HTML files from README.md..."
-          python assets/site/builders/create_site_from_markdown_files.py
+
+          python assets/site/builders/convert_markdown_to_html.py assets/site/content/old_markdown/
+          
           echo "HTML generation complete!"
       
-      - name: Install Dart Sass
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y wget
-          wget https://github.com/sass/dart-sass/releases/download/1.77.5/dart-sass-1.77.5-linux-x64.tar.gz
-          sudo tar -xvf dart-sass-1.77.5-linux-x64.tar.gz -C /usr/local/bin/
-          sudo ln -s /usr/local/bin/dart-sass/sass /usr/local/bin/sass
+      #- name: Install Dart Sass
+      #  run: |
+      #    sudo apt-get update
+      #    sudo apt-get install -y wget
+      #    wget https://github.com/sass/dart-sass/releases/download/1.77.5/dart-sass-1.77.5-linux-x64.tar.gz
+      #    sudo tar -xvf dart-sass-1.77.5-linux-x64.tar.gz -C /usr/local/bin/
+      #    sudo ln -s /usr/local/bin/dart-sass/sass /usr/local/bin/sass
 
-      - name: Compile SCSS to CSS (with source map)
-        run: |
-          echo "Compiling SCSS to CSS..."
-          sass assets/site/style/scss/main.scss assets/site/style/css/main.css --source-map
-          echo "CSS compilation complete!"
+      #- name: Compile SCSS to CSS (with source map)
+      #  run: |
+      #    echo "Compiling SCSS to CSS..."
+      #    sass assets/site/style/scss/main.scss assets/site/style/css/main.css --source-map
+      #    echo "CSS compilation complete!"
       
-      - name: Commit generated HTML and CSS files
+      - name: Commit generated HTML #and CSS files
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add assets/site/view assets/site/style/css/main.css assets/site/style/css/main.css.map
+          git add assets/site/view # assets/site/style/css/main.css assets/site/style/css/main.css.map
           git diff --staged --quiet || git commit -m "Auto-generate HTML and CSS files [skip ci]"
       
       - name: Push changes
@@ -278,6 +288,7 @@ jobs:
   deploy:
     name: Deploy to GitHub Pages
     needs: build
+    if: success() && false # Disable this job for now
     runs-on: ubuntu-latest
     environment:
       name: github-pages

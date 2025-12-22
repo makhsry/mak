@@ -70,6 +70,6 @@
   >> - Applied **pinch analysis and exergy analysis** to evaluate and enhance energy integration and thermodynamic efficiency across the system.
   >> - Assessed **retrofitting feasibility** by integrating performance data, economic viability, and process safety considerations.      
   >        
-  >> <img src="./assets/portfolio/UT-BSc.jpg" width="750">                           
+  >> <img src="./assets/portfolio/UT_BSc.jpg" width="750">                           
   >---                      
 </details>    
