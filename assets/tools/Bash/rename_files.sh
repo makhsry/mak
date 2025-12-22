@@ -8,3 +8,5 @@ for file in *-*; do
 done
 
 echo "Renaming complete!"
+
+# or just rename 's/-/_/g' *
