@@ -56,6 +56,7 @@ class StaticSiteGenerator:
             "Home": "index.html",
             "Education": "education.html",
             "Experience": "experience.html",
+            "Awards": "awards.html",
             "Blog": "blog.html"
         }
         
@@ -203,8 +204,11 @@ class StaticSiteGenerator:
         self.generate_standard_page("education", "Education")
         
         print("Generating experience page...")
-        self.generate_standard_page("experience", "Experience")
-        
+        self.generate_standard_page("experience", "Experience")\
+
+        print("Generating awards page...")
+        self.generate_standard_page("awards", "Awards")
+
         print("Generating blog pages...")
         self.generate_blog_page()
         
