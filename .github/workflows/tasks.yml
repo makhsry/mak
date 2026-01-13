@@ -189,7 +189,7 @@ jobs:
         run: |
           echo "Generating HTML files from README.md..."
 
-          python assets/site/builders/static_site_generator_2.py --site_path="assets/site/content/" --output_path="assets/site/view/" --css_relative_path="assets/site/style/css/v01/"
+          python assets/site/builders/static_site_generator_2.py --site_path="assets/site/content/" --output_path="assets/site/view/" --css_path="assets/site/style/css/v01/"
           
           echo "HTML generation complete!"
       

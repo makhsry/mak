@@ -215,11 +215,11 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser(description='Generate static website from markdown files')
     parser.add_argument('--site_path', type=str, 
-                        help='Path to site content directory (default: ../content/)')
+                        help='Path to site content directory')
     parser.add_argument('--output_path', type=str, 
-                        help='Path to output directory (default: ../../docs/)')
+                        help='Path to output directory')
     parser.add_argument('--css_path', type=str, 
-                        help='Path to CSS directory (default: ../style/css/v01/)')
+                        help='Path to CSS directory')
     
     args = parser.parse_args()
     
