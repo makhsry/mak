@@ -56,7 +56,7 @@ class StaticSiteGenerator:
             "Home": "index.html",
             "Education": "education.html",
             "Experience": "experience.html",
-            "Awards": "awards.html",
+            "Award": "award.html",
             "Blog": "blog.html"
         }
         
