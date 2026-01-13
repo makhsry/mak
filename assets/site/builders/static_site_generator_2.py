@@ -57,6 +57,7 @@ class StaticSiteGenerator:
             "Education": "education.html",
             "Experience": "experience.html",
             "Award": "award.html",
+            "Talk": "talk.html",
             "Blog": "blog.html"
         }
         
@@ -196,6 +197,8 @@ class StaticSiteGenerator:
         
         print("Loading header and footer...")
         self.load_edges()
+
+        # will replace this later with a for loop
         
         print("Generating homepage...")
         self.generate_about_page()
