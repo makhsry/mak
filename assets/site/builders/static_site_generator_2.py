@@ -212,6 +212,9 @@ class StaticSiteGenerator:
         print("Generating awards page...")
         self.generate_standard_page("award", "Awards")
 
+        print("Generating awards page...")
+        self.generate_standard_page("talk", "Talks")
+
         print("Generating blog pages...")
         self.generate_blog_page()
         
