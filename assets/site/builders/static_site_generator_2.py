@@ -207,7 +207,7 @@ class StaticSiteGenerator:
         self.generate_standard_page("experience", "Experience")\
 
         print("Generating awards page...")
-        self.generate_standard_page("awards", "Awards")
+        self.generate_standard_page("award", "Awards")
 
         print("Generating blog pages...")
         self.generate_blog_page()
