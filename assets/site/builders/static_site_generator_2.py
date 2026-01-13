@@ -5,7 +5,7 @@ from pathlib import Path
 import markdown
 
 class StaticSiteGenerator:
-    def __init__(self, site_path output_path, css_path):
+    def __init__(self, site_path, output_path, css_path):
         self.site_path = Path(site_path)
         self.output_path = Path(output_path)
         self.css_path = Path(css_path)
