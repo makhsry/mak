@@ -1,13 +1,14 @@
 import os
 import re
+import shutil
 from pathlib import Path
 import markdown
 
 class StaticSiteGenerator:
-    def __init__(self, site_path="../content/", output_path="../../docs/", css_relative_path="../site/style/css/v01/"):
+    def __init__(self, site_path output_path, css_path):
         self.site_path = Path(site_path)
         self.output_path = Path(output_path)
-        self.css_relative_path = css_relative_path
+        self.css_path = Path(css_path)
         self.header_content = ""
         self.footer_content = ""
         
@@ -69,7 +70,7 @@ class StaticSiteGenerator:
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
-    <link rel="stylesheet" href="{self.css_relative_path}main.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <header>
@@ -174,9 +175,23 @@ class StaticSiteGenerator:
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(html)
     
+    def copy_css_files(self):
+        """Copy CSS files to output directory"""
+        css_output_path = self.output_path / "css"
+        css_output_path.mkdir(parents=True, exist_ok=True)
+        
+        # Copy all CSS files from the css directory
+        if self.css_path.exists():
+            for css_file in self.css_path.glob("*.css"):
+                shutil.copy2(css_file, css_output_path / css_file.name)
+                print(f"Copied {css_file.name} to output directory")
+    
     def generate(self):
         """Generate entire website"""
         self.output_path.mkdir(parents=True, exist_ok=True)
+        
+        print("Copying CSS files...")
+        self.copy_css_files()
         
         print("Loading header and footer...")
         self.load_edges()
@@ -199,18 +214,18 @@ if __name__ == "__main__":
     import argparse
     
     parser = argparse.ArgumentParser(description='Generate static website from markdown files')
-    parser.add_argument('--site_path', type=str, default='../content/', 
+    parser.add_argument('--site_path', type=str, 
                         help='Path to site content directory (default: ../content/)')
-    parser.add_argument('--output_path', type=str, default='../../docs/', 
+    parser.add_argument('--output_path', type=str, 
                         help='Path to output directory (default: ../../docs/)')
-    parser.add_argument('--css_relative_path', type=str, default='../site/style/css/v01/', 
-                        help='Relative path from output to CSS directory (default: ../site/style/css/v01/)')
+    parser.add_argument('--css_path', type=str, 
+                        help='Path to CSS directory (default: ../style/css/v01/)')
     
     args = parser.parse_args()
     
     generator = StaticSiteGenerator(
         site_path=args.site_path,
         output_path=args.output_path,
-        css_relative_path=args.css_relative_path
+        css_path=args.css_path
     )
     generator.generate()
