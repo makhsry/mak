@@ -1,4 +1,12 @@
-## Chemical Engineer: Cavitation at Nanoscale (Graduate Research Assistant), UBC Chemical and Biological Engineering Department, Canada (2022: May - Dec.)                         
+## Chemical Engineer
+
+**Workplace**
+
+[UBC Chemical and Biological Engineering Department](https://chbe.ubc.ca/), [University of British Columbia (UBC)](https://www.ubc.ca/), Canada
+
+**Timeline**
+
+May 2022 - Dec 2022
 
 **Project**     
 Nanocavitation and its Mitigation in Fabricating Artificial Trees, with [Dr. Simcha Srebnik](https://scholar.google.com/citations?user=--v31HgAAAAJ&hl=en).         
