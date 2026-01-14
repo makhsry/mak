@@ -1,0 +1,215 @@
+/* site/style/css/v04/main.css - Brutalist */
+
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Archivo+Black&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier Prime', monospace;
+    line-height: 1.5;
+    color: #000;
+    background: #fff;
+    border: 10px solid #000;
+    min-height: 100vh;
+}
+
+header {
+    background: #0000ff;
+    /* Blue */
+    color: #fff;
+    padding: 3rem 0;
+    border-bottom: 5px solid #000;
+}
+
+.header-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.header-content h1 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 4rem;
+    text-transform: uppercase;
+    line-height: 0.9;
+    text-shadow: 4px 4px 0px #000;
+}
+
+.header-content blockquote {
+    background: #fff;
+    color: #000;
+    padding: 1rem;
+    margin-top: 1rem;
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0px #000;
+    font-weight: bold;
+}
+
+nav {
+    background: #ffff00;
+    /* Yellow */
+    border-bottom: 5px solid #000;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav .nav-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+nav a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #000;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 3px solid #000;
+    background: #fff;
+    box-shadow: 3px 3px 0px #000;
+    transition: all 0.1s;
+}
+
+nav a:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px #000;
+    background: #ff00ff;
+    /* Magenta */
+}
+
+nav a.active {
+    background: #000;
+    color: #fff;
+    box-shadow: none;
+    transform: translate(3px, 3px);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+.card {
+    background: #f0f0f0;
+    border: 3px solid #000;
+    border-radius: 0;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 8px 8px 0px #000;
+    transition: none;
+}
+
+.card:hover {
+    transform: none;
+    box-shadow: 8px 8px 0px #000;
+}
+
+.card h2 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    background: #000;
+    color: #fff;
+    display: table;
+    padding: 0 10px;
+}
+
+.card p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.card ul {
+    list-style-type: square;
+    margin-left: 1.5rem;
+    font-weight: bold;
+}
+
+a {
+    color: #0000ff;
+    text-decoration: none;
+    background-color: transparent;
+    border-bottom: 2px solid #0000ff;
+}
+
+a:hover {
+    background-color: #0000ff;
+    color: #fff;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.blog-card {
+    background: #ff00ff;
+    /* Magenta */
+    border: 3px solid #000;
+    padding: 1rem;
+    box-shadow: 5px 5px 0px #000;
+    border-radius: 0;
+}
+
+.blog-card:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0px #000;
+}
+
+.blog-card h3 {
+    background: #fff;
+    display: inline;
+    padding: 2px 5px;
+    border: 1px solid #000;
+}
+
+footer {
+    background: #000;
+    color: #fff;
+    padding: 3rem 0;
+    margin-top: 5rem;
+    border-top: 5px solid #000;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.footer-content a {
+    color: #ffff00;
+    border-bottom-color: #ffff00;
+}
+
+.footer-content a:hover {
+    background-color: #ffff00;
+    color: #000;
+}
+
+@media (max-width: 768px) {
+    body {
+        border-width: 5px;
+    }
+
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header-content h1 {
+        font-size: 2.5rem;
+    }
+}

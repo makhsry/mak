@@ -1,0 +1,187 @@
+/* site/style/css/v03/main.css - Minimalist */
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Lato:wght@300;400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.8;
+    color: #444;
+    background: #fafafa;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Merriweather', serif;
+    font-weight: 300;
+    color: #222;
+}
+
+header {
+    background: #fff;
+    color: #222;
+    padding: 4rem 0 2rem;
+    text-align: center;
+}
+
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.header-content blockquote {
+    font-style: italic;
+    color: #666;
+    border: none;
+    font-family: 'Merriweather', serif;
+    font-size: 1.1rem;
+}
+
+nav {
+    background: #fff;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 3rem;
+}
+
+nav .nav-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav a {
+    display: inline-block;
+    padding: 1.2rem 1.5rem;
+    text-decoration: none;
+    color: #888;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+    color: #000;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.card {
+    background: transparent;
+    padding: 0;
+    margin-bottom: 3rem;
+}
+
+.card:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.card h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.card p {
+    margin-bottom: 1.2rem;
+}
+
+.card ul {
+    list-style-type: circle;
+    margin-left: 1.5rem;
+    color: #555;
+}
+
+/* Links */
+a {
+    color: #222;
+    text-decoration: underline;
+    text-decoration-color: #ccc;
+    text-underline-offset: 4px;
+}
+
+a:hover {
+    text-decoration-color: #000;
+}
+
+nav a {
+    text-decoration: none;
+    /* Reset for nav */
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.blog-card {
+    background: #fff;
+    padding: 1.5rem;
+    border: 1px solid #f0f0f0;
+    transition: border-color 0.3s ease;
+}
+
+.blog-card:hover {
+    border-color: #ccc;
+    transform: none;
+    box-shadow: none;
+}
+
+.blog-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+footer {
+    background: #fdfdfd;
+    color: #888;
+    padding: 3rem 0;
+    margin-top: 5rem;
+    border-top: 1px solid #eee;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+@media (max-width: 600px) {
+    nav .nav-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem;
+    }
+}

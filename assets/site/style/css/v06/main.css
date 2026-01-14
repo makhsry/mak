@@ -1,0 +1,137 @@
+/* site/style/css/v06/main.css - Retro / 90s Web */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Times New Roman", Times, serif;
+    background-color: #c0c0c0;
+    color: #000;
+}
+
+header {
+    background-color: #000080;
+    /* Navy */
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border: 3px outset #fff;
+    margin: 10px;
+}
+
+.header-content h1 {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    text-shadow: 2px 2px #ff0000;
+}
+
+.header-content blockquote {
+    background: #ffffcc;
+    border: 1px solid #000;
+    padding: 5px;
+    color: #000;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+nav {
+    text-align: center;
+    padding: 10px;
+    background: #c0c0c0;
+    border-bottom: 2px groove #fff;
+}
+
+nav .nav-container {
+    max-width: 100%;
+}
+
+nav a {
+    display: inline-block;
+    padding: 5px 15px;
+    margin: 2px;
+    background: #c0c0c0;
+    border: 2px outset #fff;
+    color: #000;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+nav a:active,
+nav a.active {
+    border: 2px inset #fff;
+    background: #e0e0e0;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #fff;
+    border: 2px solid #000;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 5px 5px 0px #808080;
+}
+
+.card h2 {
+    color: #000080;
+    text-decoration: underline;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.card h3 {
+    background: linear-gradient(to right, #000080, #fff);
+    color: #fff;
+    padding: 2px 5px;
+}
+
+.card ul {
+    margin-left: 20px;
+    list-style-type: square;
+}
+
+a {
+    color: #0000ff;
+}
+
+a:visited {
+    color: #800080;
+}
+
+.blog-grid {
+    display: table;
+    width: 100%;
+    border-spacing: 10px;
+}
+
+.blog-card {
+    display: table-cell;
+    background: #ffffcc;
+    /* Light yellow */
+    border: 1px solid #000;
+    padding: 10px;
+    vertical-align: top;
+    width: 33%;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 2px groove #fff;
+    margin-top: 20px;
+    font-size: small;
+}
+
+/* Marquee effect simulation for title maybe? No, let's keep it simple CSS */
+.header-content h1:hover {
+    color: #ffff00;
+}
