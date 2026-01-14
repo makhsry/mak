@@ -1,4 +1,0 @@
-## Post Title 
-
-**Abstract**
-
