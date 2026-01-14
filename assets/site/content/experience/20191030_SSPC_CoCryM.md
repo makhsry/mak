@@ -1,4 +1,12 @@
-## Process Engineer: Continuous Crystallization (Marie Sklodowska-Curie Postdoctoral Fellow), University of Limerick, Ireland (2019 Oct. - 2022 Feb.)                          
+## Marie Sklodowska-Curie Postdoctoral Fellow                        
+
+**Workplace**
+
+[Synthesis and Solid State Pharmaceutical Centre (SSPC)](https://sspc.ie/), [Bernal Institute](https://bernal.ul.ie/), [University of Limerick](https://www.ul.ie/), Ireland
+
+**Timeline**
+
+2019: Oct. - 2022: Feb.
 
 **Project**    
 
@@ -15,4 +23,4 @@ Developed a **data-driven digital twin framework** to address low-yield challeng
 - Designed and refined **process strategies*** to maximize desired product formation, suppress by-product generation, and reduce procurement and disposal costs.            
 - Built a digital twin using advanced **data analytics** and implemented a **machine learning-based process controller**, integrating both real-time (in-line) & historical (offline) **sensor data streams**-Raman spectroscopy.     
 - Utilized Density Functional Theory (DFT) and molecular dynamics (MD) simulations to analyze **molecular interactions**, guiding optimal cocrystal formation **pathways** and identifying **key process descriptors**.    
-- Integrated **Raman spectrometer** data into a live control system, enabling real-time feedback and control within a continuous manufacturing environment through predictive ML models.   
+- Integrated **Raman spectrometer** data into a live control system, enabling real-time feedback and control within a continuous manufacturing environment through predictive ML models.  

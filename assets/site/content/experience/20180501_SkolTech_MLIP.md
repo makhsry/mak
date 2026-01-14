@@ -1,4 +1,12 @@
-## Material Engineer: AI & ML (Research Intern), Skolkovo Institute of Science and Technology (SkolTech), Russia (2018: May - Oct.) 
+## AI & ML in Material Sciences
+
+**Workplace**
+
+[Skolkovo Institute of Science and Technology (SkolTech)](https://skoltech.ru/en/), Russia
+
+**Timeline**
+
+2018: May - Oct.
 
 **Project**    
 
@@ -15,4 +23,4 @@ Aimed to **expedite the discovery and characterization** of hard materials for u
 - Developed validation models to discuss experimental results with simulation predictions, extracting insights into **material failure** modes and defect behavior.       
 - Implemented and trained **Machine Learning Interatomic Potentials** (MLIPs) using active learning strategies to improve accuracy with minimal data.       
 - Automated molecular dynamics (MD) simulations using LAMMPS and density functional theory (DFT) calculations using VASP for large-scale material screening **across multiple HPC clusters**.      
-- Wrote modular and efficient code in Python and Bash, managing environments and version control using Git.     
+- Wrote modular and efficient code in Python and Bash, managing environments and version control using Git.  
