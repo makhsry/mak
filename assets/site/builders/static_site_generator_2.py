@@ -216,7 +216,7 @@ class StaticSiteGenerator:
         self.generate_standard_page("talk", "Talks")
 
         print("Generating blog pages...")
-        self.generate_blog_page()
+        self.generate_standard_page("blog", "Blog")
         
         print(f"Website generated successfully in {self.output_path}")
 
