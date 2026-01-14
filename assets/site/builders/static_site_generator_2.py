@@ -58,7 +58,7 @@ class StaticSiteGenerator:
             "Experience": "experience.html",
             "Award": "award.html",
             "Talk": "talk.html",
-            "Blog": "blog.html"
+            "Openings": "blog.html"
         }
         
         nav_html = ""
