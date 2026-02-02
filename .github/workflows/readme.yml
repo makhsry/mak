@@ -1,0 +1,154 @@
+name: readme & pdf
+
+on:
+  #push:
+  #  branches:
+  #    - main
+  #  paths:
+  #    - 'assets/md_files/**'
+  #    - 'assets/blog/**'
+  #    - '.github/workflows/**'
+  #    - 'README.md'
+  #    - 'md_to_html_parser.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs: 
+  update-readme:
+    name: Update README.md and Resume.pdf
+    runs-on: ubuntu-latest
+    env:
+      main_readme: 'README.md'
+      pdf_from_resume_md: 'Resume.pdf'
+      resume_md: 'Resume.md'
+      input_dir: 'assets/for_readme/'
+      logo_dir: 'assets/logos/'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build README files from markdown files
+        run: |
+          set -euo pipefail
+
+          # Automatically find and sort markdown files by their numeric prefix (00_, 01_, etc.)
+          files=($(find "${{ env.input_dir }}" -name "*.md" -type f -printf "%f\n" | sort -V))
+
+          # Create or clear output files
+          > "${{ env.main_readme }}"
+          > "${{ env.resume_md }}"
+
+          # compling md files 
+          for file in "${files[@]}"; do
+
+            filepath="${{ env.input_dir }}${file}"
+
+            cat "${filepath}" >> "${{ env.main_readme }}"
+            echo -e "\n\n" >> "${{ env.main_readme }}"
+
+            if [[ "$file" != 00_* ]]; then
+              cat "${filepath}" >> "${{ env.resume_md }}"
+              echo -e "\n\n" >> "${{ env.resume_md }}"
+            fi
+
+          done
+          
+          echo "README files built successfully"
+      
+      - name: Create LaTeX header file for PDF generation 
+        run: |
+          set -euo pipefail
+
+          cat > header.tex << 'EOF'
+          \usepackage{xcolor}
+          \usepackage{fancyhdr}
+          \pagestyle{fancy}
+          \fancyhead[L]{\large\textbf{Milad Asgarpour Khansary (MAK)}}
+          \fancyhead[C]{}
+          \fancyhead[R]{}
+          \fancyfoot[L]{}
+          \fancyfoot[C]{\thepage}
+          \fancyfoot[R]{\tiny\scalebox{1.0}{\textcolor{red}{Generated on \today\ by \includegraphics[height=1.25ex]{${{ env.logo_dir }}/GitHub.png}github-actions[bot]}}}
+          \renewcommand{\headrulewidth}{0.4pt}
+          \renewcommand{\footrulewidth}{0.4pt}
+          EOF
+      
+          if [ ! -f "header.tex" ]; then
+            echo "Error: Failed to create header.tex"
+            exit 1
+          fi
+
+      - name: Convert Markdown to PDF
+        uses: docker://pandoc/latex:3.4
+        with:
+          args: >-
+            --from=gfm
+            --output=${{ env.pdf_from_resume_md }}
+            --pdf-engine=xelatex
+            --include-in-header=header.tex
+            --variable=geometry:a4paper
+            --variable=geometry:margin=2cm
+            --variable=graphics=true
+            --variable=linkcolor=blue
+            --variable=urlcolor=blue
+            --variable=toccolor=blue
+            --highlight-style=tango
+            --standalone
+            --fail-if-warnings
+            ${{ env.resume_md }}
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git diff --exit-code ${{ env.main_readme }} ${{ env.pdf_from_resume_md }} || echo "changes=true" >> $GITHUB_OUTPUT
+     
+      - name: Clean up temporary files
+        run: |
+          rm -f header.tex ${{ env.resume_md }}
+
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          set -euo pipefail
+          
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add "${{ env.main_readme }}" "${{ env.pdf_from_resume_md }}"
+          
+          staged_files=$(git diff --cached --name-only)
+          echo "Staged files: $staged_files"
+
+          for staged_file in $staged_files; do
+             if [[ ! "$staged_file" =~ ^(${{ env.main_readme }}|${{ env.pdf_from_resume_md }})$ ]]; then
+              echo "Error: Unexpected file staged: $staged_file"
+              exit 1
+            fi
+          done
+          
+          git commit -m "Automated README update [skip ci]"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Summary
+        if: always()
+        run: |
+          echo "### README Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f "${{ env.main_readme }}" ]; then
+            echo "${{ env.main_readme }} generated successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "${{ env.main_readme }} generation failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -f "${{ env.pdf_from_resume_md }}" ]; then
+            echo "${{ env.pdf_from_resume_md }} generated successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "${{ env.pdf_from_resume_md }} generation failed" >> $GITHUB_STEP_SUMMARY
+          fi
