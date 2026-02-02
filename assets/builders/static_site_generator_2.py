@@ -222,16 +222,20 @@ class StaticSiteGenerator:
 
 if __name__ == "__main__":
     import argparse
+    import os
     
     parser = argparse.ArgumentParser(description='Generate static website from markdown files')
-    parser.add_argument('--site_path', type=str, 
+    parser.add_argument('--site_path', type=str, default=os.environ.get('SITE_PATH'),
                         help='Path to site content directory')
-    parser.add_argument('--output_path', type=str, 
+    parser.add_argument('--output_path', type=str, default=os.environ.get('OUTPUT_PATH'),
                         help='Path to output directory')
-    parser.add_argument('--css_path', type=str, 
+    parser.add_argument('--css_path', type=str, default=os.environ.get('CSS_PATH'),
                         help='Path to CSS directory')
     
     args = parser.parse_args()
+    
+    if not all([args.site_path, args.output_path, args.css_path]):
+        parser.error("All paths must be provided via arguments or environment variables (SITE_PATH, OUTPUT_PATH, CSS_PATH)")
     
     generator = StaticSiteGenerator(
         site_path=args.site_path,
