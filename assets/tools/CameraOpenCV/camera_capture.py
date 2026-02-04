@@ -132,4 +132,4 @@ def capture_images(interval_seconds=5, save_folder="webcam_captures"):
 
 if __name__ == "__main__":
     # Capture every 5 seconds
-    capture_images(interval_seconds=5, save_folder=r"C:\Users\MAK\My Drive\Temporary\myroom")
+    capture_images(interval_seconds=5, save_folder=r"C:\Users\MAK\My Drive\Temporary\myroom\tmp")

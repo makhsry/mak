@@ -1,8 +1,18 @@
+# -*- coding: utf-8 -*-
+
 import cv2
 import os
+import sys
 import numpy as np
 from datetime import datetime
 import json
+
+# Fix Windows console encoding
+if sys.platform == 'win32':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except:
+        pass
 
 def advanced_motion_detection(image_folder, output_folder="motion_analysis",
                               sensitivity="medium", save_heatmap=True):
@@ -88,16 +98,16 @@ def advanced_motion_detection(image_folder, output_folder="motion_analysis",
         # Determine motion level
         if len(motion_contours) == 0:
             motion_level = "NONE"
-            symbol = "○"
+            symbol = "[ ]"   # NONE // symbol = "○"
         elif motion_percentage < 1:
             motion_level = "LOW"
-            symbol = "●"
+            symbol = "[●]"   # LOW // symbol = "●"
         elif motion_percentage < 5:
             motion_level = "MEDIUM"
-            symbol = "●●"
+            symbol = "[●●]"   # MEDIUM // symbol = "●●"
         else:
             motion_level = "HIGH"
-            symbol = "●●●"
+            symbol = "[●●●]"   # HIGH // symbol = "●●●"
         
         result = {
             'filename': filename,
@@ -201,8 +211,8 @@ def advanced_motion_detection(image_folder, output_folder="motion_analysis",
 
 if __name__ == "__main__":
     # Configuration
-    IMAGE_FOLDER = r"C:\Users\MAK\My Drive\Temporary\myroom"
-    OUTPUT_FOLDER = r"C:\Users\MAK\My Drive\Temporary\myroom\motion_analysis"
+    IMAGE_FOLDER = r"C:\Users\MAK\My Drive\Temporary\myroom\tmp"
+    OUTPUT_FOLDER = r"C:\Users\MAK\My Drive\Temporary\myroom\reports"
     
     # Run analysis
     # sensitivity options: 'low', 'medium', 'high'
