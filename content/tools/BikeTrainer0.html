@@ -8,9 +8,6 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap">
     <link href="https://cdn.jsdelivr.net/npm/gridstack@10.3.1/dist/gridstack.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
@@ -554,75 +551,6 @@
             min-width: 100px;
             letter-spacing: -0.5px;
         }
-
-        /* GPX Mode styles */
-        #gpx-session-bar {
-            display: none;
-            background: #000;
-            color: #fff;
-            padding: 0.4rem 0.75rem;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Inter', sans-serif;
-            align-items: center;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-        #gpx-session-bar.active { display: flex; }
-
-        .gpx-stat {
-            display: flex; gap: 0.3rem; align-items: baseline;
-        }
-        .gpx-stat-label { color: #aaa; font-weight: 400; }
-        .gpx-stat-val { color: #fff; font-weight: 700; font-family: 'Bodoni Moda', serif; font-size: 0.9rem; }
-
-        .gear-rec-box {
-            margin-top: 0.5rem;
-            padding: 0.5rem 0.75rem;
-            background: #000;
-            color: #fff;
-            font-size: 0.7rem;
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: none;
-        }
-        .gear-rec-box.visible { display: block; }
-        .gear-rec-box .rec-shift-up { color: #ff6b35; }
-        .gear-rec-box .rec-shift-down { color: #4ecdc4; }
-        .gear-rec-box .rec-ok { color: #a8e6cf; }
-
-        .gpx-progress-bar {
-            width: 100%;
-            height: 4px;
-            background: #e0e0e0;
-            margin-top: 0.25rem;
-        }
-        .gpx-progress-fill {
-            height: 100%;
-            background: #000;
-            transition: width 0.5s ease;
-            width: 0%;
-        }
-
-        /* Slope indicator on map */
-        #gpx-slope-overlay {
-            position: absolute;
-            bottom: 8px;
-            left: 8px;
-            background: rgba(0,0,0,0.75);
-            color: #fff;
-            font-size: 0.7rem;
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            padding: 4px 8px;
-            z-index: 1000;
-            display: none;
-            pointer-events: none;
-        }
     </style>
 </head>
 
@@ -838,16 +766,13 @@
                         READY</div>
                     <button id="btn-camera-a1" class="camera-btn">Select Camera</button>
                 </div>
-                <!-- Lower: Speed Chart -->
+                <!-- Lower: Future Placeholder -->
                 <div
-                    style="flex:0 0 50%; background:#f8f8f8; border-top:1px solid #000; display:flex; flex-direction:column; padding:0.5rem; gap:6px; overflow:hidden;">
+                    style="flex:0 0 50%; background:#f8f8f8; border-top:1px solid #000; display:flex; flex-direction:column; padding:0.75rem; gap:6px; overflow:hidden;">
                     <div id="camera-name-a1" class="camera-label">Speed (Rear wheel)</div>
-                    <div style="flex:1; display:flex; flex-direction:column; overflow:hidden;">
-                        <canvas id="speed-chart-canvas" style="flex:1;"></canvas>
-                    </div>
-                    <div style="font-size:0.65rem; color:#666; display:flex; justify-content:space-between; gap:0.5rem;">
-                        <span>Speed: <span id="speed-display">0.0</span> km/h</span>
-                        <span>Avg: <span id="speed-avg-display">0.0</span> km/h</span>
+                    <div
+                        style="flex:1; border:1px dashed #ccc; display:flex; justify-content:center; align-items:center; color:#999; font-size:0.7rem;">
+                        PLACEHOLDER
                     </div>
                 </div>
             </div>
@@ -867,76 +792,22 @@
                         READY</div>
                     <button id="btn-camera-a2" class="camera-btn">Select Camera</button>
                 </div>
-                <!-- Lower: Cadence Chart -->
+                <!-- Lower: Future Placeholder -->
                 <div
-                    style="flex:0 0 50%; background:#f8f8f8; border-top:1px solid #000; display:flex; flex-direction:column; padding:0.5rem; gap:6px; overflow:hidden;">
+                    style="flex:0 0 50%; background:#f8f8f8; border-top:1px solid #000; display:flex; flex-direction:column; padding:0.75rem; gap:6px; overflow:hidden;">
                     <div id="camera-name-a2" class="camera-label">Cadence (Pedaling)</div>
-                    <div style="flex:1; display:flex; flex-direction:column; overflow:hidden;">
-                        <canvas id="cadence-chart-canvas" style="flex:1;"></canvas>
-                    </div>
-                    <div style="font-size:0.65rem; color:#666; display:flex; justify-content:space-between; gap:0.5rem;">
-                        <span>RPS: <span id="cadence-display">0.0</span></span>
-                        <span>Avg: <span id="cadence-avg-display">0.0</span></span>
+                    <div
+                        style="flex:1; border:1px dashed #ccc; display:flex; justify-content:center; align-items:center; color:#999; font-size:0.7rem;">
+                        PLACEHOLDER
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Panel B (GPX Import & Route Mode) -->
+        <!-- Panel B (placeholder) -->
         <div class="grid-stack-item" gs-x="8" gs-y="5" gs-w="4" gs-h="5" gs-id="panel-b">
-            <div class="grid-stack-item-content" style="display:flex; flex-direction:column; padding:0; overflow:hidden;">
-                <div style="padding:0.75rem 1rem 0.35rem 1rem;">
-                    <h2 style="margin:0 0 0.25rem 0;">Route Mode (GPX)</h2>
-                </div>
-                <div style="flex:1; border:1px solid #e0e0e0; margin:0 1rem 0.35rem 1rem; border-radius:2px; overflow:hidden; display:flex; flex-direction:column; position:relative; min-height:80px;">
-                    <div id="gpx-map" style="flex:1; background:#f0f0f0; position:relative;"></div>
-                    <div id="gpx-slope-overlay">SLOPE: —</div>
-                    <div class="gpx-progress-bar"><div class="gpx-progress-fill" id="gpx-progress-fill"></div></div>
-                </div>
-                <div style="padding:0 1rem 0.35rem 1rem; display:flex; gap:0.5rem; flex-wrap:wrap; align-items:center;">
-                    <input type="file" id="gpx-file-input" accept=".gpx" style="flex:1; font-size:0.72rem;" />
-                    <button id="btn-load-gpx" class="action-btn" style="flex:0 0 auto;">Load GPX</button>
-                </div>
-                <div id="gpx-level-selector" style="display:none; padding:0 1rem 0.35rem 1rem;">
-                    <div style="display:flex; gap:0.5rem; align-items:center;">
-                        <span class="label" style="margin:0; white-space:nowrap;">Trainer Level:</span>
-                        <select id="gpx-level-select" style="flex:1; padding:0.35rem; font-size:0.75rem;">
-                            <option value="1">1 (Easy)</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8 (Hard)</option>
-                        </select>
-                        <button id="btn-confirm-level" class="action-btn" style="flex:0 0 auto; padding:0.35rem 0.75rem;">Confirm Level</button>
-                    </div>
-                </div>
-                <div id="gpx-session-controls" style="display:none; padding:0 1rem 0.35rem 1rem; gap:0.5rem; align-items:center; flex-wrap:wrap;">
-                    <button id="btn-start-gpx-session" class="action-btn">&#9654; Start GPX Session</button>
-                    <button id="btn-stop-gpx-session" class="action-btn stop" style="display:none;">&#9632; Stop Session</button>
-                    <button id="btn-reset-gpx" class="action-btn location" style="font-size:0.7rem; padding:0.3rem 0.6rem;">Reset</button>
-                    <button id="btn-gpx-record" class="action-btn" style="display:none; border-left:4px solid #2a7a2a;">&#9679; Record</button>
-                    <button id="btn-gpx-stop-record" class="action-btn stop" style="display:none;">&#9632; Stop Rec</button>
-                    <button id="btn-gpx-export" class="action-btn export" style="display:none;">&#8595; Export GPX</button>
-                </div>
-                <div id="gpx-rec-stats" style="display:none; padding:0 1rem 0.2rem 1rem;">
-                    <div class="rec-stats">
-                        <div><span class="recording-timer" style="font-size:1rem;"><span id="gpx-rec-time">00:00:00</span></span></div>
-                        <div>Points: <span id="gpx-rec-points">0</span></div>
-                        <div>Dist: <span id="gpx-rec-distance">0.0 km</span></div>
-                        <div>Elev+: <span id="gpx-rec-elevation">0 m</span></div>
-                    </div>
-                </div>
-                <div id="gpx-session-bar">
-                    <div class="gpx-stat"><span class="gpx-stat-label">Lvl</span><span class="gpx-stat-val" id="gpx-bar-level">—</span></div>
-                    <div class="gpx-stat"><span class="gpx-stat-label">Slope</span><span class="gpx-stat-val" id="gpx-bar-slope">—</span></div>
-                    <div class="gpx-stat"><span class="gpx-stat-label">Pt</span><span class="gpx-stat-val" id="gpx-bar-progress">—</span></div>
-                    <div class="gpx-stat"><span class="gpx-stat-label">Dist</span><span class="gpx-stat-val" id="gpx-bar-dist">0 km</span></div>
-                </div>
-                <div id="gpx-gear-rec" class="gear-rec-box" style="margin:0 1rem 0 1rem;"></div>
-                <div id="gpx-status" style="font-size:0.65rem; color:#666; min-height:14px; padding:0.2rem 1rem 0.4rem 1rem;"></div>
+            <div class="grid-stack-item-content" style="display:flex; justify-content:center; align-items:center;">
+                <span class="label" style="font-size:0.8rem;">Panel B</span>
             </div>
         </div>
 
@@ -1006,8 +877,7 @@
         const state = {
             ftp: 150, mass: 85, height: 178, width: 25,
             grade: 0, rpm: 0, speed: 0,
-            fRing: 53, rCog: 11, circ: 2.105, magLevel: 1,
-            gpxMode: false, gpxTrainerLevel: null, gpxData: null, gpxCurrentIndex: 0
+            fRing: 53, rCog: 11, circ: 2.105, magLevel: 1
         };
 
         const zones = [
@@ -1036,14 +906,8 @@
                 }
                 if (!found) select.value = 'custom';
             }
-            // In GPX mode: magLevel is locked to confirmed level; grade changes don't alter it
-            if (!state.gpxMode) {
-                if (key === 'grade') state.magLevel = Math.round((state.grade * 7 / 15) + 1);
-                else if (key === 'magLevel') state.grade = (state.magLevel - 1) * (15 / 7);
-            } else {
-                // GPX mode: grade may be set by GPX session tick; magLevel stays locked
-                if (key === 'magLevel') { /* locked — ignore user-initiated magLevel changes */ state.magLevel = state.gpxTrainerLevel || state.magLevel; }
-            }
+            if (key === 'grade') state.magLevel = Math.round((state.grade * 7 / 15) + 1);
+            else if (key === 'magLevel') state.grade = (state.magLevel - 1) * (15 / 7);
             if (key === 'speed') state.rpm = ((state.speed / 3.6) * 60) / ((state.fRing / state.rCog) * state.circ);
             else state.speed = ((state.rpm * (state.fRing / state.rCog) * state.circ) / 60) * 3.6;
             render();
@@ -1095,39 +959,18 @@
                 this.type = type; // 'speed' or 'cadence'
                 this.active = false;
                 this.prevFrame = null;
+                this.lastDetectionTime = 0;
                 this.frameCount = 0;
                 this.fps = 0;
                 this.lastFpsUpdate = 0;
 
                 // Detection params
                 this.motionThreshold = 25;
-
-                // Output history (smoothing window)
-                this.speedHistory = [];
-                this.speedWindow = 8; // keep last 8 output samples (~4s at 500ms intervals)
-
-                // --- Angular velocity tracking (FPS-independent) ---
-                // We track the red label's angle relative to an auto-estimated wheel/crank center.
-                // Each frame contributes a wrap-corrected delta angle (radians).
-                // Total accumulated angular displacement over the measurement window → revolutions.
-                this.lastRedPosition = null;     // {x, y} centroid of red label last frame
-                this.centerEstimate = null;      // {x, y} running estimate of rotation center
-                this.centerHistory = [];         // last N label positions for center estimation
-                this.centerHistoryMax = 60;      // frames to use for center estimation
-                this.lastAngle = null;           // angle of label relative to center, last frame
-                this.totalAngleDelta = 0;        // accumulated |delta angle| in current window (radians)
-                this.windowStartTime = Date.now();
-                this.UPDATE_INTERVAL_MS = 500;   // output update interval
+                this.redThreshold = { r: 150, g: 80, b: 80 }; // R > 150, G < 80, B < 80
             }
 
             start() {
                 this.active = true;
-                this.lastRedPosition = null;
-                this.centerEstimate = null;
-                this.centerHistory = [];
-                this.lastAngle = null;
-                this.totalAngleDelta = 0;
-                this.windowStartTime = Date.now();
                 this.requestFrame();
             }
 
@@ -1141,30 +984,6 @@
                     this.process();
                 }
                 requestAnimationFrame(() => this.requestFrame());
-            }
-
-            // Update the running center estimate from recent label positions.
-            // Center = mean of all tracked positions (centroid of circular path).
-            updateCenter(x, y) {
-                this.centerHistory.push({ x, y });
-                if (this.centerHistory.length > this.centerHistoryMax) {
-                    this.centerHistory.shift();
-                }
-                // Only estimate once we have enough samples to span a rotation
-                if (this.centerHistory.length < 10) return;
-                let sx = 0, sy = 0;
-                for (const p of this.centerHistory) { sx += p.x; sy += p.y; }
-                this.centerEstimate = {
-                    x: sx / this.centerHistory.length,
-                    y: sy / this.centerHistory.length
-                };
-            }
-
-            // Wrap an angle delta to [-π, π] to handle the 0/2π boundary crossing.
-            wrapAngle(da) {
-                while (da >  Math.PI) da -= 2 * Math.PI;
-                while (da < -Math.PI) da += 2 * Math.PI;
-                return da;
             }
 
             process() {
@@ -1182,798 +1001,94 @@
                 let redPixels = [];
                 let motionPixels = 0;
 
-                // Detection loop — step=2 for performance (still sub-pixel accurate for centroid)
-                const step = 2;
+                // Detection loop
+                // We use a coarser grid for performance
+                const step = 1; // Finest grid (processes every pixel)
                 for (let y = 0; y < h; y += step) {
                     for (let x = 0; x < w; x += step) {
                         const i = (y * w + x) * 4;
-                        const r = data[i], g = data[i + 1], b = data[i + 2];
+                        const r = data[i];
+                        const g = data[i + 1];
+                        const b = data[i + 2];
 
-                        // Red label detection
+                        // 1. Red Label Detection
+                        // Heuristic: Red is significantly higher than G and B
                         if (r > 120 && r > g * 1.8 && r > b * 1.8) {
                             redPixels.push({ x, y });
-                            data[i] = 255; data[i + 1] = 0; data[i + 2] = 255; // magenta overlay
+                            // Mark red pixels on canvas for debug
+                            data[i] = 255; data[i + 1] = 0; data[i + 2] = 255;
                         }
 
-                        // Motion detection
+                        // 2. Motion Detection (Grayscale difference)
                         const gray = (r + g + b) / 3;
                         if (this.prevFrame) {
-                            const prevGray = this.prevFrame[(y * w + x)];
-                            if (Math.abs(gray - prevGray) > this.motionThreshold) motionPixels++;
+                            const prevGray = this.prevFrame[i / 4];
+                            const diff = Math.abs(gray - prevGray);
+                            if (diff > this.motionThreshold) {
+                                motionPixels++;
+                                // Optional: mark motion
+                                // data[i+1] = 255; // Green overlay for motion
+                            }
                         }
                     }
                 }
 
-                // Update prevFrame (grayscale, step-sampled)
+                // Update prevFrame (sub-sampled grayscale)
                 if (!this.prevFrame || this.prevFrame.length !== (w * h)) {
                     this.prevFrame = new Float32Array(w * h);
                 }
-                for (let y = 0; y < h; y += step) {
-                    for (let x = 0; x < w; x += step) {
-                        const i = (y * w + x) * 4;
-                        this.prevFrame[y * w + x] = (data[i] + data[i + 1] + data[i + 2]) / 3;
-                    }
+                for (let i = 0; i < w * h; i++) {
+                    const idx = i * 4;
+                    this.prevFrame[i] = (data[idx] + data[idx + 1] + data[idx + 2]) / 3;
                 }
 
-                // --- Angular displacement accumulation ---
+                // Analyze Red Blobs
                 let targetFound = false;
                 let targetX = 0, targetY = 0;
-
-                if (redPixels.length > 8) {
+                if (redPixels.length > 10) { // Min noise floor
+                    // Calculate center of mass for the red label
                     let sumX = 0, sumY = 0;
                     redPixels.forEach(p => { sumX += p.x; sumY += p.y; });
                     targetX = sumX / redPixels.length;
                     targetY = sumY / redPixels.length;
                     targetFound = true;
-
-                    // Update running center estimate
-                    this.updateCenter(targetX, targetY);
-
-                    // Accumulate angular displacement only when center is estimated
-                    if (this.centerEstimate) {
-                        const cx = this.centerEstimate.x;
-                        const cy = this.centerEstimate.y;
-                        const angle = Math.atan2(targetY - cy, targetX - cx);
-
-                        if (this.lastAngle !== null) {
-                            // Wrap-corrected delta — independent of frame rate
-                            const da = this.wrapAngle(angle - this.lastAngle);
-                            this.totalAngleDelta += Math.abs(da);
-                        }
-                        this.lastAngle = angle;
-                    }
-                } else {
-                    // Label lost — reset angle continuity to avoid false jumps on reacquire
-                    this.lastAngle = null;
                 }
 
-                // --- Output update every UPDATE_INTERVAL_MS ---
-                const now = Date.now();
-                const elapsed = now - this.windowStartTime;
-                if (elapsed >= this.UPDATE_INTERVAL_MS) {
-                    const timeSeconds = elapsed / 1000;
-                    // Revolutions = total angular displacement / (2π)
-                    const revolutions = this.totalAngleDelta / (2 * Math.PI);
-                    let outputValue = 0;
-
-                    if (this.type === 'speed') {
-                        // Speed (km/h) = (revolutions × wheel_circumference_m) / time_s × 3.6
-                        const distanceMeters = revolutions * state.circ;
-                        const speedMs = distanceMeters / timeSeconds;
-                        outputValue = Math.max(0, Math.min(speedMs * 3.6, 120));
-                    } else if (this.type === 'cadence') {
-                        // RPS = revolutions / time_s
-                        outputValue = Math.max(0, Math.min(revolutions / timeSeconds, 5));
-                    }
-
-                    this.speedHistory.push(outputValue);
-                    if (this.speedHistory.length > this.speedWindow) this.speedHistory.shift();
-
-                    // Reset window
-                    this.totalAngleDelta = 0;
-                    this.windowStartTime = now;
-                }
-
-                // Visual feedback
+                // Visual Feedback
                 this.ctx.putImageData(frame, 0, 0);
 
                 if (targetFound) {
                     this.ctx.strokeStyle = '#00ff00';
-                    this.ctx.lineWidth = 2;
-                    this.ctx.strokeRect(targetX - 18, targetY - 18, 36, 36);
+                    this.ctx.lineWidth = 3;
+                    this.ctx.strokeRect(targetX - 20, targetY - 10, 40, 20); // 2:1 ratio approx
                     this.ctx.fillStyle = '#00ff00';
-                    this.ctx.font = '10px monospace';
-                    this.ctx.fillText('LABEL', targetX - 14, targetY - 22);
+                    this.ctx.fillText("LABEL DETECTED", targetX - 20, targetY - 15);
                 }
 
-                // Draw estimated center cross
-                if (this.centerEstimate) {
-                    const cx = this.centerEstimate.x, cy = this.centerEstimate.y;
-                    this.ctx.strokeStyle = '#ffff00';
-                    this.ctx.lineWidth = 1.5;
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(cx - 10, cy); this.ctx.lineTo(cx + 10, cy);
-                    this.ctx.moveTo(cx, cy - 10); this.ctx.lineTo(cx, cy + 10);
-                    this.ctx.stroke();
-                }
-
-                // FPS counter
+                // Stats Overlay
+                const motionPct = (motionPixels / ((w * h) / (step * step))) * 100;
                 this.frameCount++;
+                const now = Date.now();
                 if (now - this.lastFpsUpdate > 1000) {
                     this.fps = this.frameCount;
                     this.frameCount = 0;
                     this.lastFpsUpdate = now;
                 }
 
-                const motionPct = (motionPixels / ((w * h) / (step * step))) * 100;
-                const revDisplay = (this.totalAngleDelta / (2 * Math.PI)).toFixed(2);
-                this.statusEl.innerText = `${this.type.toUpperCase()} | FPS:${this.fps} | REV:${revDisplay} | ${targetFound ? 'RED:YES' : 'RED:NO'}`;
-                this.statusEl.style.color = (targetFound && motionPct > 2) ? '#00ff00' : '#fff';
+                this.statusEl.innerText = `${this.type.toUpperCase()} | FPS: ${this.fps} | MOTION: ${motionPct.toFixed(1)}% | ${targetFound ? 'RED: YES' : 'RED: NO'}`;
 
-                // Push to state
-                if (this.speedHistory.length > 0) {
-                    const currentValue = this.speedHistory[this.speedHistory.length - 1];
-                    const avgValue = this.speedHistory.reduce((a, b) => a + b, 0) / this.speedHistory.length;
-                    if (this.type === 'speed') {
-                        updateState('speed', currentValue.toFixed(1));
-                        updateSpeedChart(this.speedHistory, avgValue);
-                    } else if (this.type === 'cadence') {
-                        updateState('rpm', currentValue.toFixed(0));
-                        updateCadenceChart(this.speedHistory, avgValue);
-                    }
+                // Logic Integration: Update state if motion/red detected?
+                // For now, we just log it. In a real app, this would drive RPM.
+                if (targetFound && motionPct > 5) {
+                    this.statusEl.style.color = '#00ff00';
+                } else {
+                    this.statusEl.style.color = '#fff';
                 }
             }
         }
 
         const processorA1 = new VisionProcessor('camera-feed', 'canvas-a1', 'status-a1', 'speed');
         const processorA2 = new VisionProcessor('camera-feed-2', 'canvas-a2', 'status-a2', 'cadence');
-
-        // GPX Route Mode
-        let gpxMap = null;
-        let gpxMarker = null;
-        let gpxPolyline = null;
-        let gpxStartMarker = null, gpxEndMarker = null;
-        let gpxSessionActive = false;
-        let gpxSessionTimer = null;
-        let gpxDistanceCovered = 0;   // metres covered along route
-        let gpxTotalDistance = 0;     // total route distance in metres
-
-        // Haversine distance between two lat/lon points (metres)
-        function haversine(lat1, lon1, lat2, lon2) {
-            const R = 6371000;
-            const dLat = (lat2 - lat1) * Math.PI / 180;
-            const dLon = (lon2 - lon1) * Math.PI / 180;
-            const a = Math.sin(dLat / 2) ** 2 +
-                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLon / 2) ** 2;
-            return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        }
-
-        // Compute segment slopes and cumulative distances for all GPX points
-        function enrichGPXPoints(points) {
-            // Ensure ele is a number; default 0
-            for (let p of points) p.ele = isNaN(p.ele) ? 0 : p.ele;
-
-            // Compute cumulative distance from point 0
-            points[0].cumDist = 0;
-            for (let i = 1; i < points.length; i++) {
-                const segDist = haversine(points[i - 1].lat, points[i - 1].lon, points[i].lat, points[i].lon);
-                points[i].cumDist = points[i - 1].cumDist + segDist;
-            }
-
-            // Compute slope at each point (using window of ±1 point, clamped)
-            for (let i = 0; i < points.length; i++) {
-                const prev = points[Math.max(0, i - 1)];
-                const next = points[Math.min(points.length - 1, i + 1)];
-                const hDist = haversine(prev.lat, prev.lon, next.lat, next.lon);
-                const vDiff = next.ele - prev.ele;
-                // slope % = (vertical / horizontal) * 100
-                points[i].slope = hDist > 0 ? (vDiff / hDist) * 100 : 0;
-                // Clamp to ±25%
-                points[i].slope = Math.max(-25, Math.min(25, points[i].slope));
-            }
-            return points;
-        }
-
-        // Given distance along route, find interpolated slope
-        function getSlopeAtDistance(points, dist) {
-            if (!points || points.length < 2) return 0;
-            if (dist <= 0) return points[0].slope;
-            if (dist >= points[points.length - 1].cumDist) return points[points.length - 1].slope;
-            // Binary search for segment
-            let lo = 0, hi = points.length - 1;
-            while (lo < hi - 1) {
-                const mid = (lo + hi) >> 1;
-                if (points[mid].cumDist <= dist) lo = mid; else hi = mid;
-            }
-            const t = (dist - points[lo].cumDist) / (points[hi].cumDist - points[lo].cumDist);
-            return points[lo].slope + t * (points[hi].slope - points[lo].slope);
-        }
-
-        // Find point index closest to a given cumulative distance
-        function getIndexAtDistance(points, dist) {
-            if (!points || points.length === 0) return 0;
-            let closest = 0;
-            let minDiff = Infinity;
-            for (let i = 0; i < points.length; i++) {
-                const d = Math.abs(points[i].cumDist - dist);
-                if (d < minDiff) { minDiff = d; closest = i; }
-            }
-            return closest;
-        }
-
-        // Drivetrain gear recommendation based on slope and trainer level
-        // Logic: for climbing, recommend lower (easier) gear; for descending, recommend higher gear
-        // Uses current fRing & available rear cogs to guide shifts
-        function computeGearRecommendation(slope, trainerLevel) {
-            const frontTeeth = [34, 36, 38, 39, 50, 52, 53];
-            const rearTeeth  = [11, 12, 13, 14, 15, 17, 19, 21, 23, 25, 28];
-
-            // Target ratio: slope-based ideal ratio
-            // Level modifies the "resistance felt", effectively we target a cadence-friendly ratio
-            // Higher slope → lower ratio (easier gear); higher level = more resistance, can handle higher ratio
-            // Ratio = fRing / rCog; low ratio = easier
-            // Ideal ratio heuristic: base 3.0 at 0%, decrease by ~0.15 per % slope, increase 0.1 per level above 4
-            const levelOffset = (trainerLevel - 4) * 0.1;
-            let targetRatio = 3.0 - (slope * 0.15) + levelOffset;
-            targetRatio = Math.max(1.2, Math.min(5.0, targetRatio));
-
-            // Find front + rear combo closest to target ratio
-            let bestF = state.fRing, bestR = state.rCog, bestDiff = Infinity;
-            for (const f of frontTeeth) {
-                for (const r of rearTeeth) {
-                    const ratio = f / r;
-                    const diff = Math.abs(ratio - targetRatio);
-                    if (diff < bestDiff) { bestDiff = diff; bestF = f; bestR = r; }
-                }
-            }
-
-            const currentRatio = state.fRing / state.rCog;
-            const recRatio = bestF / bestR;
-
-            let message = '', cls = 'rec-ok';
-            if (Math.abs(recRatio - currentRatio) < 0.05) {
-                message = `&#10003; Gear OK — ${bestF}/${bestR} (ratio ${recRatio.toFixed(2)})`;
-                cls = 'rec-ok';
-            } else if (recRatio < currentRatio) {
-                message = `&#8595; Shift Easier — ${bestF}/${bestR} (ratio ${recRatio.toFixed(2)})`;
-                cls = 'rec-shift-down';
-            } else {
-                message = `&#8593; Shift Harder — ${bestF}/${bestR} (ratio ${recRatio.toFixed(2)})`;
-                cls = 'rec-shift-up';
-            }
-
-            // Apply recommended gears to drivetrain display
-            state.fRing = bestF;
-            state.rCog = bestR;
-
-            return { message, cls, fRing: bestF, rCog: bestR };
-        }
-
-        function initGPXMap() {
-            if (gpxMap) return;
-            gpxMap = L.map('gpx-map').setView([0, 0], 2);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap contributors',
-                maxZoom: 18
-            }).addTo(gpxMap);
-        }
-
-        function parseGPX(gpxText) {
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(gpxText, 'text/xml');
-            if (xmlDoc.getElementsByTagName('parsererror').length) return null;
-
-            const points = [];
-            const trkpts = xmlDoc.getElementsByTagName('trkpt');
-            for (let pt of trkpts) {
-                const lat = parseFloat(pt.getAttribute('lat'));
-                const lon = parseFloat(pt.getAttribute('lon'));
-                const eleEl = pt.getElementsByTagName('ele')[0];
-                const ele = eleEl ? parseFloat(eleEl.textContent) : 0;
-                points.push({ lat, lon, ele });
-            }
-            return points.length > 0 ? points : null;
-        }
-
-        function displayGPXOnMap(points) {
-            if (!gpxMap) initGPXMap();
-
-            if (gpxPolyline) gpxMap.removeLayer(gpxPolyline);
-            if (gpxStartMarker) gpxMap.removeLayer(gpxStartMarker);
-            if (gpxEndMarker) gpxMap.removeLayer(gpxEndMarker);
-            if (gpxMarker) gpxMap.removeLayer(gpxMarker);
-
-            const coords = points.map(p => [p.lat, p.lon]);
-            gpxPolyline = L.polyline(coords, { color: '#000', weight: 2.5 }).addTo(gpxMap);
-
-            gpxStartMarker = L.circleMarker([points[0].lat, points[0].lon],
-                { radius: 6, color: '#2a7a2a', fillColor: '#2a7a2a', fillOpacity: 1, weight: 2 }).addTo(gpxMap);
-            gpxEndMarker = L.circleMarker([points[points.length - 1].lat, points[points.length - 1].lon],
-                { radius: 6, color: '#8a0010', fillColor: '#8a0010', fillOpacity: 1, weight: 2 }).addTo(gpxMap);
-
-            // Rider position marker (starts at beginning)
-            gpxMarker = L.circleMarker([points[0].lat, points[0].lon],
-                { radius: 7, color: '#000', fillColor: '#fff', fillOpacity: 1, weight: 3 }).addTo(gpxMap);
-
-            gpxMap.fitBounds(gpxPolyline.getBounds(), { padding: [10, 10] });
-        }
-
-        // Update map marker and slope overlay at given distance
-        function updateGPXMapPosition(dist) {
-            if (!state.gpxData || !gpxMap) return;
-            const pts = state.gpxData;
-            const idx = getIndexAtDistance(pts, dist);
-            state.gpxCurrentIndex = idx;
-
-            const newLatLng = [pts[idx].lat, pts[idx].lon];
-            if (gpxMarker) gpxMarker.setLatLng(newLatLng);
-            if (gpxSessionActive) gpxMap.setView(newLatLng, 15, { animate: true, duration: 0.8 });
-
-            const slope = getSlopeAtDistance(pts, dist);
-            const overlay = document.getElementById('gpx-slope-overlay');
-            overlay.style.display = 'block';
-            overlay.textContent = `SLOPE: ${slope >= 0 ? '+' : ''}${slope.toFixed(1)}%`;
-
-            const pct = gpxTotalDistance > 0 ? Math.min(100, (dist / gpxTotalDistance) * 100) : 0;
-            document.getElementById('gpx-progress-fill').style.width = pct + '%';
-            document.getElementById('gpx-bar-slope').textContent = (slope >= 0 ? '+' : '') + slope.toFixed(1) + '%';
-            document.getElementById('gpx-bar-progress').textContent = `${idx + 1}/${pts.length}`;
-            document.getElementById('gpx-bar-dist').textContent = (dist / 1000).toFixed(2) + ' km';
-        }
-
-        let gpxLastTickTime = 0;
-
-        // GPX session tick — called every ~1 second
-        function gpxSessionTick() {
-            if (!gpxSessionActive || !state.gpxData) return;
-
-            // Use actual elapsed time so distance is accurate regardless of tick drift
-            const now = Date.now();
-            const elapsedSec = gpxLastTickTime ? (now - gpxLastTickTime) / 1000 : 1;
-            gpxLastTickTime = now;
-
-            const speedMs = state.speed / 3.6;
-            gpxDistanceCovered += speedMs * elapsedSec;
-
-            if (gpxDistanceCovered >= gpxTotalDistance) {
-                gpxDistanceCovered = gpxTotalDistance;
-                stopGPXSession();
-                document.getElementById('gpx-status').innerText = 'Route completed!';
-                return;
-            }
-
-            // Read slope at current position
-            const slope = getSlopeAtDistance(state.gpxData, gpxDistanceCovered);
-
-            // Update grade in state — magLevel stays locked
-            state.grade = Math.max(0, slope); // use positive slope as grade input (trainer is resistance)
-            // Note: we keep state.magLevel unchanged (locked to confirmed level)
-
-            // Update map position
-            updateGPXMapPosition(gpxDistanceCovered);
-
-            // Gear recommendation
-            const rec = computeGearRecommendation(slope, state.gpxTrainerLevel);
-            const recEl = document.getElementById('gpx-gear-rec');
-            recEl.innerHTML = `<span class="${rec.cls}">${rec.message}</span>`;
-            recEl.classList.add('visible');
-
-            // Render (updates drivetrain display with recommended gears, and grade)
-            render();
-        }
-
-        function startGPXSession() {
-            if (!state.gpxData || !state.gpxMode) return;
-            gpxSessionActive = true;
-            gpxDistanceCovered = 0;
-            gpxLastTickTime = 0;
-            document.getElementById('btn-start-gpx-session').style.display = 'none';
-            document.getElementById('btn-stop-gpx-session').style.display = 'inline-block';
-            document.getElementById('btn-gpx-record').style.display = 'inline-block';
-            document.getElementById('gpx-session-bar').classList.add('active');
-            document.getElementById('gpx-bar-level').textContent = state.gpxTrainerLevel;
-            document.getElementById('gpx-status').innerText = 'GPX Session running…';
-            updateGPXMapPosition(0);
-            gpxSessionTimer = setInterval(gpxSessionTick, 1000);
-        }
-
-        function stopGPXSession() {
-            // Stop any active GPX recording first
-            if (gpxRecordingActive) stopGPXRecording();
-            gpxSessionActive = false;
-            clearInterval(gpxSessionTimer);
-            document.getElementById('btn-start-gpx-session').style.display = 'inline-block';
-            document.getElementById('btn-stop-gpx-session').style.display = 'none';
-            document.getElementById('btn-gpx-record').style.display = 'none';
-            document.getElementById('gpx-session-bar').classList.remove('active');
-        }
-
-        // GPX Session Recording 
-        let gpxRecordingActive = false;
-        let gpxRecordingTimer, gpxRecordingStartTime;
-        let gpxRecordingTimerInterval;
-        let gpxRecordedData = [], gpxRecordedPoints = [];
-        let gpxRecCumulativeDist = 0, gpxRecElevGain = 0, gpxRecPrevEle = 0;
-        let gpxRecLastTime = 0;
-        const GPX_REC_INTERVAL = 5000;
-
-        function startGPXRecording() {
-            gpxRecordingActive = true;
-            gpxRecordingStartTime = Date.now();
-            gpxRecordedData = [];
-            gpxRecordedPoints = [];
-            gpxRecCumulativeDist = 0;
-            gpxRecElevGain = 0;
-            gpxRecLastTime = 0;
-
-            // Seed first point from current GPX position
-            const pts = state.gpxData;
-            const idx = state.gpxCurrentIndex;
-            gpxRecPrevEle = pts[idx] ? pts[idx].ele : 0;
-            gpxRecordedPoints.push({
-                lat: pts[idx].lat, lon: pts[idx].lon,
-                ele: gpxRecPrevEle, timestamp: new Date()
-            });
-
-            document.getElementById('btn-gpx-record').style.display = 'none';
-            document.getElementById('btn-gpx-stop-record').style.display = 'inline-block';
-            document.getElementById('btn-gpx-export').style.display = 'none';
-            document.getElementById('gpx-rec-stats').style.display = 'block';
-            document.getElementById('gpx-rec-time').innerText = '00:00:00';
-
-            // Live timer
-            gpxRecordingTimerInterval = setInterval(() => {
-                if (!gpxRecordingActive) return;
-                const elapsed = Math.floor((Date.now() - gpxRecordingStartTime) / 1000);
-                const h = String(Math.floor(elapsed / 3600)).padStart(2, '0');
-                const m = String(Math.floor((elapsed % 3600) / 60)).padStart(2, '0');
-                const s = String(elapsed % 60).padStart(2, '0');
-                document.getElementById('gpx-rec-time').innerText = `${h}:${m}:${s}`;
-            }, 1000);
-
-            // Data point sampler
-            gpxRecordingTimer = setInterval(() => {
-                if (!gpxRecordingActive || !state.gpxData) return;
-                const currentTime = Date.now();
-                const timeDelta = gpxRecLastTime === 0
-                    ? GPX_REC_INTERVAL / 1000
-                    : (currentTime - gpxRecLastTime) / 1000;
-                gpxRecLastTime = currentTime;
-
-                const pts = state.gpxData;
-                const idx = state.gpxCurrentIndex;
-                const pt = pts[idx];
-                const v = state.speed / 3.6;
-
-                gpxRecCumulativeDist += v * timeDelta;
-                const currentEle = pt ? pt.ele : 0;
-                const eleChange = currentEle - gpxRecPrevEle;
-                if (eleChange > 0) gpxRecElevGain += eleChange;
-                gpxRecPrevEle = currentEle;
-
-                const elapsed = (currentTime - gpxRecordingStartTime) / 1000;
-                const timestamp = new Date(gpxRecordingStartTime + elapsed * 1000);
-
-                gpxRecordedData.push({
-                    timestamp: timestamp.toISOString(),
-                    speed: state.speed, rpm: state.rpm,
-                    power: Math.round(
-                        (state.mass * 9.81 * v * (state.grade / 100)) +
-                        (state.mass * 9.81 * v * 0.004) +
-                        (0.5 * 1.225 * 0.88 * ((state.width / 100) * (0.75 * (state.height / 100))) * Math.pow(v, 3))
-                    ),
-                    grade: state.grade, magLevel: state.magLevel,
-                    fRing: state.fRing, rCog: state.rCog,
-                    ftp: state.ftp, mass: state.mass
-                });
-
-                if (pt) {
-                    gpxRecordedPoints.push({
-                        lat: pt.lat, lon: pt.lon,
-                        ele: currentEle, timestamp
-                    });
-                }
-
-                document.getElementById('gpx-rec-points').innerText = gpxRecordedPoints.length;
-                document.getElementById('gpx-rec-distance').innerText = (gpxRecCumulativeDist / 1000).toFixed(2) + ' km';
-                document.getElementById('gpx-rec-elevation').innerText = Math.round(gpxRecElevGain) + ' m';
-            }, GPX_REC_INTERVAL);
-        }
-
-        function stopGPXRecording() {
-            gpxRecordingActive = false;
-            clearInterval(gpxRecordingTimer);
-            clearInterval(gpxRecordingTimerInterval);
-            document.getElementById('btn-gpx-record').style.display = 'inline-block';
-            document.getElementById('btn-gpx-stop-record').style.display = 'none';
-            if (gpxRecordedPoints.length >= 2) {
-                document.getElementById('btn-gpx-export').style.display = 'inline-block';
-            }
-        }
-
-        function exportGPXRecording() {
-            if (gpxRecordedPoints.length < 2) { alert('Not enough recorded points to export.'); return; }
-            let gpxXml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-            gpxXml += '<gpx version="1.1" creator="MAG-500 Trainer App" ';
-            gpxXml += 'xmlns="http://www.topografix.com/GPX/1/1" ';
-            gpxXml += 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ';
-            gpxXml += 'xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">\n';
-            gpxXml += '  <metadata>\n';
-            gpxXml += `    <time>${new Date(gpxRecordingStartTime).toISOString()}</time>\n`;
-            gpxXml += '    <n>MAG-500 GPX Route Session</n>\n';
-            gpxXml += `    <desc>GPX route session with ${gpxRecordedData.length} data points</desc>\n`;
-            gpxXml += '  </metadata>\n';
-            gpxXml += '  <trk>\n    <n>GPX Route Track</n>\n    <trkseg>\n';
-            for (const pt of gpxRecordedPoints) {
-                gpxXml += `      <trkpt lat="${pt.lat.toFixed(7)}" lon="${pt.lon.toFixed(7)}">\n`;
-                gpxXml += `        <ele>${pt.ele.toFixed(1)}</ele>\n`;
-                gpxXml += `        <time>${pt.timestamp.toISOString()}</time>\n`;
-                gpxXml += '      </trkpt>\n';
-            }
-            gpxXml += '    </trkseg>\n  </trk>\n</gpx>\n';
-            const blob = new Blob([gpxXml], { type: 'application/gpx+xml' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            const ts = new Date(gpxRecordingStartTime).toISOString().replace(/[:.]/g, '-');
-            a.href = url; a.download = `gpx_session_${ts}.gpx`;
-            document.body.appendChild(a); a.click();
-            document.body.removeChild(a); URL.revokeObjectURL(url);
-            // Reset after export
-            gpxRecordedData = []; gpxRecordedPoints = [];
-            gpxRecCumulativeDist = 0; gpxRecElevGain = 0; gpxRecLastTime = 0;
-            document.getElementById('gpx-rec-time').innerText = '00:00:00';
-            document.getElementById('gpx-rec-points').innerText = '0';
-            document.getElementById('gpx-rec-distance').innerText = '0.0 km';
-            document.getElementById('gpx-rec-elevation').innerText = '0 m';
-            document.getElementById('btn-gpx-export').style.display = 'none';
-            document.getElementById('gpx-rec-stats').style.display = 'none';
-        }
-
-        document.getElementById('btn-gpx-record').addEventListener('click', startGPXRecording);
-        document.getElementById('btn-gpx-stop-record').addEventListener('click', stopGPXRecording);
-        document.getElementById('btn-gpx-export').addEventListener('click', exportGPXRecording);
-
-        document.getElementById('btn-load-gpx').addEventListener('click', () => {
-            const file = document.getElementById('gpx-file-input').files[0];
-            if (!file) { alert('Please select a GPX file'); return; }
-
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const gpxText = e.target.result;
-                let points = parseGPX(gpxText);
-                if (!points) { alert('Invalid GPX file'); return; }
-
-                points = enrichGPXPoints(points);
-                state.gpxData = points;
-                state.gpxCurrentIndex = 0;
-                state.gpxMode = false;
-                gpxTotalDistance = points[points.length - 1].cumDist;
-                gpxDistanceCovered = 0;
-
-                if (!gpxMap) initGPXMap();
-                displayGPXOnMap(points);
-
-                document.getElementById('gpx-level-selector').style.display = 'flex';
-                document.getElementById('gpx-session-controls').style.display = 'none';
-                document.getElementById('btn-confirm-level').disabled = false;
-                document.getElementById('gpx-level-select').disabled = false;
-                document.getElementById('gpx-status').innerText =
-                    `Loaded ${points.length} pts — ${(gpxTotalDistance / 1000).toFixed(2)} km`;
-            };
-            reader.readAsText(file);
-        });
-
-        document.getElementById('btn-confirm-level').addEventListener('click', () => {
-            const level = parseInt(document.getElementById('gpx-level-select').value);
-            state.gpxTrainerLevel = level;
-            state.magLevel = level;  // set initial mag level to match
-            state.gpxMode = true;
-            document.getElementById('btn-confirm-level').disabled = true;
-            document.getElementById('gpx-level-select').disabled = true;
-            document.getElementById('gpx-session-controls').style.display = 'flex';
-            document.getElementById('gpx-status').innerText =
-                `Level ${level} confirmed — Level locked. Ready to start.`;
-        });
-
-        document.getElementById('btn-start-gpx-session').addEventListener('click', startGPXSession);
-        document.getElementById('btn-stop-gpx-session').addEventListener('click', stopGPXSession);
-
-        document.getElementById('btn-reset-gpx').addEventListener('click', () => {
-            stopGPXSession(); // also stops recording via stopGPXSession
-            state.gpxMode = false;
-            state.gpxData = null;
-            state.gpxTrainerLevel = null;
-            gpxDistanceCovered = 0;
-            gpxTotalDistance = 0;
-            gpxRecordedData = []; gpxRecordedPoints = [];
-            gpxRecCumulativeDist = 0; gpxRecElevGain = 0; gpxRecLastTime = 0;
-            document.getElementById('gpx-level-selector').style.display = 'none';
-            document.getElementById('gpx-session-controls').style.display = 'none';
-            document.getElementById('gpx-session-bar').classList.remove('active');
-            document.getElementById('gpx-gear-rec').classList.remove('visible');
-            document.getElementById('gpx-slope-overlay').style.display = 'none';
-            document.getElementById('gpx-progress-fill').style.width = '0%';
-            document.getElementById('gpx-rec-stats').style.display = 'none';
-            document.getElementById('gpx-rec-time').innerText = '00:00:00';
-            document.getElementById('gpx-rec-points').innerText = '0';
-            document.getElementById('gpx-rec-distance').innerText = '0.0 km';
-            document.getElementById('gpx-rec-elevation').innerText = '0 m';
-            document.getElementById('btn-gpx-export').style.display = 'none';
-            document.getElementById('gpx-status').innerText = '';
-            document.getElementById('gpx-file-input').value = '';
-            if (gpxPolyline) { gpxMap.removeLayer(gpxPolyline); gpxPolyline = null; }
-            if (gpxStartMarker) { gpxMap.removeLayer(gpxStartMarker); gpxStartMarker = null; }
-            if (gpxEndMarker) { gpxMap.removeLayer(gpxEndMarker); gpxEndMarker = null; }
-            if (gpxMarker) { gpxMap.removeLayer(gpxMarker); gpxMarker = null; }
-            if (gpxMap) gpxMap.setView([0, 0], 2);
-        });
-
-        // Speed Chart
-        let speedChart = null;
-        function initSpeedChart() {
-            const ctx = document.getElementById('speed-chart-canvas').getContext('2d');
-            speedChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: [],
-                    datasets: [
-                        {
-                            label: 'Speed (km/h)',
-                            data: [],
-                            borderColor: '#000',
-                            backgroundColor: 'rgba(0, 0, 0, 0.05)',
-                            borderWidth: 1.5,
-                            tension: 0.3,
-                            fill: true,
-                            pointRadius: 0,
-                            pointHoverRadius: 3
-                        },
-                        {
-                            label: 'Moving Average',
-                            data: [],
-                            borderColor: '#8a0010',
-                            borderWidth: 2,
-                            borderDash: [5, 5],
-                            fill: false,
-                            pointRadius: 0,
-                            pointHoverRadius: 3
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    interaction: { mode: 'index', intersect: false },
-                    plugins: {
-                        legend: {
-                            display: true,
-                            labels: { font: { size: 10 }, padding: 8, boxWidth: 12 }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100,
-                            title: { display: true, text: 'Speed (km/h)', font: { size: 10 } },
-                            ticks: { font: { size: 9 }, maxTicksLimit: 5 },
-                            grid: { drawBorder: false, color: '#e0e0e0' }
-                        },
-                        x: {
-                            title: { display: true, text: 'Time', font: { size: 10 } },
-                            ticks: { font: { size: 9 }, maxTicksLimit: 5 },
-                            grid: { display: false }
-                        }
-                    }
-                }
-            });
-        }
-
-        function updateSpeedChart(speedHistory, avgSpeed) {
-            if (!speedChart) return;
-            
-            // Keep last 60 points
-            const maxPoints = 60;
-            const recentHistory = speedHistory.slice(-maxPoints);
-            
-            speedChart.data.labels = recentHistory.map((_, i) => `${i}s`);
-            speedChart.data.datasets[0].data = recentHistory;
-            
-            // Moving average line
-            speedChart.data.datasets[1].data = recentHistory.map(() => avgSpeed);
-            
-            // Update display
-            document.getElementById('speed-display').innerText = 
-                recentHistory[recentHistory.length - 1]?.toFixed(1) || '0.0';
-            document.getElementById('speed-avg-display').innerText = avgSpeed.toFixed(1);
-            
-            speedChart.update('none');
-        }
-
-        // Cadence Chart
-        let cadenceChart = null;
-        function initCadenceChart() {
-            const ctx = document.getElementById('cadence-chart-canvas').getContext('2d');
-            cadenceChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: [],
-                    datasets: [
-                        {
-                            label: 'Cadence (RPS)',
-                            data: [],
-                            borderColor: '#000',
-                            backgroundColor: 'rgba(0, 0, 0, 0.05)',
-                            borderWidth: 1.5,
-                            tension: 0.3,
-                            fill: true,
-                            pointRadius: 0,
-                            pointHoverRadius: 3
-                        },
-                        {
-                            label: 'Moving Average',
-                            data: [],
-                            borderColor: '#1a4a8a',
-                            borderWidth: 2,
-                            borderDash: [5, 5],
-                            fill: false,
-                            pointRadius: 0,
-                            pointHoverRadius: 3
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    interaction: { mode: 'index', intersect: false },
-                    plugins: {
-                        legend: {
-                            display: true,
-                            labels: { font: { size: 10 }, padding: 8, boxWidth: 12 }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 5,
-                            title: { display: true, text: 'Cadence (RPS)', font: { size: 10 } },
-                            ticks: { font: { size: 9 }, maxTicksLimit: 5 },
-                            grid: { drawBorder: false, color: '#e0e0e0' }
-                        },
-                        x: {
-                            title: { display: true, text: 'Time', font: { size: 10 } },
-                            ticks: { font: { size: 9 }, maxTicksLimit: 5 },
-                            grid: { display: false }
-                        }
-                    }
-                }
-            });
-        }
-
-        function updateCadenceChart(cadenceHistory, avgCadence) {
-            if (!cadenceChart) return;
-            
-            // Keep last 60 points
-            const maxPoints = 60;
-            const recentHistory = cadenceHistory.slice(-maxPoints);
-            
-            cadenceChart.data.labels = recentHistory.map((_, i) => `${i}s`);
-            cadenceChart.data.datasets[0].data = recentHistory;
-            
-            // Moving average line
-            cadenceChart.data.datasets[1].data = recentHistory.map(() => avgCadence);
-            
-            // Update display
-            document.getElementById('cadence-display').innerText = 
-                (recentHistory[recentHistory.length - 1] || 0).toFixed(2);
-            document.getElementById('cadence-avg-display').innerText = avgCadence.toFixed(2);
-            
-            // Dynamically adjust y-axis max based on detected cadence
-            const maxCadence = Math.max(...recentHistory, 0.5);
-            const yAxisMax = Math.ceil(maxCadence * 1.2); // Add 20% padding above max
-            cadenceChart.options.scales.y.max = yAxisMax;
-            
-            cadenceChart.update('none');
-        }
 
         // Init buttons
         function init() {
@@ -2233,11 +1348,7 @@
             document.getElementById('btn-record').style.display = 'inline-block';
         });
 
-        window.onload = () => {
-            init();
-            initSpeedChart();
-            initCadenceChart();
-        };
+        window.onload = init;
     </script>
 </body>
 
