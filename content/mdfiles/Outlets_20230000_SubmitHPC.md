@@ -23,4 +23,4 @@ ${CALL_COMSOL_AS} batch -mpibootstrap slurm \
     ${COMSOL_METHOD_}
 ```
 
-![HPC Job Management Tools](images/tool_SubmitHPC.png)
+![HPC Job Management Tools](assets/tool_SubmitHPC.png)

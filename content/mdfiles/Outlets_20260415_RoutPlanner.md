@@ -6,8 +6,6 @@ A **web app** that takes a **color-coded pattern image** (e.g., a design, logo o
 
 **Note:** To run the **`.html`** app **locally**, you need to intiiate a **server** first. To do so, open **terminal** and run **`python -m http.server 8000`** in the folder where the file is saved. Then use this link: **`http://localhost:8000/_RoutPlanner.html`**. 
 
-![RoutPlanner_App](images/tool_RoutPlanner.png)
-
 This app was originally written as an ipython notebook. 
 
 - **Access** the **original ipython notebook** [**here**](tools/RoutPlanner.ipynb). 
@@ -42,3 +40,5 @@ Here is what it does:
 - **Color range definitions** use single-unit HSV hue bins (e.g., H=3 for yellow) that are very narrow and may need widening in `color_ranges` if the pattern image uses slightly off-hue colors.
 - The **nearest-neighbor pixel ordering** is an O(n²) algorithm, and for large or high-resolution images with many boundary pixels, this step can be slow.
 - The **GPX output does not snap to streets** always.
+
+![RoutPlanner_App](assets/tool_RoutPlanner.png)

@@ -14,4 +14,4 @@ Features:
 - **Rider Profile:** Defaults are FTP 250W, Mass 85kg, Height 178cm, Shoulder Width 31cm.
 - **Recording:** Can record a simulated workout and export a GPX file readable by other cycling apps such as Strava.
 
-![Bike Trainer Dashboard](images/tool_BikeTrainer.png)
+![Bike Trainer Dashboard](assets/tool_BikeTrainer.png)

@@ -6,4 +6,4 @@ An **interactive browser-based tool** for **parametric design** and **3D visuali
 
 - **Access** the tool [**here**](tools/Nanotube.html).
 
-![Nanochannel Builder and Mesher](images/tool_Nanotube.png)
+![Nanochannel Builder and Mesher](assets/tool_Nanotube.png)

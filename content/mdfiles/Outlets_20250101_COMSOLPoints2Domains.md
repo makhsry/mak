@@ -6,4 +6,4 @@ The point cloud data are generated using the **`python`** script that projects a
 - **Access** Java script from [**here**](tools/COMSOLPoints2Domains.java). 
 - **Access** Python script from [**here**](tools/COMSOLPoints2Domains.py). 
 
-![Creating COMSOL-native Domains from Mesh Points Cloud Data](images/tool_COMSOLPoints2Domains.png)
+![Creating COMSOL-native Domains from Mesh Points Cloud Data](assets/tool_COMSOLPoints2Domains.png)

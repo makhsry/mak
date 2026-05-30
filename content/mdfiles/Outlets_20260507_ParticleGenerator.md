@@ -4,4 +4,4 @@ An **interactive browser-based tool** for **particle-filled geometry generation*
 
 - **Access** the tool [**here**](tools/ParticleGenerator.html).
 
-![Particle Generator and Mesher](images/tool_ParticleGenerator.png)
+![Particle Generator and Mesher](assets/tool_ParticleGenerator.png)

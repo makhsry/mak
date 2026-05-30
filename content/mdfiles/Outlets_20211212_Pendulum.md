@@ -4,4 +4,4 @@ This is a **web app** to visualize the complex, non-linear dynamics of a **pendu
 
 - **Access** the tool [**here**](tools/Pendulum.html).
 
-![Pendulum Dynamics Analyzer](images/tool_Pendulum.png)
+![Pendulum Dynamics Analyzer](assets/tool_Pendulum.png)
