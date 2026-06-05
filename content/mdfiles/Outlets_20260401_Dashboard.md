@@ -14,3 +14,7 @@ It also has a sidebar **assistant** powered by **Puter.ai** that sees current co
 3.  **Access the dashboard** by opening browser and navigating to **`http://localhost:8000/FILENAME.html`**.
 
 ![An Interactive Local Python Notebook (PyCompute + Puter.js)](assets/tool_Dashboard.png)
+
+Alternatively, you can use this fine **Data Fitting Tool** from [**here**](tools/DataFitting.html).
+
+![A Data Fitting Tool](assets/tool_DataFitting.png)
