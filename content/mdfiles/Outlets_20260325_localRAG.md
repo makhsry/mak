@@ -26,6 +26,7 @@ langchain
 langchain-community
 langchain-core
 langchain-ollama
+langchain-chroma
 chromadb
 python-dotenv
 langchain-unstructured
