@@ -1,8 +1,8 @@
 ## Experiences
 
 - Simulation Module Development Lead (2026: Jan - _Present_)
-- Materials Handling (2025 Sept. - 2025 Dec.)
 - Mineral Process Engineer (2025 Sept. - 2025 Dec.)
+- Materials Handling (2025 Sept. - 2025 Dec.)
 - Mineral Process Engineer (2024 Sept. - 2024 Dec.)
 - Canada West Coordinator (2023 Sept. - 2024 Sept.)
 - Mineral Process Control Engineer (2023 Sept. - 2023 Dec.)
