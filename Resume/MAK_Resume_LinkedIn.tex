@@ -1,0 +1,422 @@
+\documentclass[11pt, letterpaper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet} 
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{graphicx}
+%\usepackage[demo]{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{paracol}
+\columnratio{0.25} % Sets the left column to take up 25% of the width
+\setlength{\columnsep}{0.02\textwidth}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{parskip}
+
+% Color Definitions (LinkedIn style)
+\definecolor{linkblue}{HTML}{0A66C2}
+\definecolor{textgray}{HTML}{666666}
+\definecolor{lightgray}{HTML}{F3F2EF}
+\definecolor{bordergray}{HTML}{E0E0E0}
+
+\hypersetup{
+	colorlinks=true, 
+	linkcolor=linkblue, 
+	urlcolor=linkblue
+}
+
+% Asset Directory
+\graphicspath{{assets/}}
+
+% Custom Commands for Modular Layout
+
+% Section Header
+\titleformat{\section}{\Large\bfseries\color{black}}{}{0em}{}[\vspace{-0.5em}\rule{\textwidth}{0.5pt}]
+
+% 1. Experience Item Command
+\newcommand{\experienceItem}[6]{%
+	\noindent
+	\begin{minipage}[t]{0.12\textwidth}
+		\vspace{0pt}
+		\includegraphics[width=1.2cm, height=1.2cm, keepaspectratio]{#1}
+	\end{minipage}%
+	\begin{minipage}[t]{0.88\textwidth}
+		\vspace{0pt}
+		\textbf{\large #2} \\[0.1em]{#3} \\[0.1em]
+		\textcolor{textgray}{\small #4} \\[0.1em]
+		\textcolor{textgray}{\small #5}\ifx&#6&%
+		\else
+		\\[0.5em] \small #6
+		\fi
+	\end{minipage}
+	\vspace{1.2em}
+}
+
+% 2. Education Item Command
+\newcommand{\educationItem}[4]{%
+	\noindent
+	\begin{minipage}[t]{0.12\textwidth}
+		\vspace{0pt}
+		\includegraphics[width=1.2cm, height=1.2cm, keepaspectratio]{#1}
+	\end{minipage}%
+	\begin{minipage}[t]{0.88\textwidth}
+		\vspace{0pt}
+		\textbf{\large #2} \\[0.1em]
+		{#3} \\[0.1em]	\textcolor{textgray}{\small #4}
+	\end{minipage}
+	\vspace{1.2em}
+}
+
+% 3. Project Item Command (dynamic)
+\newcommand{\projectItem}[6]{%
+	\ifx&#1&% --- IF NO MAIN IMAGE IS PROVIDED ---
+	\noindent\textbf{\large #2} \\[0.5em]
+	\textbf{Summary}\\ \small #3 
+	
+	% Check for Tasks
+	\ifx&#4&%
+	\else
+	\par\vspace{0.5em}\noindent\textbf{Tasks Performed}\par \small #4 
+	\fi
+	
+	% Check for Small Logo & Association
+	\ifx&#5&%
+	\else
+	\par\vspace{0.5em}
+	\noindent\includegraphics[width=0.4cm, height=0.4cm, keepaspectratio]{#5} \textcolor{textgray}{\footnotesize Associated with #6}
+	\fi
+	\vspace{2em}
+	
+	\else% --- IF MAIN IMAGE IS PROVIDED ---
+	\begin{paracol}{2}
+		% Left Column: Image
+		\noindent
+		\includegraphics[width=\linewidth]{#1}
+		
+		\switchcolumn
+		
+		% Right Column: Text
+		\noindent\textbf{\large #2} \\[0.5em]
+		\textbf{Summary}\\ \small #3 
+		
+		% Check for Tasks
+		\ifx&#4&%
+		\else
+		\par\vspace{0.5em}\noindent\textbf{Tasks Performed}\par \small #4 
+		\fi
+		
+		% Check for Small Logo & Association
+		\ifx&#5&%
+		\else
+		\par\vspace{0.5em}
+		\noindent\includegraphics[width=0.4cm, height=0.4cm, keepaspectratio]{#5} \textcolor{textgray}{\footnotesize Associated with #6}
+		\fi
+	\end{paracol}
+	\vspace{2em}
+	\fi
+}
+
+\begin{document}
+	
+	% HEADER 
+	\noindent
+	\begin{minipage}[c]{0.2\textwidth}
+		% Profile Picture: profile.jpg
+		\includegraphics[width=3cm, height=3cm, keepaspectratio]{qrcode_www.linkedin.com.png} %
+	\end{minipage}%
+	\begin{minipage}[c]{0.8\textwidth}
+		{\Huge \textbf{Milad Asgarpour Khansary}} \\[0.3em] %
+		{\Large Process Engineering} \\[0.3em] 
+		\textcolor{textgray}{Vancouver, British Columbia, Canada}
+		\\
+		\textcolor{textgray}{Email: \href{mailto:miladasgarpour@gmail.com}{miladasgarpour@gmail.com}}
+		\\
+		\textcolor{textgray}{Phone: \href{https:// }{604-762-6875}}
+		\\ 
+		\textcolor{textgray}{GitHub: \href{https://github.com/makhsry/mak}{@makhsry}} 
+	\end{minipage}
+	\vspace{1em}
+	
+	% ABOUT
+	\section*{About}
+	Working on designing, analyzing, and improving large-scale systems with the help of simulations, virtual environments, and data tools. 
+	
+	\vspace{0.5em}
+	\noindent\textbf{Top skills:} Process Engineering (Chemical \& Mining) $\cdot$ Computational Materials (Chemistry \& Physics) 
+	\vspace{1em}
+	
+	% EXPERIENCE 
+	\section*{Experience}
+	
+	\experienceItem{aurelsystems.jpg}%
+	{Simulation Module Development Lead}%
+	{\href{https://www.linkedin.com/company/aurelsystems/}{Aurel Systems Inc.}}%
+	{Jan 2026 - Present}%
+	{Vancouver, British Columbia, Canada}%
+	{}
+	
+	\experienceItem{ubc-mining.jpg}%
+	{Mining Engineering Research Assistant}%
+	{\href{https://mining.ubc.ca/}{UBC Norman B. Keevil Institute of Mining Engineering}}%
+	{Jan 2023 - Dec 2025}%
+	{Vancouver, British Columbia, Canada}%
+	{}
+	
+	\experienceItem{ubc-chbe.jpg}%
+	{Chemical Engineering Research Assistant}%
+	{\href{https://chbe.ubc.ca/}{UBC Chemical \& Biological Engineering}}%
+	{May 2022 - Dec 2022}%
+	{Vancouver, British Columbia, Canada}%
+	{}
+	
+	\experienceItem{ul.jpg}%
+	{Process Engineering (\href{https://marie-sklodowska-curie-actions.ec.europa.eu/actions}{Marie Sklodowska-Curie Postdoctoral Fellowship})}%
+	{\href{https://www.ul.ie/bernal}{Bernal Institute}, \href{https://www.ul.ie}{University of Limerick}}%
+	{Oct 2019 - May 2022}%
+	{Limerick, County Limerick, Ireland}%
+	{}
+	
+	\experienceItem{skoltech.jpg}%
+	{Research Internship}%
+	{\href{https://www.skoltech.ru/en/}{Skolkovo Institute of Science and Technology}}%
+	{May 2018 - Oct 2018}%
+	{Moscow, Moscow City, Russia}%
+	{}
+	
+	\experienceItem{cityuhk.jpg}%
+	{Research Assistant}%
+	{\href{https://www.cityu.edu.hk/en}{City University of Hong Kong}}%
+	{Nov 2017 - May 2018}%
+	{Hong Kong, Hong Kong SAR}%
+	{}
+	
+	\experienceItem{iopcas.jpg}%
+	{Visiting Researcher}%
+	{\href{https://english.iop.cas.cn/}{Institute of Physics \& Beijing National Lab for Condensed Matter Physics}, \href{https://english.cas.cn/}{Chinese Academy of Sciences}}%
+	{Sep 2017 - Nov 2017}%
+	{Beijing, China}%
+	{}
+	
+	\experienceItem{ripi.jpg}%
+	{Summer Internship}%
+	{\href{https://www.ripi.ir/home-eng-2/}{Research Institute of Petroleum Industry (RIPI)}}%
+	{Jul 2011 - Aug 2011}%
+	{Tehran, Tehran Province, Iran}%
+	{}
+	
+	% EDUCATION 
+	\section*{Education}
+	
+	\educationItem{ubc.jpg}%
+	{\href{https://www.ubc.ca/}{The University of British Columbia}}%
+	{Master's degree, Mining Engineering}%
+	{Jan 2023 - Dec 2025}%
+	
+	\educationItem{ut.jpg}%
+	{\href{https://ut.ac.ir/fa}{University of Tehran}}%
+	{Master's degree, Chemical Engineering (Processes Design)}%
+	{Sep 2012 - Sep 2014}%
+	
+	\educationItem{ut.jpg}%
+	{\href{https://ut.ac.ir/fa}{University of Tehran}}%
+	{Bachelor's degree, Chemical Engineering}%
+	{Sep 2007 - Sep 2011}%
+	
+	% PROJECTS 
+	\section*{Projects}
+	
+	\projectItem{ubc-mining-ra.jpg}%
+	{Microwave Drying of Minerals: Experimental and Numerical Modeling}%
+	{Retrofitting of conventional drying unit operations at a local industrial mining partner. Inspected and evaluated - experimentally and numerically (via Finite Element Modeling in COMSOL) - the feasibility and applicability of microwave-based heating systems at a local mining industrial partner for the retrofitting of conventional drying unit operations.}%
+	{
+		\begin{itemize}[leftmargin=1em, nosep]
+			\item Conducted experimental and numerical analysis of mineral drying behavior under microwave exposure.
+			\item Utilized finite element modeling (FEM) to simulate heat and mass transfer during drying at various microwave power levels and mineral types.
+			\item Conducted comprehensive energy demand analysis to evaluate potential savings compared to traditional kiln operations.
+		\end{itemize}
+	}%
+	{ubc-mining.jpg}%
+	{\href{https://mining.ubc.ca/}{UBC Norman B. Keevil Institute of Mining Engineering}}	
+	
+	\projectItem{ubc-chbe-ra.jpg}%
+	{Nanocavitation and its Mitigation in Fabricating Artificial Trees}%
+	{Investigated nanoscale water flow mechanisms to reduce nanobubble formation and ensure stable, uninterrupted transport in nonporous channels-critical for enhancing efficiency in advanced evaporative cooling systems.}%
+	{
+		\begin{itemize}[leftmargin=1em, nosep]
+			\item Conducted an in-depth literature review to establish design principles for self-driven water transport at the nanoscale.
+			\item Developed algorithms to quantitatively assess the impact of surface hydrophilicity on nanobubble nucleation and stability.
+			\item Created custom computational routines for high-throughput molecular dynamics (MD) simulations using LAMMPS, tailored for complex fluid-surface interactions.
+			\item Compiled and optimized LAMMPS on UBC's Sockeye HPC environment for scalable, in-house simulation workflows.
+			\item Extended LAMMPS functionality with custom C++ modules to meet unique research needs in nanoscale flow modeling.
+			\item Implemented post-processing scripts in Python for automated extraction and visualization of simulation results, including pressure profiles, density distributions, and flow characteristics.
+			\item Collaborated with a multidisciplinary team to validate simulation results against theoretical models and experimental data, enhancing cross-domain communication and interpretation.
+		\end{itemize}
+	}%
+	{ubc-chbe.jpg}%
+	{\href{https://chbe.ubc.ca/}{UBC Chemical \& Biological Engineering}}	
+	
+	\projectItem{ul-ra.jpg}%
+	{Fluid Bed Spray Dryer Process Monitoring and Engineering}%
+	{Designed and implemented a data-driven graphical user interface for real-time monitoring and optimization of a fluid bed spray drying process by integrating in-line/offline sensor data streams and advanced analytics into an interactive platform.}%
+	{
+		\begin{itemize}[leftmargin=1em, nosep]
+			\item Developed an interactive graphical user interface (GUI) in MATLAB for realtime data visualization and diagnostics, supporting both in-line and offline sensor data integration.
+			\item Integrated and processed diverse sensor types including CCD camera feeds (image-based analysis), NIR sensors (unlabeled time-series), Raman spectroscopy probes (localized unstructured signals), and valve states (binary control signals).
+			\item Performed extensive data preprocessing and cleansing to handle high-dimensional and heterogeneous datasets with missing values and sensor noise.
+			\item Applied pattern recognition and signal analysis techniques to identify operational trends, detect anomalies, and support process optimization.
+			\item Designed pipelines for real-time data ingestion and synchronization from multiple sensor sources, ensuring temporal alignment and reliable analytics under dynamic plant conditions.
+			\item Collaborated with process engineers and control specialists to translate sensor insights into actionable process improvements and control strategies.
+		\end{itemize}
+	}%
+	{ul.jpg}%
+	{\href{https://www.ul.ie/bernal}{Bernal Institute}, \href{https://www.ul.ie}{University of Limerick}}	
+	
+	\projectItem{ul-pd.jpg}%
+	{Continuous Cocrystalization via Hot Melt Extrusion in Pharmaceuticals}%
+	{Developed a data-driven digital twin framework to address low-yield challenges in continuous crystallization, aiming to enhance product quality, optimize production, and reduce waste and operational costs in pharmaceutical manufacturing.}%
+	{
+		\begin{itemize}[leftmargin=1em, nosep]
+			\item Conducted detailed root-cause analysis of unit operations to identify inefficiencies affecting yield and product purity in continuous crystallization systems.
+			\item Evaluated the influence of critical process parameters-temperature, residence time, screw configuration, and rotation speed-on crystallization outcomes, using both experimental data and simulation insights.
+			\item Designed and refined process strategies to maximize desired product formation, suppress by-product generation, and reduce procurement and disposal costs.
+			\item Built a digital twin using advanced data analytics and implemented a machine learning-based process controller, integrating both real-time (in-line) \& historical (offline) sensor data streams - Raman spectroscopy.
+			\item Utilized Density Functional Theory (DFT) and molecular dynamics (MD) simulations to analyze molecular interactions, guiding optimal co-crystal formation pathways and identifying key process descriptors.
+			\item Integrated Raman spectrometer data into a live control system, enabling real-time feedback and control within a continuous manufacturing environment through predictive ML models.
+		\end{itemize}
+	}%
+	{ul.jpg}%
+	{\href{https://www.ul.ie/bernal}{Bernal Institute}, \href{https://www.ul.ie}{University of Limerick}}
+	
+	\projectItem{skoltech-ra.jpg}%
+	{Machine Learning Inter-atomic Potentials for Materials Discovery}%
+	{Aimed to expedite the discovery and characterization of hard materials for use in high-performance environments-such as aerospace, automotive, mining, and manufacturing-by developing and deploying ML-driven interatomic potentials for predictive modeling.}%
+	{
+		\begin{itemize}[leftmargin=1em, nosep]
+			\item Assessed candidate hard materials for industrial applications, focusing on performance under mechanical stress and durability in extreme conditions.
+			\item Conducted nanoindentation research to evaluate mechanical properties such as hardness and elastic modulus of synthesized materials.
+			\item Developed validation models to discuss experimental results with simulation predictions, extracting insights into material failure modes and defect behavior.
+			\item Implemented and trained Machine Learning Interatomic Potentials (MLIPs) using active learning strategies to improve accuracy with minimal data.
+			\item Automated molecular dynamics (MD) simulations using LAMMPS and density functional theory (DFT) calculations using VASP for large-scale material screening across multiple HPC clusters.
+			\item Wrote modular and efficient code in Python and Bash, managing environments and version control using Git.
+		\end{itemize}
+	}%
+	{skoltech.jpg}%
+	{\href{https://www.skoltech.ru/en/}{Skolkovo Institute of Science and Technology}}	
+	
+	\projectItem{cityuhk-ra.jpg}%
+	{Design of Adsorptive Systems for Direct Gas Capture and Separation}%
+	{Developed a novel process for the direct capture, separation, and solid-state storage of nitrogen and carbon dioxide gases under ambient conditions using moist lithium as a reactive adsorbent, with an emphasis on circular material recovery for sustainable gas handling and sequestration.}%
+	{
+		\begin{itemize}[leftmargin=1em, nosep]
+			\item Designed and optimized gas capture protocols for ambient-condition adsorption of nitrogen and carbon dioxide on moist lithium enabling safe and efficient conversion into solid-state lithium nitride for storage and transport.
+			\item Applied principles of reaction engineering and separation to evaluate process efficiency, yield, and purity of captured products.
+			\item Conducted Density Functional Theory (DFT) calculations to map reaction pathways between lithium and target gases, identifying favorable thermodynamic and kinetic conditions.
+			\item Developed microkinetic and kinetic Monte Carlo models to simulate reaction dynamics and upscale lab-scale findings for process-scale feasibility.
+			\item Demonstrated on-demand recovery of nitrogen and lithium through electrochemical regeneration, showcasing material circularity and long-term process sustainability.
+		\end{itemize}
+	}%
+	{cityuhk.jpg}%
+	{\href{https://www.cityu.edu.hk/en}{City University of Hong Kong}}	
+	
+	\projectItem{no-pics.jpg}% 
+	{Thermo-kinetic Modeling of Wet Phase Inversion Process for Polymeric Membranes Fabrication}%
+	{Developed a comprehensive thermo-kinetic model to simulate the wet phase inversion process for fabricating polymeric membranes, focusing on Multiphysics coupling and accurate prediction of polymeric flat-sheet membrane structure evolution.}%
+	{
+		\begin{itemize}[leftmargin=1em, nosep]
+			\item Constructed and solved coupled heat, mass, and momentum transport models under non-equilibrium thermodynamics, incorporating moving boundary conditions in multiphase, multicomponent porous systems.
+			\item Formulated and implemented partial and ordinary differential equation solvers (PDE/ODE) to capture the transient dynamics of solvent-nonsolvent exchange and polymer precipitation.
+			\item Wrote custom code in Fortran, MATLAB, and C++ for high-fidelity numerical simulations and sensitivity analyses.
+			\item Validated computational results against experimental measurements, achieving strong agreement in membrane morphology predictions.
+			\item Gained insight into phase separation kinetics, diffusion mechanisms, and the impact of process parameters on membrane performance and structure.
+		\end{itemize}
+	}%
+	{ut.jpg}%
+	{\href{https://ut.ac.ir/fa}{University of Tehran}}	
+	
+	\projectItem{ripi-intern.jpg}%
+	{Design of Separation Systems for Ethane and Methane}%
+	{Completed a process engineering internship focused on the simulation and optimization of a gas separation unit targeting high-purity ethane and methane recovery, integrating both technical design and economic analysis using industry-standard tools.}%
+	{
+		\begin{itemize}[leftmargin=1em, nosep]
+			\item Designed, simulated, and optimized a separation process in Aspen HYSYS, achieving efficient separation of ethane and methane under various operating conditions.
+			\item Developed comprehensive Process Flow Diagrams (PFDs) to visualize and document the system configuration, material and energy balances, and process controls.
+			\item Performed equipment sizing and selection for distillation columns, heat exchangers, compressors, and separators based on simulated process data and vendor specifications.
+			\item Conducted cost analysis, including capital expenditure (CAPEX), operating expenditure (OPEX), and utility consumption, to assess economic feasibility and guide procurement strategies.
+			\item Applied exergy analysis and pinch analysis to identify thermodynamic inefficiencies and optimize energy integration, improving process sustainability and reducing waste heat.
+			\item Evaluated and compared equipment procurement options using technical and economic criteria to support decision-making for pilot-scale implementation.
+		\end{itemize}
+	}%
+	{ripi.jpg}%
+	{\href{https://www.ripi.ir/home-eng-2/}{Research Institute of Petroleum Industry (RIPI)}}
+	
+	\projectItem{ut-bsc.jpg}%
+	{Simulation and Cost Evaluation of Hot Section of BIPC Olefin Plant}%
+	{Used Aspen Hysys and Aspen Plus to evaluate retrofitting of industrial scale petroleum refinery complex by producing process flow diagram (PFD), piping/process \& instrumentation diagram (P\&ID), cost and utility, pinch and exergy.}%
+	{
+		\begin{itemize}[leftmargin=1em, nosep]
+			\item Simulated existing and proposed process configurations using Aspen HYSYS and Aspen Plus, focusing on optimizing reactor and separation systems for olefin recovery.
+			\item Developed and documented detailed Process Flow Diagrams (PFDs) and Piping \& Instrumentation Diagrams (P\&IDs) to map unit operations, control loops, and equipment connectivity.
+			\item Performed equipment sizing and specification for heat exchangers, reactors, compressors, and distillation columns based on simulated operating conditions.
+			\item Conducted cost estimation and utility analysis (CAPEX and OPEX) to support retrofitting and procurement decisions.
+			\item Applied pinch analysis and exergy analysis to evaluate and enhance energy integration and thermodynamic efficiency across the system.
+			\item Assessed retrofitting feasibility by integrating performance data, economic viability, and process safety considerations.
+		\end{itemize}
+	}%
+	{ut.jpg}%
+	{\href{https://ut.ac.ir/fa}{University of Tehran}}
+	
+	% Miscellaneous 
+	\section*{Miscellaneous}
+
+	\projectItem{gibbsreactor.jpg}%
+	{Chemical Reaction Systems Analyzer}%
+	{A web-based tool for analyzing chemical reaction systems and Gibbs free energy minimization. This is a demo of the Gibbs Reactor Module in CADSIM Plus (Aurel Systems Inc.). For the simplicity of this demo, all chemicals are treated as ideal gases, and their thermodynamic properties are pulled from the Shomate thermodynamic database provided by the NIST.}%
+	{}%
+	{}%
+	{}
+
+	\projectItem{psd.jpg}%
+	{Particle Generator and Mesher}%
+	{An interactive browser-based tool for particle-filled geometry generation with different shapes and sizes based on the particle size distribution (PSD) and packing characteristics. It can generate 3D granular beds with various shapes and sizes, and volume meshing.}%
+	{}%
+	{}%
+	{}
+
+	\projectItem{nanochannel.jpg}%
+	{Nanochannel Builder and Mesher (with MD-like Simulations on the Web)}%
+	{An interactive browser-based tool for parametric design and 3D visualization of nanochannel geometries, mesh generation in real time, and export. Now supports MD-like simulations.}%
+	{}%
+	{}%
+	{}
+
+	\projectItem{routmapper.jpg}%
+	{Convert a Drawing to GPX (Route Pattern Mapper)}%
+	{A web app that takes a color-coded pattern image (e.g., a design, logo or similar), overlays it onto a (multi)-city street network (downloaded from OpenStreetMap), extracts GPS coordinates for each color layer, and outputs the result as one or more GPX track files - ready to be used in any GPS-capable navigation apps.}%
+	{}%
+	{}%
+	{}
+	
+	\projectItem{biketrainer.jpg}%
+	{Bike Trainer Dashboard}%
+	{Post clavicle fracture fun :) A dynamic, single-page dashboard designed for indoor cycling using Minoura MAG-500 bike trainer.}%
+	{
+		\begin{itemize}[leftmargin=1em, nosep]
+			\item Gravitational Power: Calculates power required to overcome slope/grade.
+			\item Rolling Resistance: Accounts for tire friction based on total mass.
+			\item Aerodynamic Drag: Estimates wind resistance using rider height and shoulder width.
+			\item Trainer Config: Eight magnetic resistance levels (L1-L8) mapped to specific slopes.
+			\item Drivetrain: Selection for Front Ring (50T/34T) and Rear Cassette (11T-34T) gears. Wheel Size: Presets for various tire sizes (700x23C up to 700x32C) with manual circumference input.
+			\item Rider Profile: Defaults are FTP 250W, Mass 85kg, Height 178cm, Shoulder Width 31cm. Recording: Can record a simulated workout and export a GPX file readable by other cycling apps such as Strava.
+		\end{itemize}
+	}%
+	{}%
+	{}
+	
+	% EOD
+	
+\end{document}
