@@ -1,5 +1,6 @@
 ## Outlets
 
+- LinkedIn style resume via LaTex
 - GIS Data Visualizer
 - Particle Generator and Mesher
 - Chemical Reaction Systems Analyzer
