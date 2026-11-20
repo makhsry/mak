@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.27)  7 OCT 2026 22:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.8.27)  20 NOV 2026 11:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -405,67 +405,95 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 131.
 
-Overfull \hbox (2.32137pt too wide) in paragraph at lines 127--144
+! Illegal parameter number in definition of \Hy@tempa.
+<to be read again> 
+                   l
+l.143 ...-resume-via-latex}{Resume's Source Code}}
+                                                  
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \Hy@tempa.
+<to be read again> 
+                   l
+l.143 ...-resume-via-latex}{Resume's Source Code}}
+                                                  
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+! Illegal parameter number in definition of \Hy@tempa.
+<to be read again> 
+                   l
+l.143 ...-resume-via-latex}{Resume's Source Code}}
+                                                  
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+
+Overfull \hbox (2.32137pt too wide) in paragraph at lines 127--146
 [][]   
  []
 
-<assets/aurelsystems.jpg, id=8, 100.375pt x 100.375pt>
+<assets/aurelsystems.jpg, id=9, 100.375pt x 100.375pt>
 File: assets/aurelsystems.jpg Graphic file (type jpg)
 <use assets/aurelsystems.jpg>
-Package pdftex.def Info: assets/aurelsystems.jpg  used on input line 161.
+Package pdftex.def Info: assets/aurelsystems.jpg  used on input line 163.
 (pdftex.def)             Requested size: 34.14389pt x 34.14389pt.
 
-Overfull \hbox (2.32137pt too wide) in paragraph at lines 161--162
+Overfull \hbox (2.32137pt too wide) in paragraph at lines 163--164
 [][]   
  []
 
-<assets/ubc-mining.jpg, id=10, 100.375pt x 100.375pt>
+<assets/ubc-mining.jpg, id=11, 100.375pt x 100.375pt>
 File: assets/ubc-mining.jpg Graphic file (type jpg)
 <use assets/ubc-mining.jpg>
-Package pdftex.def Info: assets/ubc-mining.jpg  used on input line 168.
+Package pdftex.def Info: assets/ubc-mining.jpg  used on input line 170.
 (pdftex.def)             Requested size: 34.14389pt x 34.14389pt.
 
-Overfull \hbox (2.32137pt too wide) in paragraph at lines 168--169
+Overfull \hbox (2.32137pt too wide) in paragraph at lines 170--171
 [][]   
  []
 
-<assets/ubc-chbe.jpg, id=12, 100.375pt x 100.375pt>
+<assets/ubc-chbe.jpg, id=13, 100.375pt x 100.375pt>
 File: assets/ubc-chbe.jpg Graphic file (type jpg)
 <use assets/ubc-chbe.jpg>
-Package pdftex.def Info: assets/ubc-chbe.jpg  used on input line 175.
+Package pdftex.def Info: assets/ubc-chbe.jpg  used on input line 177.
 (pdftex.def)             Requested size: 34.14389pt x 34.14389pt.
 
-Overfull \hbox (2.32137pt too wide) in paragraph at lines 175--176
+Overfull \hbox (2.32137pt too wide) in paragraph at lines 177--178
 [][]   
  []
 
-<assets/ul.jpg, id=14, 100.375pt x 100.375pt>
+<assets/ul.jpg, id=15, 100.375pt x 100.375pt>
 File: assets/ul.jpg Graphic file (type jpg)
 <use assets/ul.jpg>
-Package pdftex.def Info: assets/ul.jpg  used on input line 182.
+Package pdftex.def Info: assets/ul.jpg  used on input line 184.
 (pdftex.def)             Requested size: 34.14389pt x 34.14389pt.
 
-Overfull \hbox (2.32137pt too wide) in paragraph at lines 182--183
+Overfull \hbox (2.32137pt too wide) in paragraph at lines 184--185
 [][]   
  []
 
-<assets/skoltech.jpg, id=18, 100.375pt x 100.375pt>
+<assets/skoltech.jpg, id=19, 100.375pt x 100.375pt>
 File: assets/skoltech.jpg Graphic file (type jpg)
 <use assets/skoltech.jpg>
-Package pdftex.def Info: assets/skoltech.jpg  used on input line 189.
+Package pdftex.def Info: assets/skoltech.jpg  used on input line 191.
 (pdftex.def)             Requested size: 34.14389pt x 34.14389pt.
 
-Overfull \hbox (2.32137pt too wide) in paragraph at lines 189--190
+Overfull \hbox (2.32137pt too wide) in paragraph at lines 191--192
 [][]   
  []
 
-<assets/cityuhk.jpg, id=20, 100.375pt x 100.375pt>
+<assets/cityuhk.jpg, id=21, 100.375pt x 100.375pt>
 File: assets/cityuhk.jpg Graphic file (type jpg)
 <use assets/cityuhk.jpg>
-Package pdftex.def Info: assets/cityuhk.jpg  used on input line 196.
+Package pdftex.def Info: assets/cityuhk.jpg  used on input line 198.
 (pdftex.def)             Requested size: 34.14389pt x 34.14389pt.
 
-Overfull \hbox (2.32137pt too wide) in paragraph at lines 196--197
+Overfull \hbox (2.32137pt too wide) in paragraph at lines 198--199
 [][]   
  []
 
@@ -475,229 +503,229 @@ Overfull \hbox (2.32137pt too wide) in paragraph at lines 196--197
 texmf-dist/fonts/enc/dvips/base/8r.enc} <./assets/qrcode_www.linkedin.com.png (
 PNG copy)> <./assets/aurelsystems.jpg> <./assets/ubc-mining.jpg> <./assets/ubc-
 chbe.jpg> <./assets/ul.jpg> <./assets/skoltech.jpg>]
-<assets/iopcas.jpg, id=30, 100.375pt x 100.375pt>
+<assets/iopcas.jpg, id=31, 100.375pt x 100.375pt>
 File: assets/iopcas.jpg Graphic file (type jpg)
 <use assets/iopcas.jpg>
-Package pdftex.def Info: assets/iopcas.jpg  used on input line 203.
+Package pdftex.def Info: assets/iopcas.jpg  used on input line 205.
 (pdftex.def)             Requested size: 34.14389pt x 34.14389pt.
 
-Overfull \hbox (2.32137pt too wide) in paragraph at lines 203--204
+Overfull \hbox (2.32137pt too wide) in paragraph at lines 205--206
 [][]   
  []
 
-<assets/ripi.jpg, id=33, 100.375pt x 100.375pt>
+<assets/ripi.jpg, id=34, 100.375pt x 100.375pt>
 File: assets/ripi.jpg Graphic file (type jpg)
 <use assets/ripi.jpg>
-Package pdftex.def Info: assets/ripi.jpg  used on input line 210.
+Package pdftex.def Info: assets/ripi.jpg  used on input line 212.
 (pdftex.def)             Requested size: 34.14389pt x 34.14389pt.
 
-Overfull \hbox (2.32137pt too wide) in paragraph at lines 210--211
+Overfull \hbox (2.32137pt too wide) in paragraph at lines 212--213
 [][]   
  []
 
-<assets/ubc.jpg, id=35, 100.375pt x 100.375pt>
+<assets/ubc.jpg, id=36, 100.375pt x 100.375pt>
 File: assets/ubc.jpg Graphic file (type jpg)
 <use assets/ubc.jpg>
-Package pdftex.def Info: assets/ubc.jpg  used on input line 218.
+Package pdftex.def Info: assets/ubc.jpg  used on input line 220.
 (pdftex.def)             Requested size: 34.14389pt x 34.14389pt.
 
-Overfull \hbox (2.32137pt too wide) in paragraph at lines 218--219
+Overfull \hbox (2.32137pt too wide) in paragraph at lines 220--221
 [][]   
  []
 
-<assets/ut.jpg, id=37, 100.375pt x 100.375pt>
+<assets/ut.jpg, id=38, 100.375pt x 100.375pt>
 File: assets/ut.jpg Graphic file (type jpg)
 <use assets/ut.jpg>
-Package pdftex.def Info: assets/ut.jpg  used on input line 223.
+Package pdftex.def Info: assets/ut.jpg  used on input line 225.
 (pdftex.def)             Requested size: 34.14389pt x 34.14389pt.
 
-Overfull \hbox (2.32137pt too wide) in paragraph at lines 223--224
+Overfull \hbox (2.32137pt too wide) in paragraph at lines 225--226
 [][]   
  []
 
 File: assets/ut.jpg Graphic file (type jpg)
 <use assets/ut.jpg>
-Package pdftex.def Info: assets/ut.jpg  used on input line 228.
+Package pdftex.def Info: assets/ut.jpg  used on input line 230.
 (pdftex.def)             Requested size: 34.14389pt x 34.14389pt.
 
-Overfull \hbox (2.32137pt too wide) in paragraph at lines 228--229
+Overfull \hbox (2.32137pt too wide) in paragraph at lines 230--231
 [][]   
  []
 
-<assets/ubc-mining-ra.jpg, id=40, 481.8pt x 274.02374pt>
+<assets/ubc-mining-ra.jpg, id=41, 481.8pt x 274.02374pt>
 File: assets/ubc-mining-ra.jpg Graphic file (type jpg)
 <use assets/ubc-mining-ra.jpg>
-Package pdftex.def Info: assets/ubc-mining-ra.jpg  used on input line 244.
+Package pdftex.def Info: assets/ubc-mining-ra.jpg  used on input line 246.
 (pdftex.def)             Requested size: 123.9425pt x 70.49185pt.
 LaTeX Font Info:    Trying to load font information for TS1+phv on input line 2
-44.
+46.
 (c:/texlive/2026/texmf-dist/tex/latex/psnfss/ts1phv.fd
 File: ts1phv.fd 2020/03/25 scalable font definitions for TS1/phv.
 )
 File: assets/ubc-mining.jpg Graphic file (type jpg)
 <use assets/ubc-mining.jpg>
-Package pdftex.def Info: assets/ubc-mining.jpg  used on input line 244.
+Package pdftex.def Info: assets/ubc-mining.jpg  used on input line 246.
 (pdftex.def)             Requested size: 11.37976pt x 11.37976pt.
  [2 <./assets/cityuhk.jpg> <./assets/iopcas.jpg> <./assets/ripi.jpg> <./assets/
 ubc.jpg> <./assets/ut.jpg> <./assets/ubc-mining-ra.jpg>]
-<assets/ubc-chbe-ra.jpg, id=47, 481.8pt x 359.3425pt>
+<assets/ubc-chbe-ra.jpg, id=48, 481.8pt x 359.3425pt>
 File: assets/ubc-chbe-ra.jpg Graphic file (type jpg)
 <use assets/ubc-chbe-ra.jpg>
-Package pdftex.def Info: assets/ubc-chbe-ra.jpg  used on input line 261.
+Package pdftex.def Info: assets/ubc-chbe-ra.jpg  used on input line 263.
 (pdftex.def)             Requested size: 123.9425pt x 92.43988pt.
 File: assets/ubc-chbe.jpg Graphic file (type jpg)
 <use assets/ubc-chbe.jpg>
-Package pdftex.def Info: assets/ubc-chbe.jpg  used on input line 261.
+Package pdftex.def Info: assets/ubc-chbe.jpg  used on input line 263.
 (pdftex.def)             Requested size: 11.37976pt x 11.37976pt.
-<assets/ul-ra.jpg, id=49, 481.8pt x 179.67125pt>
+<assets/ul-ra.jpg, id=50, 481.8pt x 179.67125pt>
 File: assets/ul-ra.jpg Graphic file (type jpg)
 <use assets/ul-ra.jpg>
-Package pdftex.def Info: assets/ul-ra.jpg  used on input line 277.
+Package pdftex.def Info: assets/ul-ra.jpg  used on input line 279.
 (pdftex.def)             Requested size: 123.9425pt x 46.21992pt.
 
-Overfull \hbox (5.30823pt too wide) in paragraph at lines 277--277
+Overfull \hbox (5.30823pt too wide) in paragraph at lines 279--279
 []\T1/phv/m/n/10 Integrated and pro-cessed di-verse sen-sor types in-clud-ing C
 CD cam-era feeds (image-
  []
 
 
-Overfull \hbox (0.34229pt too wide) in paragraph at lines 277--277
+Overfull \hbox (0.34229pt too wide) in paragraph at lines 279--279
 \T1/phv/m/n/10 based anal-y-sis), NIR sen-sors (un-la-beled time-series), Ra-ma
 n spec-troscopy probes
  []
 
 File: assets/ul.jpg Graphic file (type jpg)
 <use assets/ul.jpg>
-Package pdftex.def Info: assets/ul.jpg  used on input line 277.
+Package pdftex.def Info: assets/ul.jpg  used on input line 279.
 (pdftex.def)             Requested size: 11.37976pt x 11.37976pt.
 [3 <./assets/ubc-chbe-ra.jpg> <./assets/ul-ra.jpg>]
-<assets/ul-pd.jpg, id=56, 481.8pt x 212.795pt>
+<assets/ul-pd.jpg, id=57, 481.8pt x 212.795pt>
 File: assets/ul-pd.jpg Graphic file (type jpg)
 <use assets/ul-pd.jpg>
-Package pdftex.def Info: assets/ul-pd.jpg  used on input line 293.
+Package pdftex.def Info: assets/ul-pd.jpg  used on input line 295.
 (pdftex.def)             Requested size: 123.9425pt x 54.74092pt.
 
-Overfull \hbox (0.34038pt too wide) in paragraph at lines 293--293
+Overfull \hbox (0.34038pt too wide) in paragraph at lines 295--295
 []\T1/phv/m/n/10 Evaluated the in-flu-ence of crit-i-cal pro-cess parameters-te
 mperature, res-i-dence time,
  []
 
 File: assets/ul.jpg Graphic file (type jpg)
 <use assets/ul.jpg>
-Package pdftex.def Info: assets/ul.jpg  used on input line 293.
+Package pdftex.def Info: assets/ul.jpg  used on input line 295.
 (pdftex.def)             Requested size: 11.37976pt x 11.37976pt.
-<assets/skoltech-ra.jpg, id=59, 481.8pt x 183.68625pt>
+<assets/skoltech-ra.jpg, id=60, 481.8pt x 183.68625pt>
 File: assets/skoltech-ra.jpg Graphic file (type jpg)
 <use assets/skoltech-ra.jpg>
-Package pdftex.def Info: assets/skoltech-ra.jpg  used on input line 309.
+Package pdftex.def Info: assets/skoltech-ra.jpg  used on input line 311.
 (pdftex.def)             Requested size: 123.9425pt x 47.25278pt.
 
-Overfull \hbox (10.2744pt too wide) in paragraph at lines 309--309
+Overfull \hbox (10.2744pt too wide) in paragraph at lines 311--311
 \T1/phv/m/n/10 performance environments-such as aerospace, au-to-mo-tive, min-i
 ng, and manufacturing-
  []
 
 File: assets/skoltech.jpg Graphic file (type jpg)
 <use assets/skoltech.jpg>
-Package pdftex.def Info: assets/skoltech.jpg  used on input line 309.
+Package pdftex.def Info: assets/skoltech.jpg  used on input line 311.
 (pdftex.def)             Requested size: 11.37976pt x 11.37976pt.
 [4 <./assets/ul-pd.jpg> <./assets/skoltech-ra.jpg>]
-<assets/cityuhk-ra.jpg, id=65, 481.8pt x 180.675pt>
+<assets/cityuhk-ra.jpg, id=66, 481.8pt x 180.675pt>
 File: assets/cityuhk-ra.jpg Graphic file (type jpg)
 <use assets/cityuhk-ra.jpg>
-Package pdftex.def Info: assets/cityuhk-ra.jpg  used on input line 324.
+Package pdftex.def Info: assets/cityuhk-ra.jpg  used on input line 326.
 (pdftex.def)             Requested size: 123.9425pt x 46.47815pt.
 File: assets/cityuhk.jpg Graphic file (type jpg)
 <use assets/cityuhk.jpg>
-Package pdftex.def Info: assets/cityuhk.jpg  used on input line 324.
+Package pdftex.def Info: assets/cityuhk.jpg  used on input line 326.
 (pdftex.def)             Requested size: 11.37976pt x 11.37976pt.
-<assets/no-pics.jpg, id=67, 75.28125pt x 75.28125pt>
+<assets/no-pics.jpg, id=68, 75.28125pt x 75.28125pt>
 File: assets/no-pics.jpg Graphic file (type jpg)
 <use assets/no-pics.jpg>
-Package pdftex.def Info: assets/no-pics.jpg  used on input line 339.
+Package pdftex.def Info: assets/no-pics.jpg  used on input line 341.
 (pdftex.def)             Requested size: 123.9425pt x 123.95482pt.
 
-Overfull \hbox (29.59793pt too wide) in paragraph at lines 339--339
+Overfull \hbox (29.59793pt too wide) in paragraph at lines 341--341
 []\T1/phv/m/n/10 Formulated and im-ple-mented par-tial and or-di-nary dif-fer-e
 n-tial equa-tion solvers (PDE/ODE)
  []
 
 File: assets/ut.jpg Graphic file (type jpg)
 <use assets/ut.jpg>
-Package pdftex.def Info: assets/ut.jpg  used on input line 339.
+Package pdftex.def Info: assets/ut.jpg  used on input line 341.
 (pdftex.def)             Requested size: 11.37976pt x 11.37976pt.
 [5 <./assets/cityuhk-ra.jpg> <./assets/no-pics.jpg>]
-<assets/ripi-intern.jpg, id=73, 481.8pt x 153.57375pt>
+<assets/ripi-intern.jpg, id=74, 481.8pt x 153.57375pt>
 File: assets/ripi-intern.jpg Graphic file (type jpg)
 <use assets/ripi-intern.jpg>
-Package pdftex.def Info: assets/ripi-intern.jpg  used on input line 355.
+Package pdftex.def Info: assets/ripi-intern.jpg  used on input line 357.
 (pdftex.def)             Requested size: 123.9425pt x 39.50642pt.
 
-Overfull \hbox (1.1428pt too wide) in paragraph at lines 355--355
+Overfull \hbox (1.1428pt too wide) in paragraph at lines 357--357
 []\T1/phv/m/n/10 Designed, sim-u-lated, and op-ti-mized a sep-a-ra-tion pro-ces
 s in As-pen HYSYS, achiev-
  []
 
 File: assets/ripi.jpg Graphic file (type jpg)
 <use assets/ripi.jpg>
-Package pdftex.def Info: assets/ripi.jpg  used on input line 355.
+Package pdftex.def Info: assets/ripi.jpg  used on input line 357.
 (pdftex.def)             Requested size: 11.37976pt x 11.37976pt.
-<assets/ut-bsc.jpg, id=75, 481.8pt x 175.65625pt>
+<assets/ut-bsc.jpg, id=76, 481.8pt x 175.65625pt>
 File: assets/ut-bsc.jpg Graphic file (type jpg)
 <use assets/ut-bsc.jpg>
-Package pdftex.def Info: assets/ut-bsc.jpg  used on input line 371.
+Package pdftex.def Info: assets/ut-bsc.jpg  used on input line 373.
 (pdftex.def)             Requested size: 123.9425pt x 45.18709pt.
 
-Overfull \hbox (1.1643pt too wide) in paragraph at lines 371--371
+Overfull \hbox (1.1643pt too wide) in paragraph at lines 373--373
 \T1/phv/b/n/12 Simulation and Cost Eval-u-a-tion of Hot Sec-tion of BIPC Olefin
  Plant 
  []
 
 
-Overfull \hbox (3.34839pt too wide) in paragraph at lines 371--371
+Overfull \hbox (3.34839pt too wide) in paragraph at lines 373--373
 \T1/phv/m/n/10 Used As-pen Hysys and As-pen Plus to eval-u-ate retrofitting of 
 in-dus-trial scale petroleum
  []
 
 File: assets/ut.jpg Graphic file (type jpg)
 <use assets/ut.jpg>
-Package pdftex.def Info: assets/ut.jpg  used on input line 371.
+Package pdftex.def Info: assets/ut.jpg  used on input line 373.
 (pdftex.def)             Requested size: 11.37976pt x 11.37976pt.
 
 Overfull \vbox (10.8486pt too high) has occurred while \output is active []
 
 
 [6 <./assets/ripi-intern.jpg> <./assets/ut-bsc.jpg>]
-<assets/gibbsreactor.jpg, id=81, 481.8pt x 362.35374pt>
+<assets/gibbsreactor.jpg, id=82, 481.8pt x 362.35374pt>
 File: assets/gibbsreactor.jpg Graphic file (type jpg)
 <use assets/gibbsreactor.jpg>
-Package pdftex.def Info: assets/gibbsreactor.jpg  used on input line 381.
+Package pdftex.def Info: assets/gibbsreactor.jpg  used on input line 383.
 (pdftex.def)             Requested size: 123.9425pt x 93.21451pt.
-<assets/psd.jpg, id=82, 481.8pt x 236.885pt>
+<assets/psd.jpg, id=83, 481.8pt x 236.885pt>
 File: assets/psd.jpg Graphic file (type jpg)
 <use assets/psd.jpg>
-Package pdftex.def Info: assets/psd.jpg  used on input line 388.
+Package pdftex.def Info: assets/psd.jpg  used on input line 390.
 (pdftex.def)             Requested size: 123.9425pt x 60.93802pt.
-<assets/nanochannel.jpg, id=83, 481.8pt x 238.8925pt>
+<assets/nanochannel.jpg, id=84, 481.8pt x 238.8925pt>
 File: assets/nanochannel.jpg Graphic file (type jpg)
 <use assets/nanochannel.jpg>
-Package pdftex.def Info: assets/nanochannel.jpg  used on input line 395.
+Package pdftex.def Info: assets/nanochannel.jpg  used on input line 397.
 (pdftex.def)             Requested size: 123.9425pt x 61.45444pt.
 
-Overfull \hbox (18.65755pt too wide) in paragraph at lines 395--395
+Overfull \hbox (18.65755pt too wide) in paragraph at lines 397--397
 \T1/phv/m/n/10 An in-ter-ac-tive browser-based tool for para-met-ric de-sign an
 d 3D vi-su-al-iza-tion of nanochan-
  []
 
-<assets/routmapper.jpg, id=84, 481.8pt x 235.88126pt>
+<assets/routmapper.jpg, id=85, 481.8pt x 235.88126pt>
 File: assets/routmapper.jpg Graphic file (type jpg)
 <use assets/routmapper.jpg>
-Package pdftex.def Info: assets/routmapper.jpg  used on input line 402.
+Package pdftex.def Info: assets/routmapper.jpg  used on input line 404.
 (pdftex.def)             Requested size: 123.9425pt x 60.67981pt.
-<assets/biketrainer.jpg, id=85, 481.8pt x 227.85126pt>
+<assets/biketrainer.jpg, id=86, 481.8pt x 227.85126pt>
 File: assets/biketrainer.jpg Graphic file (type jpg)
 <use assets/biketrainer.jpg>
-Package pdftex.def Info: assets/biketrainer.jpg  used on input line 418.
+Package pdftex.def Info: assets/biketrainer.jpg  used on input line 420.
 (pdftex.def)             Requested size: 123.9425pt x 58.6141pt.
 [7 <./assets/gibbsreactor.jpg> <./assets/psd.jpg> <./assets/nanochannel.jpg> <.
 /assets/routmapper.jpg> <./assets/biketrainer.jpg>] [8]
@@ -720,10 +748,10 @@ Here is how much of TeX's memory you used:
 <c:/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/tex
 live/2026/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2026/texmf
 -dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on MAK_Resume_LinkedIn.pdf (8 pages, 315733 bytes).
+Output written on MAK_Resume_LinkedIn.pdf (8 pages, 315820 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
- 73 compressed objects within 1 object stream
+ 116 PDF objects out of 1000 (max. 8388607)
+ 74 compressed objects within 1 object stream
  9 named destinations out of 1000 (max. 500000)
  126 words of extra memory for PDF output out of 10000 (max. 10000000)
 
